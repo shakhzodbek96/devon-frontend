@@ -15,7 +15,8 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-import { archiveUnit, listEmployees, listUnits, MockNetworkError } from '@/lib/mock-backend';
+import { listEmployees } from '@/lib/mock-backend';
+import { archiveUnit, listUnits, MockNetworkError } from '@/lib/data/units';
 import { useMediaQuery } from '@/lib/use-media-query';
 import { useAuthStore } from '@/stores/useAuthStore';
 import type { Employee, Unit } from '@/types/domain';

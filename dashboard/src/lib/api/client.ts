@@ -13,12 +13,15 @@ const BASE_URL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000/api
 export class ApiError extends Error {
   status: number;
   errors?: Record<string, string[]>;
+  /** Business-rule error code (e.g. unit validation's 'duplicate-name') — see `bootstrap/app.php`. */
+  code?: string;
 
-  constructor(status: number, message: string, errors?: Record<string, string[]>) {
+  constructor(status: number, message: string, errors?: Record<string, string[]>, code?: string) {
     super(message);
     this.name = 'ApiError';
     this.status = status;
     this.errors = errors;
+    this.code = code;
   }
 }
 
@@ -32,6 +35,7 @@ interface RequestOptions {
 interface ErrorBody {
   message?: string;
   errors?: Record<string, string[]>;
+  code?: string;
 }
 
 export async function apiFetch<T>(path: string, options: RequestOptions = {}): Promise<T> {
@@ -79,6 +83,7 @@ export async function apiFetch<T>(path: string, options: RequestOptions = {}): P
       response.status,
       errorBody.message ?? response.statusText,
       errorBody.errors,
+      errorBody.code,
     );
   }
 

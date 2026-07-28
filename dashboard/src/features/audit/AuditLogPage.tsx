@@ -25,7 +25,8 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { listAudit, listUnits } from '@/lib/mock-backend';
+import { listAudit } from '@/lib/data/audit';
+import { listUnits } from '@/lib/data/units';
 import type { AuditEntry, AuditResourceType, Unit } from '@/types/domain';
 
 import AuditEntryRow from './AuditEntryRow';

@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 
-import { createUnit, updateUnit, UnitValidationError } from '@/lib/mock-backend';
+import { createUnit, updateUnit, UnitValidationError } from '@/lib/data/units';
 import { useAuthStore } from '@/stores/useAuthStore';
 import type { Unit, UnitType } from '@/types/domain';
 
