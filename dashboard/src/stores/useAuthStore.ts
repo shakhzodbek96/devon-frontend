@@ -1,51 +1,50 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import type { Role } from '@/types/domain';
-import {
-  appendAudit,
-  findUserByEmail,
-  getEmployee,
-  listEmployees,
-  MockNetworkError,
-  PERSONAS,
-} from '@/lib/mock-backend';
-import { sha256Hex } from '@/lib/hash';
+import { appendAudit, getEmployee, PERSONAS } from '@/lib/mock-backend';
+import { ApiError } from '@/lib/api/client';
+import { login as apiLogin, logout as apiLogout, me as apiMe } from '@/lib/api/auth';
 
 export interface SessionUser {
   uuid: string;
   email: string;
   fullName: string;
   roles: Role[];
+  /** Gates the forced `/change-password` redirect (RequireAuth). */
+  mustChangePassword: boolean;
 }
 
 type LoginResult = { ok: true } | { ok: false; reason: 'invalid-credentials' | 'network' };
 
 interface AuthState {
   user: SessionUser | null;
+  /** Sanctum bearer token — persisted, sent as `Authorization: Bearer <token>`. */
+  token: string | null;
   issuedAt: string | null;
   expiresAt: string | null;
   isAuthenticated: boolean;
   /**
    * POV switcher (milestone 2): the employee the session is acting as.
    * `null` = the session user's own employee. Persisted inside the session
-   * blob so a refresh keeps the POV.
+   * blob so a refresh keeps the POV. Unchanged by this slice — still reads
+   * the mock Employee data; only the login path below is real.
    */
   actingAsEmployeeUuid: string | null;
   login: (email: string, password: string) => Promise<LoginResult>;
+  /** Best-effort `POST /auth/logout`, then clears local state. */
   logout: () => void;
+  /** Clears local session state only — no network call. Used internally by
+   *  the API client on a `401` so it doesn't recurse back into `logout()`. */
+  clearSession: () => void;
   isExpired: () => boolean;
   /** Act as another persona without logging out. Audited (actor = real session user). */
   switchPov: (employeeUuid: string) => Promise<void>;
   /** Return to the session user's own POV. Audited like `switchPov`. */
   resetPov: () => Promise<void>;
-  /**
-   * Re-derive the persisted session's `fullName` (and roles) from the current
-   * seed. Lets renames / reseeds reflect into already-cached sessions without
-   * forcing a logout. No-op when not authenticated, when expired, or when
-   * the user no longer exists in the seed. Also drops a persisted POV whose
-   * employee no longer exists after a reseed.
-   */
+  /** Re-fetch the current user from `GET /auth/me`. No-op when not authenticated or expired. */
   refreshSessionUser: () => Promise<void>;
+  /** Locally flip `mustChangePassword` after a successful change — avoids an extra round-trip. */
+  clearMustChangePassword: () => void;
 }
 
 /** Reverse-resolve a persona key from PERSONAS for audit context; falls back to the uuid. */
@@ -62,47 +61,49 @@ export const useAuthStore = create<AuthState>()(
   persist(
     (set, get) => ({
       user: null,
+      token: null,
       issuedAt: null,
       expiresAt: null,
       isAuthenticated: false,
       actingAsEmployeeUuid: null,
       login: async (email, password) => {
         try {
-          const user = await findUserByEmail(email.trim());
-          if (!user) return { ok: false, reason: 'invalid-credentials' };
-
-          const hash = await sha256Hex(password);
-          if (hash !== user.passwordHash) return { ok: false, reason: 'invalid-credentials' };
-
-          let fullName = user.email;
-          if (user.employeeUuid) {
-            const employees = await listEmployees();
-            fullName =
-              employees.find((e) => e.uuid === user.employeeUuid)?.fullNameGenerated ??
-              user.email;
-          }
-
+          const { token, user } = await apiLogin(email.trim(), password);
           const now = new Date();
           set({
             user: {
               uuid: user.uuid,
               email: user.email,
-              fullName,
+              fullName: user.fullName,
               roles: user.roles,
+              mustChangePassword: user.mustChangePassword,
             },
+            token,
             issuedAt: now.toISOString(),
             expiresAt: new Date(now.getTime() + SESSION_TTL_MS).toISOString(),
             isAuthenticated: true,
           });
           return { ok: true };
         } catch (err) {
-          if (err instanceof MockNetworkError) return { ok: false, reason: 'network' };
-          throw err;
+          if (err instanceof ApiError && err.status === 401) {
+            return { ok: false, reason: 'invalid-credentials' };
+          }
+          return { ok: false, reason: 'network' };
         }
       },
-      logout: () =>
+      logout: () => {
+        const { token } = get();
+        if (token) {
+          void apiLogout().catch(() => {
+            // Best-effort — local state is cleared regardless.
+          });
+        }
+        get().clearSession();
+      },
+      clearSession: () =>
         set({
           user: null,
+          token: null,
           issuedAt: null,
           expiresAt: null,
           isAuthenticated: false,
@@ -155,27 +156,25 @@ export const useAuthStore = create<AuthState>()(
             set({ actingAsEmployeeUuid: null });
           }
 
-          const fresh = await findUserByEmail(current.email);
-          if (!fresh) return;
-          let fullName = fresh.email;
-          if (fresh.employeeUuid) {
-            const employees = await listEmployees();
-            fullName =
-              employees.find((e) => e.uuid === fresh.employeeUuid)?.fullNameGenerated ??
-              fresh.email;
-          }
-          const changed =
-            fullName !== current.fullName ||
-            fresh.uuid !== current.uuid ||
-            fresh.roles.join() !== current.roles.join();
-          if (!changed) return;
+          const fresh = await apiMe();
           set({
-            user: { uuid: fresh.uuid, email: fresh.email, fullName, roles: fresh.roles },
+            user: {
+              uuid: fresh.uuid,
+              email: fresh.email,
+              fullName: fresh.fullName,
+              roles: fresh.roles,
+              mustChangePassword: fresh.mustChangePassword,
+            },
           });
         } catch {
-          // Mock-backend can throw on simulated network failure — swallow.
-          // The cached session keeps working; next refresh tries again.
+          // Network hiccup (or a 401, already handled by the API client) —
+          // swallow. The cached session keeps working; next refresh retries.
         }
+      },
+      clearMustChangePassword: () => {
+        const current = get().user;
+        if (!current) return;
+        set({ user: { ...current, mustChangePassword: false } });
       },
     }),
     {

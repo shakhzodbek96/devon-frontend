@@ -138,6 +138,7 @@
       "nav-employees": "Xodimlar",
       "nav-certificates": "ERI kalitlari",
       "nav-audit": "Audit jurnali",
+      "nav-users": "Foydalanuvchilar",
       "nav-documents": "Hujjatlar",
       "nav-approvals": "Kelishuvlar",
       "nav-letters": "Xatlar",
@@ -151,6 +152,12 @@
     "topbar": {
       "search-placeholder": "Xodim, bo'linma yoki sertifikat bo'yicha qidirish...",
       "open-nav": "Navigatsiyani ochish"
+    },
+    "theme": {
+      "menu-label": "Mavzuni almashtirish",
+      "light": "Yorug'",
+      "dark": "Tungi",
+      "system": "Tizim bo'yicha"
     },
     "user-menu": {
       "profile": "Profilim",
@@ -227,6 +234,69 @@
         "network": "Tarmoq xatosi. Qayta urinib ko'ring."
       },
       "footer": "© 2026 Devon. Barcha huquqlar himoyalangan."
+    },
+    "change-password-gate": {
+      "title": "Parolni o'zgartirish talab qilinadi",
+      "subtitle": "{{email}} — xavfsizlik uchun birinchi kirishda parolni yangilang."
+    },
+    "users": {
+      "title": "Foydalanuvchilar",
+      "subtitle": "Tizim foydalanuvchilari va ularning rollarini boshqarish",
+      "search-placeholder": "Email yoki FIO bo'yicha qidirish...",
+      "empty-title": "Foydalanuvchilar topilmadi",
+      "empty-body": "Qidiruvni o'zgartiring yoki yangi foydalanuvchi yarating.",
+      "table": {
+        "email": "Email",
+        "full-name": "FIO",
+        "roles": "Rollar",
+        "status": "Holati",
+        "actions": "Amallar"
+      },
+      "create": {
+        "trigger": "Yangi foydalanuvchi",
+        "dialog-title": "Yangi foydalanuvchi yaratish",
+        "dialog-subtitle": "Foydalanuvchi birinchi kirishda parolni o'zgartirishi shart bo'ladi.",
+        "email-label": "Email",
+        "email-placeholder": "ism.familiya@devon.uz",
+        "full-name-label": "FIO",
+        "full-name-placeholder": "Familiya Ism Sharif",
+        "roles-label": "Rollar",
+        "roles-hint": "Kamida bitta rol tanlang",
+        "password-mode-label": "Parol",
+        "password-mode-auto": "Avtomatik yaratilsin",
+        "password-mode-manual": "O'zim kiritaman",
+        "password-label": "Parol",
+        "password-placeholder": "Kuchli parol kiriting",
+        "submit": "Yaratish",
+        "cancel": "Bekor qilish"
+      },
+      "temp-password": {
+        "title": "Vaqtinchalik parol yaratildi",
+        "subtitle": "Bu parolni faqat bir marta ko'rasiz — uni foydalanuvchiga xavfsiz usulda yetkazing.",
+        "copy": "Nusxa olish",
+        "copied": "Nusxa olindi",
+        "done": "Tushunarli"
+      },
+      "edit": {
+        "trigger": "Tahrirlash",
+        "dialog-title": "Foydalanuvchini tahrirlash",
+        "roles-label": "Rollar",
+        "status-label": "Holati",
+        "status-active": "Faol",
+        "status-suspended": "To'xtatilgan",
+        "submit": "Saqlash"
+      },
+      "reset-password": {
+        "trigger": "Parolni tiklash",
+        "confirm-title": "Parolni tiklashni tasdiqlang",
+        "confirm-body": "{{email}} uchun yangi vaqtinchalik parol yaratiladi. Joriy parol ishlamay qoladi.",
+        "confirm-cta": "Parolni tiklash"
+      },
+      "toast": {
+        "created": "Foydalanuvchi yaratildi",
+        "updated": "Foydalanuvchi yangilandi",
+        "password-reset": "Parol tiklandi"
+      }
     },
     "home": {
       "greeting": "Salom, {{name}}!",

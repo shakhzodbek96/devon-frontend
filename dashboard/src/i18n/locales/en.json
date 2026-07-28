@@ -1,4 +1,164 @@
 {
-  "common": {},
-  "dashboard": {}
+  "common": {
+    "errors": {
+      "required": "This field is required",
+      "network": "Network error, please try again",
+      "unknown": "An unknown error occurred",
+      "email-taken": "This email is already registered",
+      "passwords-dont-match": "Passwords don't match"
+    },
+    "roles": {
+      "ROLE_SUPER_ADMIN": "Super Admin",
+      "ROLE_HR_ADMIN": "HR Administrator",
+      "ROLE_HR_OPERATOR": "HR Operator",
+      "ROLE_UNIT_HEAD": "Unit Head",
+      "ROLE_EMPLOYEE": "Employee",
+      "ROLE_AUDITOR": "Auditor",
+      "ROLE_DEVONXONA": "Registry Officer"
+    },
+    "status": {
+      "active": "Active",
+      "suspended": "Suspended"
+    }
+  },
+  "dashboard": {
+    "theme": {
+      "menu-label": "Toggle theme",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    },
+    "sidebar": {
+      "nav-home": "Home",
+      "nav-units": "Org structure",
+      "nav-employees": "Employees",
+      "nav-certificates": "E-signature keys",
+      "nav-audit": "Audit log",
+      "nav-users": "Users",
+      "nav-documents": "Documents",
+      "nav-approvals": "Approvals",
+      "nav-letters": "Letters",
+      "nav-tasks": "Tasks",
+      "nav-profile": "My profile",
+      "section-management": "MANAGEMENT",
+      "section-documents": "DOCUMENT WORKFLOW",
+      "section-personal": "PERSONAL",
+      "footer-slogan": "Progress through discipline!"
+    },
+    "login": {
+      "title": "Sign in to Devon",
+      "subtitle": "With your corporate email and password",
+      "email-label": "Corporate email",
+      "email-placeholder": "first.last@devon.uz",
+      "password-label": "Password",
+      "password-placeholder": "Enter your password",
+      "remember-me": "Remember me",
+      "forgot-password": "Forgot password?",
+      "cta": "Sign in",
+      "ctaLoading": "Checking...",
+      "demo-hint-title": "Demo credentials",
+      "demo-hint-body": "admin@devon.uz / Demo2026!",
+      "show-password": "Show password",
+      "hide-password": "Hide password",
+      "brand-eyebrow": "Corporate platform",
+      "brand-headline-line-1": "Document workflow,",
+      "brand-headline-accent": "disciplined",
+      "brand-headline-line-2": "and secure.",
+      "brand-subtitle": "Units, employees, approval chains, and e-signature keys — on one on-premise platform.",
+      "errors": {
+        "invalid-credentials": "Incorrect email or password",
+        "network": "Network error. Please try again."
+      },
+      "footer": "© 2026 Devon. All rights reserved."
+    },
+    "change-password-gate": {
+      "title": "Password change required",
+      "subtitle": "{{email}} — update your password on first login for security."
+    },
+    "users": {
+      "title": "Users",
+      "subtitle": "Manage system users and their roles",
+      "search-placeholder": "Search by email or full name...",
+      "empty-title": "No users found",
+      "empty-body": "Adjust your search or create a new user.",
+      "table": {
+        "email": "Email",
+        "full-name": "Full name",
+        "roles": "Roles",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "create": {
+        "trigger": "New user",
+        "dialog-title": "Create user",
+        "dialog-subtitle": "The user will be required to change their password on first login.",
+        "email-label": "Email",
+        "email-placeholder": "first.last@devon.uz",
+        "full-name-label": "Full name",
+        "full-name-placeholder": "Last First Middle",
+        "roles-label": "Roles",
+        "roles-hint": "Select at least one role",
+        "password-mode-label": "Password",
+        "password-mode-auto": "Generate automatically",
+        "password-mode-manual": "Enter manually",
+        "password-label": "Password",
+        "password-placeholder": "Enter a strong password",
+        "submit": "Create",
+        "cancel": "Cancel"
+      },
+      "temp-password": {
+        "title": "Temporary password generated",
+        "subtitle": "You'll see this password only once — share it with the user through a secure channel.",
+        "copy": "Copy",
+        "copied": "Copied",
+        "done": "Got it"
+      },
+      "edit": {
+        "trigger": "Edit",
+        "dialog-title": "Edit user",
+        "roles-label": "Roles",
+        "status-label": "Status",
+        "status-active": "Active",
+        "status-suspended": "Suspended",
+        "submit": "Save"
+      },
+      "reset-password": {
+        "trigger": "Reset password",
+        "confirm-title": "Confirm password reset",
+        "confirm-body": "A new temporary password will be generated for {{email}}. The current password will stop working.",
+        "confirm-cta": "Reset password"
+      },
+      "toast": {
+        "created": "User created",
+        "updated": "User updated",
+        "password-reset": "Password reset"
+      }
+    },
+    "profile": {
+      "password": {
+        "heading": "Change password",
+        "hint": "The new password must be at least 8 characters, with upper and lower case, a digit, and a special character.",
+        "current-label": "Current password",
+        "current-placeholder": "Enter your current password",
+        "next-label": "New password",
+        "next-placeholder": "New password",
+        "confirm-label": "Confirm new password",
+        "confirm-placeholder": "Confirm new password",
+        "submit": "Change password",
+        "show": "Show password",
+        "hide": "Hide password",
+        "last-changed": "Last changed {{when}}",
+        "never-changed": "Never changed",
+        "must-change-banner": "Update the default demo password for security.",
+        "toast": {
+          "changed": "Password changed successfully"
+        },
+        "errors": {
+          "weak": "Password must be at least 8 characters, with upper and lower case, a digit, and a special character",
+          "current-wrong": "Current password is incorrect",
+          "same-as-old": "New password must differ from the current one"
+        }
+      }
+    }
+  }
 }

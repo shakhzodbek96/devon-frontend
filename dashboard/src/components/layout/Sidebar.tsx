@@ -11,6 +11,7 @@ import {
   Network,
   ScrollText,
   UserCircle2,
+  UserCog,
   Users,
 } from 'lucide-react';
 
@@ -18,6 +19,7 @@ import { BrandMark } from '@/components/common/BrandMark';
 import { useActingEmployee } from '@/lib/acting';
 import { listMyApprovals } from '@/lib/mock-backend';
 import { cn } from '@/lib/utils';
+import { useAuthStore } from '@/stores/useAuthStore';
 import { useQueueStore } from '@/stores/useQueueStore';
 
 interface NavItem {
@@ -26,7 +28,7 @@ interface NavItem {
   icon: ComponentType<{ className?: string }>;
 }
 
-const managementNav: NavItem[] = [
+const baseManagementNav: NavItem[] = [
   { to: '/', labelKey: 'dashboard:sidebar.nav-home', icon: LayoutDashboard },
   { to: '/units', labelKey: 'dashboard:sidebar.nav-units', icon: Network },
   { to: '/employees', labelKey: 'dashboard:sidebar.nav-employees', icon: Users },
@@ -34,6 +36,13 @@ const managementNav: NavItem[] = [
   { to: '/tasks', labelKey: 'dashboard:sidebar.nav-tasks', icon: ListTodo },
   { to: '/audit', labelKey: 'dashboard:sidebar.nav-audit', icon: ScrollText },
 ];
+
+/** Admin-only — mirrors the `/users` route guard (RequireRole in router.tsx). */
+const usersNavItem: NavItem = {
+  to: '/users',
+  labelKey: 'dashboard:sidebar.nav-users',
+  icon: UserCog,
+};
 
 // Milestone 2 — letters (/letters) stays a step-16 placeholder until step 20.
 const documentsNav: NavItem[] = [
@@ -57,6 +66,9 @@ export default function Sidebar({ onNavigate }: Props) {
   const version = useQueueStore((s) => s.version);
   const count = useQueueStore((s) => s.count);
   const setCount = useQueueStore((s) => s.setCount);
+  const roles = useAuthStore((s) => s.user?.roles) ?? [];
+  const isAdmin = roles.some((r) => r === 'ROLE_SUPER_ADMIN' || r === 'ROLE_HR_ADMIN');
+  const managementNav = isAdmin ? [...baseManagementNav, usersNavItem] : baseManagementNav;
 
   // Pending-queue badge for the acting persona — refreshed on mount, POV
   // switch, and whenever a mutation bumps the queue store's version.

@@ -1,4 +1,164 @@
 {
-  "common": {},
-  "dashboard": {}
+  "common": {
+    "errors": {
+      "required": "Это поле обязательно",
+      "network": "Ошибка сети, попробуйте снова",
+      "unknown": "Произошла неизвестная ошибка",
+      "email-taken": "Этот email уже зарегистрирован",
+      "passwords-dont-match": "Пароли не совпадают"
+    },
+    "roles": {
+      "ROLE_SUPER_ADMIN": "Главный администратор",
+      "ROLE_HR_ADMIN": "Администратор кадров",
+      "ROLE_HR_OPERATOR": "Оператор кадров",
+      "ROLE_UNIT_HEAD": "Руководитель подразделения",
+      "ROLE_EMPLOYEE": "Сотрудник",
+      "ROLE_AUDITOR": "Аудитор",
+      "ROLE_DEVONXONA": "Сотрудник канцелярии"
+    },
+    "status": {
+      "active": "Активен",
+      "suspended": "Заблокирован"
+    }
+  },
+  "dashboard": {
+    "theme": {
+      "menu-label": "Сменить тему",
+      "light": "Светлая",
+      "dark": "Тёмная",
+      "system": "Как в системе"
+    },
+    "sidebar": {
+      "nav-home": "Главная",
+      "nav-units": "Оргструктура",
+      "nav-employees": "Сотрудники",
+      "nav-certificates": "Ключи ЭЦП",
+      "nav-audit": "Журнал аудита",
+      "nav-users": "Пользователи",
+      "nav-documents": "Документы",
+      "nav-approvals": "Согласования",
+      "nav-letters": "Письма",
+      "nav-tasks": "Поручения",
+      "nav-profile": "Мой профиль",
+      "section-management": "УПРАВЛЕНИЕ",
+      "section-documents": "ДОКУМЕНТООБОРОТ",
+      "section-personal": "ЛИЧНОЕ",
+      "footer-slogan": "Развитие через дисциплину!"
+    },
+    "login": {
+      "title": "Вход в платформу Devon",
+      "subtitle": "По корпоративной почте и паролю",
+      "email-label": "Корпоративная почта",
+      "email-placeholder": "imya.familiya@devon.uz",
+      "password-label": "Пароль",
+      "password-placeholder": "Введите пароль",
+      "remember-me": "Запомнить меня",
+      "forgot-password": "Забыли пароль?",
+      "cta": "Войти",
+      "ctaLoading": "Проверка...",
+      "demo-hint-title": "Демо-данные",
+      "demo-hint-body": "admin@devon.uz / Demo2026!",
+      "show-password": "Показать пароль",
+      "hide-password": "Скрыть пароль",
+      "brand-eyebrow": "Корпоративная платформа",
+      "brand-headline-line-1": "Документооборот",
+      "brand-headline-accent": "дисциплинированный",
+      "brand-headline-line-2": "и безопасный.",
+      "brand-subtitle": "Подразделения, сотрудники, цепочки согласования и ключи ЭЦП — на одной локальной платформе.",
+      "errors": {
+        "invalid-credentials": "Неверный email или пароль",
+        "network": "Ошибка сети. Попробуйте снова."
+      },
+      "footer": "© 2026 Devon. Все права защищены."
+    },
+    "change-password-gate": {
+      "title": "Требуется смена пароля",
+      "subtitle": "{{email}} — обновите пароль при первом входе в целях безопасности."
+    },
+    "users": {
+      "title": "Пользователи",
+      "subtitle": "Управление пользователями системы и их ролями",
+      "search-placeholder": "Поиск по email или ФИО...",
+      "empty-title": "Пользователи не найдены",
+      "empty-body": "Измените параметры поиска или создайте нового пользователя.",
+      "table": {
+        "email": "Email",
+        "full-name": "ФИО",
+        "roles": "Роли",
+        "status": "Статус",
+        "actions": "Действия"
+      },
+      "create": {
+        "trigger": "Новый пользователь",
+        "dialog-title": "Создание пользователя",
+        "dialog-subtitle": "Пользователю будет предложено сменить пароль при первом входе.",
+        "email-label": "Email",
+        "email-placeholder": "imya.familiya@devon.uz",
+        "full-name-label": "ФИО",
+        "full-name-placeholder": "Фамилия Имя Отчество",
+        "roles-label": "Роли",
+        "roles-hint": "Выберите хотя бы одну роль",
+        "password-mode-label": "Пароль",
+        "password-mode-auto": "Сгенерировать автоматически",
+        "password-mode-manual": "Ввести самостоятельно",
+        "password-label": "Пароль",
+        "password-placeholder": "Введите надёжный пароль",
+        "submit": "Создать",
+        "cancel": "Отмена"
+      },
+      "temp-password": {
+        "title": "Временный пароль создан",
+        "subtitle": "Вы увидите этот пароль только один раз — передайте его пользователю безопасным способом.",
+        "copy": "Копировать",
+        "copied": "Скопировано",
+        "done": "Понятно"
+      },
+      "edit": {
+        "trigger": "Редактировать",
+        "dialog-title": "Редактирование пользователя",
+        "roles-label": "Роли",
+        "status-label": "Статус",
+        "status-active": "Активен",
+        "status-suspended": "Заблокирован",
+        "submit": "Сохранить"
+      },
+      "reset-password": {
+        "trigger": "Сбросить пароль",
+        "confirm-title": "Подтвердите сброс пароля",
+        "confirm-body": "Для {{email}} будет создан новый временный пароль. Текущий пароль перестанет действовать.",
+        "confirm-cta": "Сбросить пароль"
+      },
+      "toast": {
+        "created": "Пользователь создан",
+        "updated": "Пользователь обновлён",
+        "password-reset": "Пароль сброшен"
+      }
+    },
+    "profile": {
+      "password": {
+        "heading": "Смена пароля",
+        "hint": "Новый пароль должен содержать не менее 8 символов, заглавную и строчную буквы, цифру и спецсимвол.",
+        "current-label": "Текущий пароль",
+        "current-placeholder": "Введите текущий пароль",
+        "next-label": "Новый пароль",
+        "next-placeholder": "Новый пароль",
+        "confirm-label": "Повторите новый пароль",
+        "confirm-placeholder": "Повторите новый пароль",
+        "submit": "Изменить пароль",
+        "show": "Показать пароль",
+        "hide": "Скрыть пароль",
+        "last-changed": "Последний раз изменён {{when}}",
+        "never-changed": "Ещё не менялся",
+        "must-change-banner": "В целях безопасности обновите демо-пароль по умолчанию.",
+        "toast": {
+          "changed": "Пароль успешно изменён"
+        },
+        "errors": {
+          "weak": "Пароль должен содержать не менее 8 символов, заглавную и строчную буквы, цифру и спецсимвол",
+          "current-wrong": "Текущий пароль неверен",
+          "same-as-old": "Новый пароль должен отличаться от текущего"
+        }
+      }
+    }
+  }
 }

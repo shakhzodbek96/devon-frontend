@@ -12,11 +12,8 @@ import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
 import { passwordStrength } from '@/features/employees/wizard/employee.schema';
 import { formatRelative } from '@/i18n/uz-locale';
-import {
-  changePassword,
-  MockNetworkError,
-  PasswordValidationError,
-} from '@/lib/mock-backend';
+import { changePassword } from '@/lib/api/auth';
+import { ApiError } from '@/lib/api/client';
 import { cn } from '@/lib/utils';
 import { useAuthStore } from '@/stores/useAuthStore';
 
@@ -46,11 +43,13 @@ type Values = z.infer<typeof schema>;
 interface Props {
   lastChangedAt?: string;
   mustChange?: boolean;
+  /** Called after a successful change — the forced first-login gate uses this to navigate away. */
+  onSuccess?: () => void;
 }
 
-export default function PasswordChangeForm({ lastChangedAt, mustChange }: Props) {
+export default function PasswordChangeForm({ lastChangedAt, mustChange, onSuccess }: Props) {
   const { t } = useTranslation(['dashboard', 'common']);
-  const user = useAuthStore((s) => s.user);
+  const clearMustChangePassword = useAuthStore((s) => s.clearMustChangePassword);
   const [showCurrent, setShowCurrent] = useState(false);
   const [showNext, setShowNext] = useState(false);
 
@@ -65,20 +64,21 @@ export default function PasswordChangeForm({ lastChangedAt, mustChange }: Props)
   const strengthPct = (strength / 4) * 100;
 
   async function onSubmit(values: Values) {
-    if (!user) return;
     try {
-      await changePassword(user.uuid, values.current, values.next);
+      await changePassword(values.current, values.next);
+      clearMustChangePassword();
       toast.success(t('dashboard:profile.password.toast.changed'));
       form.reset({ current: '', next: '', confirm: '' });
+      onSuccess?.();
     } catch (err) {
-      if (err instanceof PasswordValidationError && err.code === 'current-wrong') {
+      if (err instanceof ApiError && err.status === 422) {
         form.setError('current', {
           type: 'manual',
           message: 'dashboard:profile.password.errors.current-wrong',
         });
         return;
       }
-      if (err instanceof MockNetworkError) {
+      if (err instanceof ApiError && err.status === 0) {
         toast.error(t('common:errors.network'));
         return;
       }

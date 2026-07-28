@@ -2,6 +2,7 @@ import { lazy, Suspense, type ReactElement } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { RequireAuth } from '@/features/auth/RequireAuth';
+import { RequireRole } from '@/features/auth/RequireRole';
 import AppShell from '@/components/layout/AppShell';
 import { RouteFallback, FullPageFallback } from '@/components/common/RouteFallback';
 
@@ -10,6 +11,8 @@ import { RouteFallback, FullPageFallback } from '@/components/common/RouteFallba
 // pages on first paint. AppShell + RequireAuth stay eager so the shell chrome
 // renders immediately and only the page content suspends.
 const LoginPage = lazy(() => import('@/features/auth/LoginPage'));
+const ChangePasswordGatePage = lazy(() => import('@/features/auth/ChangePasswordGatePage'));
+const UsersPage = lazy(() => import('@/features/users/UsersPage'));
 const AuditLogPage = lazy(() => import('@/features/audit/AuditLogPage'));
 const DashboardHome = lazy(() => import('@/features/dashboard-home/DashboardHome'));
 const CertificatesPage = lazy(() => import('@/features/certificates/CertificatesPage'));
@@ -56,6 +59,22 @@ function ProtectedNoShell({ children }: { children: ReactElement }) {
   );
 }
 
+// Admin-only in-shell route (e.g. /users — PLAN_AUTH_ROLES.md §2.5): same as
+// `Protected`, plus a role check. `RequireAuth` still owns the forced
+// change-password redirect, so an admin who must change their password
+// lands on /change-password before ever reaching the role check.
+function ProtectedAdmin({ children }: { children: ReactElement }) {
+  return (
+    <RequireAuth>
+      <RequireRole allowedRoles={['ROLE_SUPER_ADMIN', 'ROLE_HR_ADMIN']}>
+        <AppShell>
+          <Suspense fallback={<RouteFallback />}>{children}</Suspense>
+        </AppShell>
+      </RequireRole>
+    </RequireAuth>
+  );
+}
+
 export default function Router() {
   return (
     <Routes>
@@ -69,11 +88,28 @@ export default function Router() {
       />
 
       <Route
+        path="/change-password"
+        element={
+          <ProtectedNoShell>
+            <ChangePasswordGatePage />
+          </ProtectedNoShell>
+        }
+      />
+
+      <Route
         path="/"
         element={
           <Protected>
             <DashboardHome />
           </Protected>
+        }
+      />
+      <Route
+        path="/users"
+        element={
+          <ProtectedAdmin>
+            <UsersPage />
+          </ProtectedAdmin>
         }
       />
       <Route
