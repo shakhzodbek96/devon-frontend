@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, type ReactElement } from 'react';
+import { lazy, Suspense, type ReactElement } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { RequireAuth } from '@/features/auth/RequireAuth';
@@ -14,9 +14,7 @@ const LoginPage = lazy(() => import('@/features/auth/LoginPage'));
 const ChangePasswordGatePage = lazy(() => import('@/features/auth/ChangePasswordGatePage'));
 const UsersPage = lazy(() => import('@/features/users/UsersPage'));
 const AuditLogPage = lazy(() => import('@/features/audit/AuditLogPage'));
-// DashboardHome import removed while "/" redirects to /dashboard2 (see RootRedirect).
-// Restore `const DashboardHome = lazy(() => import('@/features/dashboard-home/DashboardHome'));`
-// and put <DashboardHome/> back on the "/" route to revert.
+const DashboardHome = lazy(() => import('@/features/dashboard-home/DashboardHome'));
 const CertificatesPage = lazy(() => import('@/features/certificates/CertificatesPage'));
 const CertificateUploadPage = lazy(() => import('@/features/certificates/CertificateUploadPage'));
 const ApprovalsQueuePage = lazy(() => import('@/features/documents/ApprovalsQueuePage'));
@@ -35,19 +33,6 @@ const TasksPage = lazy(() => import('@/features/tasks/TasksPage'));
 const CreateTaskPage = lazy(() => import('@/features/tasks/CreateTaskPage'));
 const TaskDetailPage = lazy(() => import('@/features/tasks/detail/TaskDetailPage'));
 const UnitsPage = lazy(() => import('@/features/units/UnitsPage'));
-
-// TEMPORARY (per request): the root path redirects to /dashboard2, which is
-// served separately (not a route in this SPA). A full-page redirect is used
-// on purpose — a react-router <Navigate to="/dashboard2"> would find no match,
-// fall through to the catch-all, bounce back to "/", and loop. `window.location`
-// leaves the SPA and hits the server-served /dashboard2. Remove this and restore
-// `<DashboardHome />` on "/" once the redirect is no longer wanted.
-function RootRedirect(): null {
-  useEffect(() => {
-    window.location.replace('/dashboard2');
-  }, []);
-  return null;
-}
 
 // In-shell route: sidebar + topbar render immediately; only the lazy page
 // content suspends, showing a skeleton in the content area.
@@ -111,7 +96,14 @@ export default function Router() {
         }
       />
 
-      <Route path="/" element={<RootRedirect />} />
+      <Route
+        path="/"
+        element={
+          <Protected>
+            <DashboardHome />
+          </Protected>
+        }
+      />
       <Route
         path="/users"
         element={
