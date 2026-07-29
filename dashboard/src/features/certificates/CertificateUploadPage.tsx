@@ -21,10 +21,10 @@ import { formatDate } from '@/i18n/uz-locale';
 import { formatBytes } from '@/lib/format';
 import {
   CertificateValidationError,
-  listEmployees,
   MockNetworkError,
   uploadCertificate,
-} from '@/lib/mock-backend';
+} from '@/lib/data/certificates';
+import { listEmployees } from '@/lib/data/employees';
 import { useAuthStore } from '@/stores/useAuthStore';
 import type { Certificate, Employee } from '@/types/domain';
 

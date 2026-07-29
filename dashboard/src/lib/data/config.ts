@@ -11,11 +11,14 @@
 // `assignments` facade with `transfer` (Flow 3) + switched the remaining
 // employee-management/assignment components (`TransferForm`,
 // `EmployeeTransferPage`, `UnitDetailsSheet`'s head-employee display) onto
-// it — but note the seam nuance: `src/lib/acting.ts` and all of
+// it. Phase E (PLAN_PHASE_E.md §7) switched `certificates` real: certificate
+// metadata + lifecycle (upload/approve/reject/revoke) now hit the Laravel
+// API — but note the seam nuance: `src/lib/acting.ts` and all of
 // `src/features/{documents,letters,tasks}/*` keep importing
 // `src/lib/mock-backend` directly regardless of this flag (intentional
-// hybrid — PLAN_PHASE_C.md §0.2). Every other domain stays on the mock
-// until its own migration lands.
+// hybrid — PLAN_PHASE_C.md §0.2; documents/letters/tasks reference
+// certificates by uuid for signing, which is Phase F, not this phase).
+// Every other domain stays on the mock until its own migration lands.
 export type DataSourceMode = 'real' | 'mock';
 
 export const dataSourceConfig = {
@@ -25,7 +28,7 @@ export const dataSourceConfig = {
   employees: 'real',
   assignments: 'real',
   profileRequests: 'real',
-  certificates: 'mock',
+  certificates: 'real',
   documents: 'mock',
   letters: 'mock',
   tasks: 'mock',

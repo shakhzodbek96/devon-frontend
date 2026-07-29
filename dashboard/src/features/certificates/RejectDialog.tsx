@@ -6,7 +6,7 @@ import ResponsiveDialog from '@/components/common/ResponsiveDialog';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { MockNetworkError, rejectCertificate } from '@/lib/mock-backend';
+import { MockNetworkError, rejectCertificate } from '@/lib/data/certificates';
 import { useAuthStore } from '@/stores/useAuthStore';
 import type { Certificate, Employee } from '@/types/domain';
 

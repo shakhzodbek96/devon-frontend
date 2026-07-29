@@ -12,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { MockNetworkError, revokeCertificate } from '@/lib/mock-backend';
+import { MockNetworkError, revokeCertificate } from '@/lib/data/certificates';
 import { useAuthStore } from '@/stores/useAuthStore';
 import type { Certificate, Employee, RevocationReason } from '@/types/domain';
 

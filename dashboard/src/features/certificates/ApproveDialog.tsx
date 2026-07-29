@@ -12,7 +12,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
-import { approveCertificate, MockNetworkError } from '@/lib/mock-backend';
+import { approveCertificate, MockNetworkError } from '@/lib/data/certificates';
 import { useAuthStore } from '@/stores/useAuthStore';
 import type { Certificate, Employee } from '@/types/domain';
 

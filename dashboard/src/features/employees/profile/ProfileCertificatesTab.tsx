@@ -7,7 +7,7 @@ import LoadingState from '@/components/common/LoadingState';
 import StatusBadge from '@/components/common/StatusBadge';
 import { Button } from '@/components/ui/button';
 import { formatDate } from '@/i18n/uz-locale';
-import { listCertificates } from '@/lib/mock-backend';
+import { listCertificates } from '@/lib/data/certificates';
 import type { Certificate, Employee } from '@/types/domain';
 
 interface Props {

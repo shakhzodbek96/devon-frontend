@@ -5,7 +5,7 @@ import { AlertCircle } from 'lucide-react';
 
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
-import { listCertificates } from '@/lib/mock-backend';
+import { listCertificates } from '@/lib/data/certificates';
 
 const HORIZON_DAYS = 30;
 const HORIZON_MS = HORIZON_DAYS * 86_400_000;

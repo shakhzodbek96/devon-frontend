@@ -12,10 +12,10 @@ import { useMediaQuery } from '@/lib/use-media-query';
 import {
   approveCertificate,
   listCertificates,
-  listEmployees,
   MockNetworkError,
   reorderCertificates,
-} from '@/lib/mock-backend';
+} from '@/lib/data/certificates';
+import { listEmployees } from '@/lib/data/employees';
 import { useAuthStore } from '@/stores/useAuthStore';
 import type { Certificate, Employee } from '@/types/domain';
 
