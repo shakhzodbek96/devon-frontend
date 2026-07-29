@@ -4,7 +4,7 @@ import { AlertTriangle, ChevronRight } from 'lucide-react';
 
 import StatusBadge from '@/components/common/StatusBadge';
 import { formatDate } from '@/i18n/uz-locale';
-import { isLetterOverdue } from '@/lib/mock-backend';
+import { isLetterOverdue } from '@/lib/data/letters';
 import type { Letter } from '@/types/domain';
 
 interface Props {

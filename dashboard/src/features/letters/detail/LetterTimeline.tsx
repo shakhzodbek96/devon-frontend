@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
 import { formatDateTime } from '@/i18n/uz-locale';
-import type { LetterDetail } from '@/lib/mock-backend';
+import type { LetterDetail } from '@/lib/data/letters';
 import { cn } from '@/lib/utils';
 import type { AuditEntry } from '@/types/domain';
 

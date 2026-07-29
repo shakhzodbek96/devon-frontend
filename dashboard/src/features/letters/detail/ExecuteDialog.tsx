@@ -10,7 +10,8 @@ import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Textarea } from '@/components/ui/textarea';
 import { formatBytes } from '@/lib/format';
-import { listDocuments, submitLetterExecution } from '@/lib/mock-backend';
+import { listDocuments } from '@/lib/data/documents';
+import { submitLetterExecution } from '@/lib/data/letters';
 
 import { toastLetterError } from './letterErrors';
 

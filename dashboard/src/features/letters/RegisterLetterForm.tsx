@@ -22,7 +22,7 @@ import {
   LetterValidationError,
   MockNetworkError,
   registerIncomingLetter,
-} from '@/lib/mock-backend';
+} from '@/lib/data/letters';
 import type { LetterChannel } from '@/types/domain';
 
 import {

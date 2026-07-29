@@ -7,8 +7,8 @@ import { useActingEmployee } from '@/lib/acting';
 import { listCertificates } from '@/lib/data/certificates';
 import { listDocuments, listMyApprovals } from '@/lib/data/documents';
 import { listEmployees } from '@/lib/data/employees';
+import { listLetters } from '@/lib/data/letters';
 import { listUnits } from '@/lib/data/units';
-import { listLetters } from '@/lib/mock-backend';
 
 /** Org-wide M1 counts — independent of the acting persona. */
 interface OrgStats {

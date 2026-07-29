@@ -6,7 +6,10 @@ import Combobox, { type ComboboxOption } from '@/components/common/Combobox';
 import ResponsiveDialog from '@/components/common/ResponsiveDialog';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-import { assignLetterExecutor, listAssignments, listEmployees, listUnits } from '@/lib/mock-backend';
+import { listAssignments } from '@/lib/data/assignments';
+import { listEmployees } from '@/lib/data/employees';
+import { assignLetterExecutor } from '@/lib/data/letters';
+import { listUnits } from '@/lib/data/units';
 
 import { toastLetterError } from './letterErrors';
 

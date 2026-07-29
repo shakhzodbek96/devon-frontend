@@ -12,15 +12,11 @@ import { Button } from '@/components/ui/button';
 import { formatBytes } from '@/lib/format';
 import { formatDate, formatDateTime } from '@/i18n/uz-locale';
 import { useActingEmployee } from '@/lib/acting';
-import {
-  getLetter,
-  isLetterOverdue,
-  listAudit,
-  listCertificates,
-  listEmployees,
-  listUnits,
-  type LetterDetail,
-} from '@/lib/mock-backend';
+import { listAudit } from '@/lib/data/audit';
+import { listCertificates } from '@/lib/data/certificates';
+import { listEmployees } from '@/lib/data/employees';
+import { getLetter, isLetterOverdue, type LetterDetail } from '@/lib/data/letters';
+import { listUnits } from '@/lib/data/units';
 import { cn } from '@/lib/utils';
 import type { AuditEntry, Employee, Unit } from '@/types/domain';
 

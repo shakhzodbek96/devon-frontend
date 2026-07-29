@@ -23,12 +23,14 @@
 // `documents` domain (`signDocument` in `src/lib/data/documents.ts`,
 // `FakeEriSigner.ts` stays client-side — BLOCKED(e-imzo), see that plan's
 // §0), and the shared `SignDialog`'s certificate picker now reads through
-// the real `certificates` facade instead of the mock. Letter signing stays
-// mock (phase G) — `signatures` is a shared backend table but nothing in
-// the letters UI touches it yet.
-// `letters`/`tasks` stay mock entirely in F1/F2 (own migration later) —
-// `src/features/{letters,tasks}/*` keep importing `src/lib/mock-backend`
-// directly.
+// the real `certificates` facade instead of the mock. Phase G
+// (PLAN_PHASE_G.md) switches `letters` real: the full BP-3 correspondence
+// lifecycle (register/route/assign/execute/accept/sign/dispatch) now hits
+// the Laravel API, and letter signing reuses the SAME shared `signatures`
+// table `documents` already writes to (`resource_type='letter'`) — see
+// `src/lib/api/letters.ts`.
+// `tasks` stays mock (own migration later, milestone 3/H) —
+// `src/features/tasks/*` keeps importing `src/lib/mock-backend` directly.
 export type DataSourceMode = 'real' | 'mock';
 
 export const dataSourceConfig = {
@@ -42,6 +44,6 @@ export const dataSourceConfig = {
   documents: 'real',
   documentTemplates: 'real',
   notifications: 'real',
-  letters: 'mock',
+  letters: 'real',
   tasks: 'mock',
 } as const satisfies Record<string, DataSourceMode>;

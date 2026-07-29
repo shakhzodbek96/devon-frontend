@@ -14,7 +14,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { formatBytes } from '@/lib/format';
-import { dispatchLetter } from '@/lib/mock-backend';
+import { dispatchLetter } from '@/lib/data/letters';
 import type { Letter, LetterChannel } from '@/types/domain';
 
 import { toastLetterError } from './letterErrors';

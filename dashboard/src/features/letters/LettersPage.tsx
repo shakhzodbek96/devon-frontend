@@ -12,7 +12,9 @@ import TabLabel from '@/components/common/TabLabel';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useActingEmployee } from '@/lib/acting';
-import { listEmployees, listLetters, listUnits } from '@/lib/mock-backend';
+import { listEmployees } from '@/lib/data/employees';
+import { listLetters } from '@/lib/data/letters';
+import { listUnits } from '@/lib/data/units';
 import { useMediaQuery } from '@/lib/use-media-query';
 import type { Letter, LetterDirection } from '@/types/domain';
 

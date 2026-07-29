@@ -1,7 +1,7 @@
 import type { TFunction } from 'i18next';
 import { toast } from 'sonner';
 
-import { LetterValidationError, MockNetworkError } from '@/lib/mock-backend';
+import { LetterValidationError, MockNetworkError } from '@/lib/data/letters';
 
 /**
  * Maps a thrown letter mutation error to a localized toast — `LetterValidationError`

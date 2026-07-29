@@ -25,7 +25,12 @@ import {
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
-import { acceptLetterExecution, signLetter, startLetterExecution, type LetterDetail } from '@/lib/mock-backend';
+import {
+  acceptLetterExecution,
+  signLetter,
+  startLetterExecution,
+  type LetterDetail,
+} from '@/lib/data/letters';
 
 import AssignDialog from './AssignDialog';
 import DispatchDialog from './DispatchDialog';
@@ -242,7 +247,9 @@ export default function LetterActions({
         resourceUuid={letter.uuid}
         actorUuid={actorUuid}
         onDone={onChanged}
-        onSign={(certificateUuid) => signLetter(letter.uuid, certificateUuid, actorUuid)}
+        onSign={(certificateUuid, signatureHex) =>
+          signLetter(letter.uuid, actorUuid, certificateUuid, signatureHex)
+        }
         errorNamespace="letters"
         successKey="dashboard:letters.detail.sign.success"
       />

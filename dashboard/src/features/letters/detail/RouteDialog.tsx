@@ -6,7 +6,8 @@ import Combobox, { type ComboboxOption } from '@/components/common/Combobox';
 import ResponsiveDialog from '@/components/common/ResponsiveDialog';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-import { listUnits, routeLetter } from '@/lib/mock-backend';
+import { routeLetter } from '@/lib/data/letters';
+import { listUnits } from '@/lib/data/units';
 
 import { toastLetterError } from './letterErrors';
 

@@ -12,7 +12,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { formatDate } from '@/i18n/uz-locale';
-import { isLetterOverdue } from '@/lib/mock-backend';
+import { isLetterOverdue } from '@/lib/data/letters';
 import { cn } from '@/lib/utils';
 import type { Letter } from '@/types/domain';
 
