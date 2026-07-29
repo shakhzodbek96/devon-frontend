@@ -19,12 +19,9 @@ import {
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import type { ActingContext } from '@/lib/acting';
-import {
-  createTask,
-  listAssignments,
-  listEmployees,
-  listUnits,
-} from '@/lib/mock-backend';
+import { listEmployees } from '@/lib/data/employees';
+import { createTask } from '@/lib/data/tasks';
+import { listUnits } from '@/lib/data/units';
 import type { Employee } from '@/types/domain';
 
 import {
@@ -73,15 +70,17 @@ export default function CreateTaskForm({ formId, acting, onSubmittingChange }: P
     onSubmittingChange?.(isSubmitting);
   }, [isSubmitting, onSubmittingChange]);
 
-  // Load in-scope assignee options on mount / when acting changes.
+  // Load in-scope assignee options on mount / when acting changes. Uses
+  // `employee.primaryUnitUuid` directly (kept in lockstep with the
+  // authoritative primary Assignment row by `EmployeeService::transfer` /
+  // `EmployeesSeeder` — see PLAN_PHASE_H.md §5) rather than a dedicated
+  // assignments listing — there is no org-wide `/assignments` endpoint
+  // against the real backend, only the per-employee
+  // `GET /employees/{uuid}/assignments` (`src/lib/api/assignments.ts`).
   useEffect(() => {
     let cancelled = false;
     void (async () => {
-      const [units, employees, assignments] = await Promise.all([
-        listUnits(),
-        listEmployees(),
-        listAssignments(),
-      ]);
+      const [units, employees] = await Promise.all([listUnits(), listEmployees()]);
       if (cancelled) return;
 
       // Build a unit path map for subtree membership test.
@@ -103,37 +102,24 @@ export default function CreateTaskForm({ formId, acting, onSubmittingChange }: P
         return headedPaths.some((headPath) => path.startsWith(headPath));
       };
 
-      // Only consider employees with an open primary assignment whose unit is
-      // within the assigner's subtree. Also exclude the acting employee (no
-      // self-assign). No status filter — ON_LEAVE employees are still offered
-      // but will trigger a warning (UC-07 A3).
-      const eligibleUuids = new Set(
-        assignments
-          .filter((a) => a.isPrimary && !a.endDate && inSubtree(a.unitUuid))
-          .map((a) => a.employeeUuid),
-      );
-
+      // Only consider employees whose primary unit is within the assigner's
+      // subtree. Also exclude the acting employee (no self-assign). No status
+      // filter — ON_LEAVE employees are still offered but will trigger a
+      // warning (UC-07 A3).
       const options: AssigneeOption[] = employees
         .filter(
           (e) =>
             e.uuid !== acting.employee.uuid &&
             e.status !== 'TERMINATED' &&
             e.status !== 'DRAFT' &&
-            eligibleUuids.has(e.uuid),
+            inSubtree(e.primaryUnitUuid),
         )
-        .map((e) => {
-          // Find the primary assignment's unit for sublabel.
-          const primary = assignments.find(
-            (a) => a.employeeUuid === e.uuid && a.isPrimary && !a.endDate,
-          );
-          const unitName = primary ? (units.find((u) => u.uuid === primary.unitUuid)?.nameUz ?? '') : '';
-          return {
-            value: e.uuid,
-            label: e.fullNameGenerated,
-            sublabel: unitName,
-            status: e.status,
-          };
-        });
+        .map((e) => ({
+          value: e.uuid,
+          label: e.fullNameGenerated,
+          sublabel: units.find((u) => u.uuid === e.primaryUnitUuid)?.nameUz ?? '',
+          status: e.status,
+        }));
 
       setAssigneeOptions(options);
     })();

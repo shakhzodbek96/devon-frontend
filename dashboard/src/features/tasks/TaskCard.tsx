@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import StatusBadge from '@/components/common/StatusBadge';
 import { formatDate } from '@/i18n/uz-locale';
-import { isTaskOverdue } from '@/lib/mock-backend';
+import { isTaskOverdue } from '@/lib/data/tasks';
 import { cn } from '@/lib/utils';
 import type { TaskEntity, TaskPriority } from '@/types/domain';
 

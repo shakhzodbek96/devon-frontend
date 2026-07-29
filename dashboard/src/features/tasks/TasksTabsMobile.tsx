@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { listEmployees } from '@/lib/mock-backend';
+import { listEmployees } from '@/lib/data/employees';
 import type { Employee, TaskEntity, TaskStatus } from '@/types/domain';
 
 import TaskCard from './TaskCard';

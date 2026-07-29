@@ -12,7 +12,7 @@ import { Button } from '@/components/ui/button';
 import { formatBytes } from '@/lib/format';
 import { formatDate, formatDateTime } from '@/i18n/uz-locale';
 import { useActingEmployee } from '@/lib/acting';
-import { getTask, isTaskOverdue, type TaskDetail } from '@/lib/mock-backend';
+import { getTask, isTaskOverdue, type TaskDetail } from '@/lib/data/tasks';
 import { cn } from '@/lib/utils';
 import type { TaskPriority } from '@/types/domain';
 

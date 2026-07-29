@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import { getTaskStats, type TaskStats } from '@/lib/mock-backend';
+import { getTaskStats, type TaskStats } from '@/lib/data/tasks';
 import { cn } from '@/lib/utils';
 
 // ─── Props ────────────────────────────────────────────────────────────────────

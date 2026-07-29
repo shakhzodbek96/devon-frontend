@@ -1,7 +1,7 @@
 import type { TFunction } from 'i18next';
 import { toast } from 'sonner';
 
-import { MockNetworkError, TaskValidationError } from '@/lib/mock-backend';
+import { MockNetworkError, TaskValidationError } from '@/lib/data/tasks';
 
 /**
  * Maps a thrown task mutation error to a localized toast — `TaskValidationError`

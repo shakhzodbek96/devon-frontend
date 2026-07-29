@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import type { ActingContext } from '@/lib/acting';
-import { updateTask, type TaskDetail } from '@/lib/mock-backend';
+import { updateTask, type TaskDetail } from '@/lib/data/tasks';
 import type { TaskEntity } from '@/types/domain';
 
 import { todayIso } from '../task.schema';

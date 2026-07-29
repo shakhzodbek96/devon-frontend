@@ -22,7 +22,8 @@ import { CSS } from '@dnd-kit/utilities';
 import { toast } from 'sonner';
 
 import { Badge } from '@/components/ui/badge';
-import { listEmployees, startTask } from '@/lib/mock-backend';
+import { listEmployees } from '@/lib/data/employees';
+import { startTask } from '@/lib/data/tasks';
 import { cn } from '@/lib/utils';
 import type { Employee, TaskEntity, TaskStatus } from '@/types/domain';
 

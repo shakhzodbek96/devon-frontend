@@ -29,8 +29,12 @@
 // the Laravel API, and letter signing reuses the SAME shared `signatures`
 // table `documents` already writes to (`resource_type='letter'`) — see
 // `src/lib/api/letters.ts`.
-// `tasks` stays mock (own migration later, milestone 3/H) —
-// `src/features/tasks/*` keeps importing `src/lib/mock-backend` directly.
+// Phase H (PLAN_PHASE_H.md) switches `tasks` real — the LAST mock module:
+// the full BP-2 task delegation / Kanban lifecycle (create/start/
+// clarification/submit/review) now hits the Laravel API, subtree
+// assignment authorization uses the real units' materialized path/level —
+// see `src/lib/api/tasks.ts`. Every domain is now 'real'; this migration
+// is complete.
 export type DataSourceMode = 'real' | 'mock';
 
 export const dataSourceConfig = {
@@ -45,5 +49,5 @@ export const dataSourceConfig = {
   documentTemplates: 'real',
   notifications: 'real',
   letters: 'real',
-  tasks: 'mock',
+  tasks: 'real',
 } as const satisfies Record<string, DataSourceMode>;

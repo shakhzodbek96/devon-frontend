@@ -10,7 +10,7 @@ import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Textarea } from '@/components/ui/textarea';
 import type { ActingContext } from '@/lib/acting';
-import { reviewTask, type TaskDetail, type TaskReviewDecision } from '@/lib/mock-backend';
+import { reviewTask, type TaskDetail, type TaskReviewDecision } from '@/lib/data/tasks';
 import type { TaskEntity } from '@/types/domain';
 
 import { toastTaskError } from '../taskErrors';

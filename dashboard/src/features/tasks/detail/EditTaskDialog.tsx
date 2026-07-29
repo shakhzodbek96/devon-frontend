@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import type { ActingContext } from '@/lib/acting';
-import { updateTask, type TaskDetail } from '@/lib/mock-backend';
+import { updateTask, type TaskDetail } from '@/lib/data/tasks';
 import type { TaskEntity } from '@/types/domain';
 
 import { editTaskFormSchema, todayIso, type EditTaskForm } from '../task.schema';

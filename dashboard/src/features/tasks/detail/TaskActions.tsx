@@ -18,7 +18,7 @@ import {
 
 import { Button } from '@/components/ui/button';
 import type { ActingContext } from '@/lib/acting';
-import { startTask, type TaskDetail } from '@/lib/mock-backend';
+import { startTask, type TaskDetail } from '@/lib/data/tasks';
 
 import { toastTaskError } from '../taskErrors';
 import ClarificationDialog from './ClarificationDialog';

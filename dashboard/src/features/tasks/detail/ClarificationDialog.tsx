@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import type { ActingContext } from '@/lib/acting';
-import { answerClarification, requestClarification, type TaskDetail } from '@/lib/mock-backend';
+import { answerClarification, requestClarification, type TaskDetail } from '@/lib/data/tasks';
 import type { TaskEntity } from '@/types/domain';
 
 import { toastTaskError } from '../taskErrors';

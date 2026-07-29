@@ -11,7 +11,7 @@ import TabLabel from '@/components/common/TabLabel';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useActingEmployee } from '@/lib/acting';
-import { listTasks } from '@/lib/mock-backend';
+import { listTasks } from '@/lib/data/tasks';
 import { useMediaQuery } from '@/lib/use-media-query';
 import type { TaskEntity } from '@/types/domain';
 
