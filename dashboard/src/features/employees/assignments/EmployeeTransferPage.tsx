@@ -5,7 +5,7 @@ import { ArrowLeft, Loader2, X } from 'lucide-react';
 
 import LoadingState from '@/components/common/LoadingState';
 import { Button } from '@/components/ui/button';
-import { getEmployee } from '@/lib/mock-backend';
+import { getEmployee } from '@/lib/data/employees';
 import type { Employee } from '@/types/domain';
 
 import TransferForm from './TransferForm';

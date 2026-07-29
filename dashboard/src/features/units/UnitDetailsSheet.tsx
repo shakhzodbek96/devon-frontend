@@ -14,7 +14,7 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet';
 import StatusBadge from '@/components/common/StatusBadge';
-import { listEmployees } from '@/lib/mock-backend';
+import { listEmployees } from '@/lib/data/employees';
 import type { Unit } from '@/types/domain';
 
 interface Props {

@@ -16,12 +16,12 @@ import { Textarea } from '@/components/ui/textarea';
 import {
   AssignmentValidationError,
   listAssignments,
-  listPositions,
-  listUnits,
   MAX_TOTAL_WORKLOAD_PERCENT,
   MockNetworkError,
   transferEmployee,
-} from '@/lib/mock-backend';
+} from '@/lib/data/assignments';
+import { listPositions } from '@/lib/data/positions';
+import { listUnits } from '@/lib/data/units';
 import { cn } from '@/lib/utils';
 import { useAuthStore } from '@/stores/useAuthStore';
 import type {

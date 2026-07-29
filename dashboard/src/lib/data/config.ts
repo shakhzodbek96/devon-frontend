@@ -6,11 +6,12 @@
 // stable signature so consuming components never know which one they got.
 //
 // `audit`, `positions`, `units` went real in Phase A+B (PLAN_PHASE_AB.md).
-// `employees`, `assignments`, `profileRequests` go real in Phase C
-// (PLAN_PHASE_C.md §4) — but note the seam nuance: only the
-// employee-management + profile components listed in PLAN_PHASE_C.md §4
-// actually read through the `employees`/`assignments`/`profileRequests`
-// facades. `src/lib/acting.ts` and all of
+// `employees`, `assignments`, `profileRequests` went real in Phase C
+// (PLAN_PHASE_C.md §4) and Phase D (PLAN_PHASE_D.md §3) extended the
+// `assignments` facade with `transfer` (Flow 3) + switched the remaining
+// employee-management/assignment components (`TransferForm`,
+// `EmployeeTransferPage`, `UnitDetailsSheet`'s head-employee display) onto
+// it — but note the seam nuance: `src/lib/acting.ts` and all of
 // `src/features/{documents,letters,tasks}/*` keep importing
 // `src/lib/mock-backend` directly regardless of this flag (intentional
 // hybrid — PLAN_PHASE_C.md §0.2). Every other domain stays on the mock
