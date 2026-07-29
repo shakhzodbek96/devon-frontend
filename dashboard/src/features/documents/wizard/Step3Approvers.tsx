@@ -8,7 +8,8 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { useActingEmployee } from '@/lib/acting';
-import { listEmployees, listPositions } from '@/lib/mock-backend';
+import { listEmployees } from '@/lib/data/employees';
+import { listPositions } from '@/lib/data/positions';
 import type { Employee } from '@/types/domain';
 
 import { useDocWizardStore } from './doc-wizard-store';

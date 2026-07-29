@@ -9,7 +9,8 @@ import LoadingState from '@/components/common/LoadingState';
 import PageHeader from '@/components/common/PageHeader';
 import { formatRelative } from '@/i18n/uz-locale';
 import { useActingEmployee } from '@/lib/acting';
-import { listEmployees, listMyApprovals, type ApprovalQueueItem } from '@/lib/mock-backend';
+import { listMyApprovals, type ApprovalQueueItem } from '@/lib/data/documents';
+import { listEmployees } from '@/lib/data/employees';
 import { useQueueStore } from '@/stores/useQueueStore';
 
 type QueueKind = ApprovalQueueItem['kind'];

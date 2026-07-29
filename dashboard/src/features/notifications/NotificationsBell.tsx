@@ -23,7 +23,7 @@ import {
   listNotifications,
   markAllNotificationsRead,
   markNotificationRead,
-} from '@/lib/mock-backend';
+} from '@/lib/data/notifications';
 import { useMediaQuery } from '@/lib/use-media-query';
 import type { AppNotification } from '@/types/domain';
 

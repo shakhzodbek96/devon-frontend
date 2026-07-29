@@ -13,12 +13,18 @@
 // `EmployeeTransferPage`, `UnitDetailsSheet`'s head-employee display) onto
 // it. Phase E (PLAN_PHASE_E.md §7) switched `certificates` real: certificate
 // metadata + lifecycle (upload/approve/reject/revoke) now hit the Laravel
-// API — but note the seam nuance: `src/lib/acting.ts` and all of
-// `src/features/{documents,letters,tasks}/*` keep importing
-// `src/lib/mock-backend` directly regardless of this flag (intentional
-// hybrid — PLAN_PHASE_C.md §0.2; documents/letters/tasks reference
-// certificates by uuid for signing, which is Phase F, not this phase).
-// Every other domain stays on the mock until its own migration lands.
+// API. Phase F1 (PLAN_PHASE_F1.md) switches `documents` / `documentTemplates`
+// / `notifications` real: the document create/approve/reject/rework/accept
+// workflow + the notification bell now hit the Laravel API too, and
+// `src/lib/acting.ts` resolves the acting employee/units through the real
+// `employees`/`units` facades (§0 of that plan — the fix that stops M2
+// pages from hanging on a real login). ERI signing (SIGNED) stays F2 —
+// `SignDialog`/`FakeEriSigner`/`SignatureHistoryCard` and the certificate
+// data underneath them are untouched, still reading mock certificates data
+// where those components read it directly.
+// `letters`/`tasks` stay mock entirely in F1 (own migration later) —
+// `src/features/{letters,tasks}/*` keep importing `src/lib/mock-backend`
+// directly.
 export type DataSourceMode = 'real' | 'mock';
 
 export const dataSourceConfig = {
@@ -29,7 +35,9 @@ export const dataSourceConfig = {
   assignments: 'real',
   profileRequests: 'real',
   certificates: 'real',
-  documents: 'mock',
+  documents: 'real',
+  documentTemplates: 'real',
+  notifications: 'real',
   letters: 'mock',
   tasks: 'mock',
 } as const satisfies Record<string, DataSourceMode>;

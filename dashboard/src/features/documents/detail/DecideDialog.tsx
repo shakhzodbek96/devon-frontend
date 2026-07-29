@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Textarea } from '@/components/ui/textarea';
-import { decideApproval, DocumentValidationError, MockNetworkError } from '@/lib/mock-backend';
+import { decideApproval, DocumentValidationError, MockNetworkError } from '@/lib/data/documents';
 import type { ApprovalDecision } from '@/types/domain';
 
 export type Decision = Exclude<ApprovalDecision, 'PENDING'>;

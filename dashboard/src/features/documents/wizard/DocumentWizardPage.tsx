@@ -17,7 +17,7 @@ import {
   updateDraftDocument,
   type CreateDocumentInput,
   type UpdateDraftDocumentInput,
-} from '@/lib/mock-backend';
+} from '@/lib/data/documents';
 
 import { type DocWizardData, TOTAL_STEPS, useDocWizardStore } from './doc-wizard-store';
 import Step1Type, { STEP1_FORM_ID } from './Step1Type';

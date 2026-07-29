@@ -11,15 +11,15 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { formatDate, formatDateTime, formatRelative } from '@/i18n/uz-locale';
 import { useActingEmployee } from '@/lib/acting';
+import { listCertificates } from '@/lib/data/certificates';
 import {
   getDocument,
-  listCertificates,
   listDocumentTemplates,
-  listEmployees,
-  listPositions,
   recordDocumentView,
   type DocumentDetail,
-} from '@/lib/mock-backend';
+} from '@/lib/data/documents';
+import { listEmployees } from '@/lib/data/employees';
+import { listPositions } from '@/lib/data/positions';
 import { useQueueStore } from '@/stores/useQueueStore';
 import type { Employee } from '@/types/domain';
 

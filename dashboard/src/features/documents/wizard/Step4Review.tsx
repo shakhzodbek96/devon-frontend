@@ -5,7 +5,8 @@ import { Pencil } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { formatBytes } from '@/lib/format';
-import { listDocumentTemplates, listEmployees } from '@/lib/mock-backend';
+import { listDocumentTemplates } from '@/lib/data/documents';
+import { listEmployees } from '@/lib/data/employees';
 import type { DocumentTemplate, Employee } from '@/types/domain';
 
 import { useDocWizardStore } from './doc-wizard-store';

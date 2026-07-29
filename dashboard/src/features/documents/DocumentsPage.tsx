@@ -13,12 +13,8 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { formatDate } from '@/i18n/uz-locale';
 import { useActingEmployee } from '@/lib/acting';
-import {
-  listDocuments,
-  listDocumentTemplates,
-  listEmployees,
-  listMyApprovals,
-} from '@/lib/mock-backend';
+import { listDocuments, listDocumentTemplates, listMyApprovals } from '@/lib/data/documents';
+import { listEmployees } from '@/lib/data/employees';
 import { useMediaQuery } from '@/lib/use-media-query';
 import type { DocumentEntity } from '@/types/domain';
 

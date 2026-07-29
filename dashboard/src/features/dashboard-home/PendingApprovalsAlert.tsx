@@ -6,7 +6,7 @@ import { ClipboardCheck } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { useActingEmployee } from '@/lib/acting';
-import { listMyApprovals } from '@/lib/mock-backend';
+import { listMyApprovals } from '@/lib/data/documents';
 import { useQueueStore } from '@/stores/useQueueStore';
 
 /**

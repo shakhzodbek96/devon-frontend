@@ -17,7 +17,8 @@ import {
 import { Skeleton } from '@/components/ui/skeleton';
 import { Textarea } from '@/components/ui/textarea';
 import { formatBytes } from '@/lib/format';
-import { listDocumentTemplates, listEmployees } from '@/lib/mock-backend';
+import { listDocumentTemplates } from '@/lib/data/documents';
+import { listEmployees } from '@/lib/data/employees';
 import type { DocumentTemplate, Employee } from '@/types/domain';
 
 import { renderTemplate } from '../renderTemplate';

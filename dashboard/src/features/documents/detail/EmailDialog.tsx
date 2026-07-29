@@ -7,7 +7,7 @@ import ResponsiveDialog from '@/components/common/ResponsiveDialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { DocumentValidationError, emailDocument, MockNetworkError } from '@/lib/mock-backend';
+import { DocumentValidationError, emailDocument, MockNetworkError } from '@/lib/data/documents';
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

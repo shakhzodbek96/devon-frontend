@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import LoadingState from '@/components/common/LoadingState';
 import { ACTION_ICON } from '@/lib/audit-icons';
-import { listAudit } from '@/lib/mock-backend';
+import { listAudit } from '@/lib/data/audit';
 import { formatRelative } from '@/i18n/uz-locale';
 import type { AuditEntry } from '@/types/domain';
 

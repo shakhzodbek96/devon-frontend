@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Skeleton } from '@/components/ui/skeleton';
 import { formatBytes } from '@/lib/format';
-import { listDocumentTemplates } from '@/lib/mock-backend';
+import { listDocumentTemplates } from '@/lib/data/documents';
 import { cn } from '@/lib/utils';
 import type { DocumentSource, DocumentTemplate } from '@/types/domain';
 

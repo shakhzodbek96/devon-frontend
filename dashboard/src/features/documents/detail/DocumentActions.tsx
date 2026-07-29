@@ -12,7 +12,6 @@ import {
   PenLine,
   Printer,
   Send,
-  ShieldCheck,
   Trash2,
   X,
 } from 'lucide-react';
@@ -35,10 +34,8 @@ import {
   MockNetworkError,
   submitDocumentForReview,
   type DocumentDetail,
-} from '@/lib/mock-backend';
+} from '@/lib/data/documents';
 import type { Employee } from '@/types/domain';
-
-import SignDialog from '@/features/_shared/eri/SignDialog';
 
 import DecideDialog, { type Decision } from './DecideDialog';
 import EmailDialog from './EmailDialog';
@@ -65,7 +62,6 @@ export default function DocumentActions({ detail, actorUuid, employees, onChange
   const [busy, setBusy] = useState<'submit' | 'delete' | 'accept' | null>(null);
   const [decideOpen, setDecideOpen] = useState(false);
   const [decideInitial, setDecideInitial] = useState<Decision>('APPROVED');
-  const [signOpen, setSignOpen] = useState(false);
   const [emailOpen, setEmailOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [acceptOpen, setAcceptOpen] = useState(false);
@@ -84,7 +80,12 @@ export default function DocumentActions({ detail, actorUuid, employees, onChange
   const canRework = (doc.status === 'DRAFT' || doc.status === 'REJECTED') && isCreator;
   const canDelete = doc.status === 'DRAFT' && isCreator;
   const canDecide = doc.status === 'IN_REVIEW' && currentStep?.employeeUuid === actorUuid;
-  const canSign = doc.status === 'APPROVED' && doc.signerUuid === actorUuid;
+  // ERI signing (APPROVED -> SIGNED) is milestone F2 — deliberately never
+  // true here. A document with a signer simply parks at APPROVED awaiting
+  // signature; PLAN_PHASE_F1.md §2/§5: hide the action, never fake a
+  // signature. `SignDialog` stays untouched (still mock) but is no longer
+  // reachable from this page until F2 wires a real `signDocument`.
+  const canSign = false;
   const canAccept = doc.status === 'APPROVED' && !doc.signerUuid && isRecipient;
   const canExport =
     (doc.status === 'SIGNED' || doc.status === 'CLOSED') && (isCreator || isRecipient);
@@ -234,13 +235,6 @@ export default function DocumentActions({ detail, actorUuid, employees, onChange
             </>
           )}
 
-          {canSign && (
-            <Button onClick={() => setSignOpen(true)} className="w-full sm:w-auto">
-              <ShieldCheck className="mr-2 h-4 w-4" />
-              {t('dashboard:documents.detail.actions.sign')}
-            </Button>
-          )}
-
           {canAccept && (
             <Button
               onClick={() => setAcceptOpen(true)}
@@ -283,13 +277,6 @@ export default function DocumentActions({ detail, actorUuid, employees, onChange
         documentUuid={doc.uuid}
         actorUuid={actorUuid}
         initialDecision={decideInitial}
-        onDone={onChanged}
-      />
-      <SignDialog
-        open={signOpen}
-        onOpenChange={setSignOpen}
-        resourceUuid={doc.uuid}
-        actorUuid={actorUuid}
         onDone={onChanged}
       />
       <EmailDialog

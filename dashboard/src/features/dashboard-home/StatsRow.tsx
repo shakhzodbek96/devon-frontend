@@ -4,14 +4,11 @@ import { Users, Network, KeySquare, FileClock, Files, MailWarning } from 'lucide
 import StatCard from '@/components/common/StatCard';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useActingEmployee } from '@/lib/acting';
-import {
-  listCertificates,
-  listDocuments,
-  listEmployees,
-  listLetters,
-  listMyApprovals,
-  listUnits,
-} from '@/lib/mock-backend';
+import { listCertificates } from '@/lib/data/certificates';
+import { listDocuments, listMyApprovals } from '@/lib/data/documents';
+import { listEmployees } from '@/lib/data/employees';
+import { listUnits } from '@/lib/data/units';
+import { listLetters } from '@/lib/mock-backend';
 
 /** Org-wide M1 counts — independent of the acting persona. */
 interface OrgStats {
