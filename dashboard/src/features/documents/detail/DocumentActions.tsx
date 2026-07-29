@@ -12,6 +12,7 @@ import {
   PenLine,
   Printer,
   Send,
+  ShieldCheck,
   Trash2,
   X,
 } from 'lucide-react';
@@ -27,11 +28,13 @@ import {
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
+import SignDialog from '@/features/_shared/eri/SignDialog';
 import {
   acceptDocument,
   deleteDocument,
   DocumentValidationError,
   MockNetworkError,
+  signDocument,
   submitDocumentForReview,
   type DocumentDetail,
 } from '@/lib/data/documents';
@@ -65,6 +68,7 @@ export default function DocumentActions({ detail, actorUuid, employees, onChange
   const [emailOpen, setEmailOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [acceptOpen, setAcceptOpen] = useState(false);
+  const [signOpen, setSignOpen] = useState(false);
 
   const isCreator = doc.creatorUuid === actorUuid;
   const isRecipient = doc.recipientUuid === actorUuid;
@@ -80,12 +84,11 @@ export default function DocumentActions({ detail, actorUuid, employees, onChange
   const canRework = (doc.status === 'DRAFT' || doc.status === 'REJECTED') && isCreator;
   const canDelete = doc.status === 'DRAFT' && isCreator;
   const canDecide = doc.status === 'IN_REVIEW' && currentStep?.employeeUuid === actorUuid;
-  // ERI signing (APPROVED -> SIGNED) is milestone F2 — deliberately never
-  // true here. A document with a signer simply parks at APPROVED awaiting
-  // signature; PLAN_PHASE_F1.md §2/§5: hide the action, never fake a
-  // signature. `SignDialog` stays untouched (still mock) but is no longer
-  // reachable from this page until F2 wires a real `signDocument`.
-  const canSign = false;
+  // ERI signing (APPROVED -> SIGNED, PLAN_PHASE_F2.md §2/§3): only the
+  // document's designated signer sees the action; `DocumentService::sign`
+  // re-validates status + signer + certificate ownership server-side
+  // regardless (CLAUDE.md: never rely on UI hiding alone).
+  const canSign = doc.status === 'APPROVED' && doc.signerUuid === actorUuid;
   const canAccept = doc.status === 'APPROVED' && !doc.signerUuid && isRecipient;
   const canExport =
     (doc.status === 'SIGNED' || doc.status === 'CLOSED') && (isCreator || isRecipient);
@@ -235,6 +238,17 @@ export default function DocumentActions({ detail, actorUuid, employees, onChange
             </>
           )}
 
+          {canSign && (
+            <Button
+              onClick={() => setSignOpen(true)}
+              disabled={busy !== null}
+              className="w-full sm:w-auto"
+            >
+              <ShieldCheck className="mr-2 h-4 w-4" />
+              {t('dashboard:documents.detail.sign.cta')}
+            </Button>
+          )}
+
           {canAccept && (
             <Button
               onClick={() => setAcceptOpen(true)}
@@ -285,6 +299,16 @@ export default function DocumentActions({ detail, actorUuid, employees, onChange
         documentUuid={doc.uuid}
         actorUuid={actorUuid}
         onDone={onChanged}
+      />
+      <SignDialog
+        open={signOpen}
+        onOpenChange={setSignOpen}
+        resourceUuid={doc.uuid}
+        actorUuid={actorUuid}
+        onDone={onChanged}
+        onSign={(certificateUuid, signatureHex) =>
+          signDocument(doc.uuid, actorUuid, certificateUuid, signatureHex)
+        }
       />
 
       <AlertDialog open={deleteOpen} onOpenChange={setDeleteOpen}>

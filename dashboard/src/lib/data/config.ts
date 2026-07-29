@@ -18,11 +18,15 @@
 // workflow + the notification bell now hit the Laravel API too, and
 // `src/lib/acting.ts` resolves the acting employee/units through the real
 // `employees`/`units` facades (§0 of that plan — the fix that stops M2
-// pages from hanging on a real login). ERI signing (SIGNED) stays F2 —
-// `SignDialog`/`FakeEriSigner`/`SignatureHistoryCard` and the certificate
-// data underneath them are untouched, still reading mock certificates data
-// where those components read it directly.
-// `letters`/`tasks` stay mock entirely in F1 (own migration later) —
+// pages from hanging on a real login). Phase F2 (PLAN_PHASE_F2.md) wires ERI
+// document signing itself: `signatures` is a new table folded into the
+// `documents` domain (`signDocument` in `src/lib/data/documents.ts`,
+// `FakeEriSigner.ts` stays client-side — BLOCKED(e-imzo), see that plan's
+// §0), and the shared `SignDialog`'s certificate picker now reads through
+// the real `certificates` facade instead of the mock. Letter signing stays
+// mock (phase G) — `signatures` is a shared backend table but nothing in
+// the letters UI touches it yet.
+// `letters`/`tasks` stay mock entirely in F1/F2 (own migration later) —
 // `src/features/{letters,tasks}/*` keep importing `src/lib/mock-backend`
 // directly.
 export type DataSourceMode = 'real' | 'mock';

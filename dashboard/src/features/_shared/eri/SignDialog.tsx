@@ -11,10 +11,10 @@ import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Skeleton } from '@/components/ui/skeleton';
 import { formatDate } from '@/i18n/uz-locale';
+import { listCertificates } from '@/lib/data/certificates';
 import {
   DocumentValidationError,
   LetterValidationError,
-  listCertificates,
   MockNetworkError,
   signDocument,
 } from '@/lib/mock-backend';
@@ -36,10 +36,14 @@ interface Props {
   onDone: () => void;
   /**
    * The real sign mutation, bound to the resource. Receives the chosen
-   * certificate uuid. Defaults to `signDocument(resourceUuid, actorUuid, …)`;
-   * the letter flow passes a `signLetter`-bound thunk (its param order differs).
+   * certificate uuid + the fake ERI signature hex produced by
+   * `FakeEriSigner` below (BLOCKED(e-imzo) — real PKCS#7 signing). Defaults
+   * to `signDocument(resourceUuid, actorUuid, certificateUuid)` (the mock,
+   * which mints its own hex server-side); the real document flow and the
+   * letter flow both pass an explicit bound thunk (letters currently ignore
+   * the hex — its mock `signLetter` mints its own too, same as documents').
    */
-  onSign?: (certificateUuid: string) => Promise<unknown>;
+  onSign?: (certificateUuid: string, signatureHex: string) => Promise<unknown>;
   /** Which `dashboard:<ns>.errors.*` table maps thrown validation codes. */
   errorNamespace?: 'documents' | 'letters';
   /** Success-state copy key — the only domain-specific string in this dialog. */
@@ -103,10 +107,12 @@ export default function SignDialog({
     setPinError(false);
     setPhase('signing');
     try {
-      // Theatre first (the visible E-IMZO handshake), then the real mutation.
-      await FakeEriSigner.sign({ resourceUuid });
+      // Theatre first (the visible E-IMZO handshake), then the real mutation
+      // — `signatureHex` threads through to `onSign` so the server persists
+      // the actual (fake) value the ceremony produced.
+      const { signatureHex } = await FakeEriSigner.sign({ resourceUuid });
       await (onSign
-        ? onSign(cert.uuid)
+        ? onSign(cert.uuid, signatureHex)
         : signDocument(resourceUuid, actorUuid, cert.uuid));
       setSignedSerial(cert.serialNumber);
       setPhase('done');

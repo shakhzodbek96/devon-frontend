@@ -22,8 +22,13 @@
 // `src/lib/acting.ts` for a real-backed module is always the session's own
 // employee, so this is never actually a mismatch in practice.
 //
-// ERI signing (APPROVED → SIGNED) is milestone F2 — there is no
-// `signDocument` export here on purpose.
+// ERI signing (APPROVED → SIGNED, `signDocument`, PLAN_PHASE_F2.md §2/§3):
+// `signatureHex` is the frontend's client-side fake signature
+// (`FakeEriSigner.ts`, BLOCKED(e-imzo) — the private key never reaches
+// this call). Unlike the mock (which mints its own random hex
+// server-side), the real backend requires the caller to supply it, so this
+// export takes one more argument than `mock-backend`'s `signDocument` —
+// see `src/lib/data/documents.ts` for the signature-bridging wrapper.
 
 import {
   DocumentValidationError,
@@ -207,6 +212,29 @@ export async function decideApproval(
     return await apiFetch<DocumentEntity>(`/documents/${documentUuid}/decide`, {
       method: 'POST',
       body: { decision, comment },
+    });
+  } catch (err) {
+    rethrow(err);
+  }
+}
+
+/**
+ * `POST /documents/{uuid}/sign` — APPROVED → SIGNED. `certificateUuid` must
+ * be an ACTIVE certificate owned by the document's `signerUuid`
+ * (`cert-invalid`); only the `signerUuid` may call this (`not-signer`).
+ * BLOCKED(e-imzo): `signatureHex` is a client-generated fake — see the
+ * module doc comment.
+ */
+export async function signDocument(
+  documentUuid: string,
+  _actorUuid: string,
+  certificateUuid: string,
+  signatureHex: string,
+): Promise<DocumentEntity> {
+  try {
+    return await apiFetch<DocumentEntity>(`/documents/${documentUuid}/sign`, {
+      method: 'POST',
+      body: { certificateUuid, signatureHex },
     });
   } catch (err) {
     rethrow(err);
