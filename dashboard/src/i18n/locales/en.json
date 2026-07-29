@@ -1,11 +1,110 @@
 {
   "common": {
+    "actions": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "archive": "Archive",
+      "confirm": "Confirm",
+      "submit": "Submit",
+      "back": "Back",
+      "next": "Next",
+      "previous": "Previous",
+      "close": "Close",
+      "edit": "Edit",
+      "search": "Search",
+      "filter": "Filter",
+      "reset": "Reset",
+      "create": "Create",
+      "approve": "Approve",
+      "reject": "Reject",
+      "upload": "Upload",
+      "download": "Download",
+      "logout": "Log out",
+      "view-all": "View all",
+      "show-more": "Show more",
+      "show-less": "Show less",
+      "open-profile": "Open profile",
+      "choose-file": "Choose file",
+      "replace-file": "Replace",
+      "remove-file": "Remove file"
+    },
+    "labels": {
+      "loading": "Loading...",
+      "saving": "Saving...",
+      "processing": "Processing...",
+      "empty": "Empty",
+      "required": "Required",
+      "optional": "Optional",
+      "yes": "Yes",
+      "no": "No",
+      "all": "All",
+      "none": "None",
+      "select": "Select",
+      "search-placeholder": "Search..."
+    },
     "errors": {
       "required": "This field is required",
+      "invalid-email": "Invalid email",
+      "invalid-pinfl": "Invalid PINFL (must be 14 digits)",
+      "pinfl-taken": "This PINFL is already registered",
+      "invalid-phone": "Invalid phone number (+998 XX XXX XX XX)",
+      "email-must-be-corporate": "Corporate email must end with @devon.uz",
+      "email-taken": "This email is already registered",
+      "order-extract-missing": "Order extract is not attached",
+      "position-instruction-missing": "Job description is not attached",
+      "termination-extract-missing": "Termination order extract is not attached",
+      "file-format": "Only PDF, JPG, or PNG files are accepted",
+      "file-too-large": "File size must not exceed 10 MB",
+      "min-length": "At least {{count}} characters required",
+      "max-length": "Maximum {{count}} characters",
+      "passwords-dont-match": "Passwords don't match",
+      "password-too-weak": "Password is too weak",
       "network": "Network error, please try again",
       "unknown": "An unknown error occurred",
-      "email-taken": "This email is already registered",
-      "passwords-dont-match": "Passwords don't match"
+      "session-expired": "Session expired, please sign in again"
+    },
+    "status": {
+      "active": "Active",
+      "archived": "Archived",
+      "draft": "Draft",
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "expired": "Expired",
+      "revoked": "Revoked",
+      "suspended": "Suspended",
+      "on-leave": "On leave",
+      "terminated": "Terminated",
+      "in-review": "In review",
+      "signed": "Signed",
+      "closed": "Closed",
+      "registered": "Registered",
+      "routed": "Routed",
+      "assigned": "Assigned",
+      "in-progress": "In progress",
+      "executed": "Executed",
+      "on-signature": "Awaiting signature",
+      "responded": "Response ready",
+      "dispatched": "Dispatched",
+      "closed-no-response": "Closed without response",
+      "new": "New",
+      "under-review": "Under review",
+      "done": "Done"
+    },
+    "unit-types": {
+      "DEPARTMENT": "Department",
+      "DIRECTORATE": "Directorate",
+      "DIVISION": "Division",
+      "DEPARTMENT_SUB": "Sub-department",
+      "SECTION": "Section",
+      "OTHER": "Other"
+    },
+    "employment-types": {
+      "FULL_TIME": "Full-time",
+      "PART_TIME": "Part-time",
+      "CONTRACT": "Contract",
+      "INTERN": "Intern"
     },
     "roles": {
       "ROLE_SUPER_ADMIN": "Super Admin",
@@ -16,17 +115,22 @@
       "ROLE_AUDITOR": "Auditor",
       "ROLE_DEVONXONA": "Registry Officer"
     },
-    "status": {
-      "active": "Active",
-      "suspended": "Suspended"
+    "genders": {
+      "M": "Male",
+      "F": "Female"
+    },
+    "time": {
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "minutes-ago": "{{count, plural, one {# minute ago} other {# minutes ago}}}",
+      "hours-ago": "{{count, plural, one {# hour ago} other {# hours ago}}}",
+      "days-ago": "{{count, plural, one {# day ago} other {# days ago}}}"
     }
   },
   "dashboard": {
-    "theme": {
-      "menu-label": "Toggle theme",
-      "light": "Light",
-      "dark": "Dark",
-      "system": "System"
+    "app": {
+      "name": "Devon",
+      "tagline": "Document workflow platform"
     },
     "sidebar": {
       "nav-home": "Home",
@@ -44,6 +148,66 @@
       "section-documents": "DOCUMENT WORKFLOW",
       "section-personal": "PERSONAL",
       "footer-slogan": "Progress through discipline!"
+    },
+    "topbar": {
+      "search-placeholder": "Search employee, unit, or certificate...",
+      "open-nav": "Open navigation"
+    },
+    "theme": {
+      "menu-label": "Toggle theme",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    },
+    "user-menu": {
+      "profile": "Profile",
+      "settings": "Settings",
+      "reset-demo": "Reset demo data",
+      "reset-demo-toast": "Demo data has been reset. The page will reload.",
+      "logout": "Log out"
+    },
+    "pov": {
+      "menu-label": "Switch role",
+      "persona": {
+        "HR_ADMIN": "HR Administrator",
+        "RAHBAR": "Organization head",
+        "BOLIM_BOSHLIGI": "Division head",
+        "DEVONXONA": "Registry officer",
+        "XODIM": "Employee"
+      },
+      "switched": "You are now acting as \"{{persona}}\"",
+      "chip": "You: as {{persona}}",
+      "chip-reset": "Return to my role"
+    },
+    "notifications": {
+      "heading": "Notifications",
+      "open": "Open notifications",
+      "mark-all": "Mark all as read",
+      "empty-title": "No notifications",
+      "empty-body": "New notifications will appear here.",
+      "title": {
+        "DOC_REVIEW_REQUESTED": "{{actorName}} sent document {{docNumber}} for approval",
+        "DOC_DECIDED": "{{actorName}} made a decision on document {{docNumber}}",
+        "DOC_APPROVED": "Document {{docNumber}} has passed approval",
+        "DOC_REJECTED": "{{actorName}} rejected document {{docNumber}}",
+        "DOC_SIGN_REQUESTED": "Document {{docNumber}} was sent for signing",
+        "DOC_ACCEPT_REQUESTED": "Document {{docNumber}} was sent for acceptance",
+        "DOC_SIGNED": "{{actorName}} signed document {{docNumber}}",
+        "DOC_CLOSED": "Document {{docNumber}} was accepted",
+        "LETTER_ROUTED": "Letter {{letterNumber}} was routed to your unit",
+        "LETTER_ASSIGNED": "Letter {{letterNumber}} was assigned to you for execution",
+        "LETTER_EXECUTED": "{{actorName}} executed letter {{letterNumber}}",
+        "LETTER_ACCEPTED": "Execution of letter {{letterNumber}} was accepted",
+        "LETTER_SIGN_REQUESTED": "The reply to letter {{letterNumber}} was sent for signing",
+        "LETTER_DISPATCHED": "Letter {{letterNumber}} was dispatched",
+        "TASK_ASSIGNED": "You have a new task: {{taskNumber}}",
+        "TASK_CLARIFICATION_REQUESTED": "{{actorName}} requested clarification on task {{taskNumber}}",
+        "TASK_CLARIFICATION_ANSWERED": "{{actorName}} replied to your comment on {{taskNumber}}",
+        "TASK_SUBMITTED": "{{actorName}} submitted task {{taskNumber}}",
+        "TASK_ACCEPTED": "Your task {{taskNumber}} was accepted",
+        "TASK_RETURNED": "Your task {{taskNumber}} was returned for rework",
+        "TASK_REJECTED": "Your task {{taskNumber}} was rejected"
+      }
     },
     "login": {
       "title": "Sign in to Devon",
@@ -134,7 +298,807 @@
         "password-reset": "Password reset"
       }
     },
+    "home": {
+      "greeting": "Hello, {{name}}!",
+      "subtitle": "What shall we do today?",
+      "stats": {
+        "employees": "Active employees",
+        "units": "Organizational units",
+        "active-certs": "Active e-signature keys",
+        "my-approvals": "Awaiting approval",
+        "documents": "Documents",
+        "overdue-letters": "Overdue letters"
+      },
+      "recent-activity": "Recent activity",
+      "no-activity": "No activity",
+      "approvals-alert": {
+        "title": "{{count}} documents are waiting for you",
+        "body": "There are documents awaiting approval, signature, or acceptance.",
+        "cta": "Review"
+      },
+      "tasks-alert": {
+        "review": "You have {{count}} tasks awaiting review",
+        "active": "You have {{count}} active tasks",
+        "body": "Go to the page to view and manage tasks.",
+        "cta": "View"
+      },
+      "expiring-alert": {
+        "title": "{{count}} e-signature keys expire within 30 days",
+        "body": "Remind employees to renew their expiring keys.",
+        "cta": "Review"
+      },
+      "quick": {
+        "title": "Quick actions",
+        "new-employee": "New employee",
+        "new-document": "Create document",
+        "register-letter": "Register letter",
+        "manage-units": "Manage structure",
+        "upload-cert": "Upload e-signature",
+        "view-audit": "Audit log",
+        "give-task": "Assign task"
+      }
+    },
+    "audit": {
+      "title": "Audit log",
+      "subtitle": "History of all changes in the system",
+      "filters": {
+        "resource-type": "Resource type",
+        "resource-type-all": "All resources",
+        "actor": "Actor",
+        "actor-all": "All actors",
+        "actor-placeholder": "Select actor",
+        "actor-search": "Search by actor name...",
+        "date-from": "From date",
+        "date-to": "To date",
+        "reset": "Clear filters"
+      },
+      "resource-types": {
+        "unit": "Unit",
+        "employee": "Employee",
+        "assignment": "Assignment",
+        "certificate": "E-signature",
+        "user": "User",
+        "profile-request": "Profile request",
+        "document": "Document",
+        "letter": "Letter"
+      },
+      "col": {
+        "time": "Time",
+        "actor": "Actor",
+        "action": "Action",
+        "resource": "Resource",
+        "details": "Details"
+      },
+      "diff": {
+        "header": "Changes",
+        "arrow": "→",
+        "unit": "Unit",
+        "position": "Position"
+      },
+      "context": {
+        "reason": "Reason",
+        "workload": "Workload",
+        "assignment-type": "Assignment type",
+        "decision": "Decision"
+      },
+      "empty": "No records match these conditions",
+      "actions": {
+        "CREATE": "created",
+        "UPDATE": "updated",
+        "DELETE": "deleted",
+        "ARCHIVE": "archived",
+        "LOGIN": "logged in",
+        "LOGOUT": "logged out",
+        "PASSWORD_CHANGED": "changed password",
+        "UNIT_TRANSFER": "was transferred to unit",
+        "CERTIFICATE_UPLOADED": "uploaded e-signature",
+        "CERTIFICATE_APPROVED": "approved e-signature",
+        "CERTIFICATE_REJECTED": "rejected e-signature",
+        "CERTIFICATE_REVOKED": "revoked e-signature",
+        "PROFILE_CHANGE_REQUESTED": "requested profile change",
+        "PROFILE_CHANGE_APPROVED": "approved profile change",
+        "POV_SWITCHED": "switched role",
+        "DOCUMENT_CREATED": "created document",
+        "DOCUMENT_SENT_FOR_REVIEW": "sent document for approval",
+        "DOCUMENT_APPROVED": "approved document",
+        "DOCUMENT_REJECTED": "rejected document",
+        "DOCUMENT_SIGNED": "signed document",
+        "DOCUMENT_CLOSED": "accepted and closed document",
+        "DOCUMENT_VIEWED": "viewed document",
+        "DOCUMENT_EMAILED": "exported document via email",
+        "LETTER_REGISTERED": "registered letter",
+        "LETTER_ROUTED": "routed letter to unit",
+        "LETTER_ASSIGNED": "assigned letter executor",
+        "LETTER_EXECUTED": "executed letter",
+        "LETTER_ACCEPTED": "accepted letter execution",
+        "LETTER_SIGNED": "signed letter reply",
+        "LETTER_DISPATCHED": "dispatched reply letter",
+        "LETTER_CLOSED": "closed letter",
+        "TASK_CREATED": "created task",
+        "TASK_UPDATED": "edited task",
+        "TASK_STARTED": "started task",
+        "TASK_CLARIFICATION_REQUESTED": "requested clarification",
+        "TASK_CLARIFICATION_ANSWERED": "answered clarification",
+        "TASK_SUBMITTED": "submitted task",
+        "TASK_ACCEPTED": "accepted task",
+        "TASK_RETURNED": "returned task",
+        "TASK_REJECTED": "rejected task"
+      }
+    },
+    "documents": {
+      "registry": {
+        "title": "Documents",
+        "subtitle": "Registry and archive of internal documents",
+        "cta-new": "Create document",
+        "tabs": {
+          "mine": "My documents",
+          "inbox": "Inbox",
+          "review": "In review",
+          "archive": "Archive"
+        },
+        "archive-hint": "Signed documents are archived at the end of each day",
+        "search-placeholder": "Search by number or title",
+        "filter-status": "Status",
+        "col-number": "Number",
+        "col-title": "Title",
+        "col-type": "Type",
+        "col-creator": "Creator",
+        "col-status": "Status",
+        "col-date": "Date",
+        "type-template": "From template",
+        "type-upload": "Uploaded file",
+        "empty-title": "No documents found",
+        "empty-body": "Adjust your search or filter criteria, or create a new document",
+        "empty-archive-title": "The archive is currently empty",
+        "empty-archive-body": "Signed and closed documents will be grouped here by day"
+      },
+      "wizard": {
+        "title": "New document",
+        "subtitle": "Create a document from a template or an existing file",
+        "edit-title": "Edit document",
+        "edit-subtitle": "Update document {{number}} and resubmit it",
+        "stepper-label": "Document creation steps",
+        "confirm-close": "Entered data will not be saved. Do you want to exit?",
+        "step-1": {
+          "title": "Type",
+          "source-template": "From template",
+          "source-template-hint": "Select a ready-made template and fill in the fields",
+          "source-upload": "Upload an existing file",
+          "source-upload-hint": "Attach an existing document from your computer",
+          "template-label": "Select template",
+          "fields-count": "{{n}} fields",
+          "file-label": "Document file",
+          "choose-file": "Choose file",
+          "replace-file": "Replace",
+          "remove-file": "Remove file",
+          "file-hint": "PDF, DOC, or DOCX, up to 10 MB. Only the file name is saved (demo).",
+          "errors": {
+            "template-required": "Select a template to continue",
+            "file-required": "Select a file to continue",
+            "file-format": "Only PDF, DOC, or DOCX files are accepted",
+            "file-too-large": "File size must not exceed 10 MB"
+          },
+          "edit-locked": "The document type and template cannot be changed when editing"
+        },
+        "step-2": {
+          "title": "Content",
+          "field-title": "Title",
+          "field-recipient": "To",
+          "field-signer": "Who signs",
+          "signer-none": "No e-signature required",
+          "field-confidentiality": "Confidentiality",
+          "confidentiality-ODDIY": "Standard",
+          "confidentiality-MAXFIY": "Confidential",
+          "template-fields-heading": "Template fields",
+          "preview-title": "Document preview",
+          "preview-hint": "The preview updates as you fill in the fields"
+        },
+        "step-3": {
+          "title": "Approval sheet",
+          "switch-label": "Do you need an approval sheet?",
+          "sequential-banner": "Approval proceeds sequentially — each participant approves in their turn",
+          "off-explanation": "Without approval, the document moves directly to signing or acceptance",
+          "participants-label": "Participants (in queue order)",
+          "add-participant": "Add participant",
+          "move-up": "Move up",
+          "move-down": "Move down",
+          "remove-participant": "Remove from list",
+          "errors": {
+            "min-participants": "Add at least one participant"
+          },
+          "edit-locked": "The approval requirement cannot be changed when editing — you can only update the participant list"
+        },
+        "review": {
+          "title": "Review",
+          "card-content": "Type and content",
+          "card-participants": "Participants",
+          "card-routing": "To / Who signs",
+          "no-approval": "No approval",
+          "label-source": "Source",
+          "label-template": "Template",
+          "label-file": "File",
+          "label-title": "Title",
+          "label-confidentiality": "Confidentiality",
+          "label-recipient": "To",
+          "label-signer": "Who signs"
+        },
+        "submit-draft": "Save as draft",
+        "submit-review": "Send for approval",
+        "toast-draft-saved": "{{number}} saved as a draft",
+        "toast-sent-for-review": "{{number}} was sent for approval",
+        "toast-submitted": "{{number}} was submitted",
+        "toast-updated": "{{number}} was updated"
+      },
+      "detail": {
+        "back": "To document list",
+        "not-found": "Document not found",
+        "badge-maxfiy": "Confidential",
+        "label-creator": "Creator",
+        "label-recipient": "Recipient",
+        "label-created": "Created",
+        "label-updated": "Updated",
+        "turn-hint": "It's {{name}}'s turn now",
+        "preview": {
+          "print": "Print / save as PDF",
+          "upload-no-preview": "File preview is not available in demo mode",
+          "stamp-line": "Signed with e-signature"
+        },
+        "approval-sheet": {
+          "title": "Approval sheet",
+          "round": "Round {{n}}",
+          "no-approval": "Sent without approval",
+          "empty-round": "There are no steps in this round",
+          "queue-here": "Queue is here",
+          "decision": {
+            "PENDING": "Pending",
+            "APPROVED": "Approved",
+            "APPROVED_WITH_COMMENT": "Approved with comment",
+            "REJECTED": "Rejected"
+          }
+        },
+        "signatures": {
+          "title": "Signature history",
+          "empty": "The document has not been signed yet",
+          "verify": "Verify",
+          "verify-ok": "Signature is valid"
+        },
+        "viewed": {
+          "title": "Who has viewed"
+        },
+        "meta": {
+          "title": "Details",
+          "type": "Type",
+          "signer": "Signer",
+          "no-signer": "No e-signature required",
+          "sent": "Sent for approval",
+          "approved": "Approved",
+          "signed": "Signed",
+          "closed": "Accepted",
+          "archived": "Archived",
+          "emailed": "Sent by email"
+        },
+        "actions": {
+          "approve": "Approve",
+          "approve-with-comment": "Approve with comment",
+          "sign": "Sign with e-signature",
+          "accept": "Accept",
+          "email": "Send by email",
+          "print": "Print"
+        },
+        "decide": {
+          "title": "Make a decision",
+          "description": "Make your decision according to your turn in the approval sheet",
+          "cta": "Submit decision",
+          "option": {
+            "APPROVED": "Approve",
+            "APPROVED_WITH_COMMENT": "Approve with comment",
+            "REJECTED": "Reject"
+          },
+          "option-hint": {
+            "APPROVED": "The document will move to the next participant",
+            "APPROVED_WITH_COMMENT": "The approval will be saved together with your comment",
+            "REJECTED": "The approval will stop and the document will be returned"
+          },
+          "comment-label": "Comment",
+          "comment-placeholder": "Write a comment on your decision",
+          "comment-required": "Enter a comment of at least 5 characters to reject",
+          "reject-consequence": "If rejected, the document will be returned to the author for revision"
+        },
+        "sign": {
+          "title": "Sign with e-signature",
+          "description": "Select your active certificate and enter the PIN code",
+          "cta": "Sign",
+          "cert-validity": "Validity period: {{from}} — {{to}}",
+          "pin-label": "PIN code",
+          "pin-hint": "The PIN code is not sent to the server",
+          "pin-invalid": "The PIN code must consist of 6 digits",
+          "signing": "Signing with E-IMZO…",
+          "signing-hint": "Please wait — the certificate is being verified",
+          "success": "The document was signed successfully",
+          "no-certs": "You have no active e-signature certificate. Upload a certificate before signing.",
+          "upload-cert": "Upload e-signature certificate"
+        },
+        "email": {
+          "title": "Send by email",
+          "description": "The document will be sent to the specified address (demo)",
+          "label": "Email address",
+          "invalid": "Enter a valid email address",
+          "cta": "Send"
+        },
+        "delete": {
+          "title": "Delete draft",
+          "body": "Draft {{number}} will be permanently deleted. This action cannot be undone."
+        },
+        "accept": {
+          "title": "Accept document",
+          "body": "Accept document {{number}}? The document will be closed and archived."
+        },
+        "toast": {
+          "approved": "Your decision has been saved",
+          "rejected": "The document was rejected and returned to the author",
+          "deleted": "{{number}} was deleted",
+          "accepted": "The document was accepted and archived",
+          "emailed": "Sent (demo)"
+        }
+      },
+      "errors": {
+        "wrong-status": "This action cannot be performed in the document's current status",
+        "not-creator": "Only the document's creator can perform this action",
+        "not-participant": "You are not a participant of this approval sheet",
+        "out-of-order": "It is not your turn yet",
+        "already-decided": "You have already made your decision on this document",
+        "comment-required": "A comment is required to reject",
+        "not-signer": "Only the designated signer can sign this document",
+        "not-recipient": "Only the recipient can accept this document",
+        "cert-invalid": "The e-signature certificate is invalid or does not belong to you",
+        "not-editable": "Only a draft or rejected document can be edited",
+        "not-deletable": "A signed or in-progress document cannot be deleted — you can only delete your own draft"
+      },
+      "fields": {
+        "SANA": "Date",
+        "RAQAM": "Order number",
+        "XODIM_FIO": "Employee full name",
+        "MAZMUN": "Content",
+        "ASOS": "Basis",
+        "KIMGA": "To",
+        "MUDDAT": "Execution deadline",
+        "LAVOZIM": "Position",
+        "MAQSAD": "Place of submission",
+        "SABAB": "Reason",
+        "MASUL_FIO": "Responsible person"
+      }
+    },
+    "approvals": {
+      "title": "Approvals",
+      "subtitle": "Documents awaiting your decision, signature, or acceptance",
+      "group-decision": "Awaiting your decision",
+      "group-signature": "Awaiting signature",
+      "group-acceptance": "Awaiting acceptance",
+      "empty-title": "No documents are waiting for you ✨",
+      "empty-body": "You'll get a notification when a new approval arrives",
+      "waiting-since": "Sent {{time}}"
+    },
+    "letters": {
+      "registry": {
+        "title": "Letters",
+        "subtitle": "Registry of incoming and outgoing correspondence",
+        "cta-register": "Register letter",
+        "tab-incoming": "Incoming",
+        "tab-outgoing": "Outgoing",
+        "search-placeholder": "Search by number, organization, or subject",
+        "filter-status": "Status",
+        "filter-status-all": "All statuses",
+        "filter-overdue": "Overdue",
+        "col-number": "Number",
+        "col-org": "Organization",
+        "col-subject": "Subject",
+        "col-assignee": "Unit / Executor",
+        "col-deadline": "Deadline",
+        "col-status": "Status",
+        "overdue": "Overdue",
+        "no-deadline": "—",
+        "empty-title": "No letters found",
+        "empty-body": "Adjust your search or filter criteria",
+        "open-letter": "Open letter {{number}}"
+      },
+      "register": {
+        "title": "Register incoming letter",
+        "description": "The letter will automatically receive a number (K-2026/...)",
+        "field-org": "Sending organization",
+        "org-placeholder": "E.g., Tashkent City Administration",
+        "field-subject": "Subject",
+        "subject-placeholder": "Brief summary of the letter",
+        "field-channel": "Delivery channel",
+        "field-received-at": "Date received",
+        "field-deadline": "Execution deadline",
+        "deadline-hint": "Optional — if the deadline passes, the letter will be flagged in the registry",
+        "field-requires-signature": "The reply requires the head's signature",
+        "field-scan": "Scanned copy",
+        "scan-hint": "PDF, JPG, or PNG, up to 10 MB. Only the file name is saved (demo).",
+        "choose-file": "Choose file",
+        "replace-file": "Replace",
+        "remove-file": "Remove",
+        "scan-format": "Only PDF, JPG, or PNG files are accepted",
+        "scan-too-large": "File size must not exceed 10 MB",
+        "org-required": "Enter the organization name",
+        "subject-required": "Enter the subject",
+        "received-at-required": "Enter the date received",
+        "deadline-past": "The execution deadline cannot be earlier than today",
+        "submit": "Register",
+        "success": "Registered under number {{number}}",
+        "back": "Back to letter list"
+      },
+      "channels": {
+        "POCHTA": "Mail",
+        "EMAIL": "Email",
+        "KURYER": "Courier",
+        "QOGOZ": "Paper (hand-delivered)"
+      },
+      "errors": {
+        "wrong-status": "This action cannot be performed in the letter's current status",
+        "not-devonxona": "Only a registry officer can perform this action",
+        "not-rahbar": "Only the head of the organization can perform this action",
+        "not-unit-head": "Only the head of the responsible unit can perform this action",
+        "not-executor": "Only the assigned executor can perform this action",
+        "comment-required": "An execution comment is required",
+        "missing-response": "No response file or document was attached",
+        "cert-invalid": "The e-signature certificate is invalid or does not belong to you"
+      },
+      "detail": {
+        "back": "To letter list",
+        "not-found": "Letter not found",
+        "closed-line": "The process for this letter is complete",
+        "turn-hint": "It's {{lane}}'s turn now",
+        "label-sender": "Sending organization",
+        "label-addressee": "Address",
+        "label-channel": "Channel",
+        "label-received": "Date received",
+        "label-deadline": "Execution deadline",
+        "label-registered-by": "Registered by",
+        "meta-title": "Details",
+        "label-requires-signature": "Head's signature required",
+        "label-unit": "Responsible unit",
+        "label-executor": "Executor",
+        "label-dispatched": "Dispatched",
+        "label-closed": "Closed",
+        "label-created": "Registered",
+        "lane": {
+          "rahbar": "head",
+          "unit-head": "unit head",
+          "executor": "executor",
+          "devonxona": "Registry"
+        },
+        "timeline": {
+          "title": "Execution process",
+          "current": "Current stage",
+          "registered": "Registered",
+          "routed": "Routed to unit",
+          "assigned": "Executor assigned",
+          "started": "Execution started",
+          "submitted": "Execution submitted",
+          "accepted": "Accepted",
+          "signed": "Signed with e-signature",
+          "dispatched": "Dispatched",
+          "closed": "Closed",
+          "closed-no-response": "Closed (no response)",
+          "lane-devonxona": "Registry · {{name}}",
+          "lane-devonxona-only": "Registry",
+          "mode-comment": "with comment",
+          "mode-response": "reply letter"
+        },
+        "attachments": {
+          "title": "Attachments",
+          "original": "Original",
+          "response-file": "Reply letter",
+          "response-document": "Open reply document",
+          "empty": "No attachments"
+        },
+        "linked": {
+          "title-reply": "Reply letter",
+          "title-source": "Source letter"
+        },
+        "actions": {
+          "route": "Route to unit",
+          "assign": "Assign executor",
+          "start": "Start execution",
+          "submit": "Submit execution",
+          "accept": "Accept execution",
+          "sign": "Sign with e-signature",
+          "dispatch": "Dispatch and register"
+        },
+        "toast": {
+          "started": "Execution started",
+          "accepted": "Execution accepted"
+        },
+        "accept": {
+          "title": "Accept execution",
+          "body-close": "Execution completed with a comment. The letter will be closed without a reply and archived.",
+          "body-signature": "The reply letter will be sent for the head's e-signature.",
+          "body-dispatch": "The reply letter will be ready to dispatch."
+        },
+        "sign": {
+          "success": "The letter was signed successfully"
+        },
+        "route": {
+          "title": "Route letter to unit",
+          "description": "The letter will be routed to the responsible unit for execution",
+          "field-unit": "Unit",
+          "unit-placeholder": "Select unit",
+          "cta": "Route",
+          "success": "{{number}} was routed to the unit"
+        },
+        "assign": {
+          "title": "Assign executor",
+          "description": "Select the employee who will execute the letter",
+          "field-executor": "Executor",
+          "executor-placeholder": "Select employee",
+          "no-members": "No active employees found in the unit",
+          "cta": "Assign",
+          "success": "Executor assigned"
+        },
+        "execute": {
+          "title": "Submit execution",
+          "gate-question": "Does execution require attaching a document?",
+          "mode-response": "Attach reply letter",
+          "mode-response-hint": "An official reply letter has been prepared",
+          "mode-comment": "Complete with comment",
+          "mode-comment-hint": "No reply letter required — explain why",
+          "kind-file": "Upload file",
+          "kind-document": "Choose from existing documents",
+          "field-document": "Reply document",
+          "document-placeholder": "Select document",
+          "no-documents": "You have no signed or closed documents",
+          "choose-file": "Choose file",
+          "replace-file": "Replace",
+          "remove-file": "Remove",
+          "file-hint": "PDF or DOC, up to 10 MB. Only the file name is saved (demo).",
+          "file-format": "Only PDF or DOC files are accepted",
+          "file-too-large": "File size must not exceed 10 MB",
+          "comment-label": "Execution comment",
+          "comment-placeholder": "Explain the execution result and why no reply is required",
+          "comment-required": "The comment must be at least 10 characters",
+          "response-required": "Attach a response file or document",
+          "cta": "Submit",
+          "success": "Execution submitted"
+        },
+        "dispatch": {
+          "title": "Dispatch reply",
+          "description": "The reply letter will be dispatched and assigned an outgoing number",
+          "outgoing-number": "Outgoing number",
+          "outgoing-preview": "Assigned automatically (CH-2026/...)",
+          "addressee": "Address",
+          "field-channel": "Dispatch channel",
+          "cta": "Dispatch",
+          "success": "Dispatched under number {{number}}"
+        }
+      }
+    },
+    "tasks": {
+      "errors": {
+        "not-assigner": "Only the task assigner can perform this action.",
+        "not-assignee": "Only the assignee can perform this action.",
+        "out-of-scope": "The executor does not belong to your unit.",
+        "wrong-status": "This action is not possible in the task's current status.",
+        "reason-required": "A reason is required.",
+        "self-assign": "You cannot assign a task to yourself.",
+        "invalid-move": "This move is not allowed."
+      },
+      "board": {
+        "col-new": "New",
+        "col-in-progress": "In progress",
+        "col-under-review": "Under review",
+        "col-done": "Done"
+      },
+      "priority": {
+        "HIGH": "High",
+        "MEDIUM": "Medium",
+        "STANDARD": "Standard"
+      },
+      "card": {
+        "deadline": "Deadline",
+        "overdue": "Overdue",
+        "assigner": "Assigner",
+        "assignee": "Assignee"
+      },
+      "title": "Tasks",
+      "cta-create": "New task",
+      "empty-page": "No tasks",
+      "error": "An error occurred while loading tasks",
+      "box": {
+        "by-me": "Assigned by me",
+        "to-me": "Assigned to me"
+      },
+      "filters": {
+        "priority-all": "All priorities",
+        "overdue": "Overdue",
+        "search-placeholder": "Search by number or title"
+      },
+      "stats": {
+        "heading": "Statistics",
+        "overdue": "Overdue",
+        "rejected": "Rejected",
+        "load": "Load"
+      },
+      "empty": "No tasks in this column",
+      "create": {
+        "title": "New task",
+        "subtitle": "Assign a task to an employee in your unit",
+        "back": "Back to tasks",
+        "label-title": "Title",
+        "label-description": "Description",
+        "label-priority": "Priority level",
+        "label-assignee": "Assignee",
+        "label-deadline": "Deadline",
+        "label-attachment": "File attachment (optional)",
+        "file-hint": "PDF, JPG, or PNG · up to 10 MB",
+        "err-title": "Title must be at least 3 characters",
+        "err-description": "Description is required",
+        "err-assignee": "An assignee must be selected",
+        "err-deadline": "A deadline is required",
+        "on-leave-warning": "{{name}} is currently on leave",
+        "past-deadline-confirm": "The deadline has already passed. Click \"Create\" again to continue.",
+        "file-format-error": "Only PDF, JPG, or PNG files are accepted",
+        "file-too-large": "File size must not exceed 10 MB",
+        "assignee-empty": "No potential assignees found in your unit",
+        "cta-submit": "Create",
+        "success": "Task {{number}} was created"
+      },
+      "actions": {
+        "start": "Start",
+        "submit": "Submit",
+        "request-clarification": "Request clarification",
+        "answer": "Reply",
+        "accept": "Accept",
+        "accept-note": "Accept with note",
+        "return": "Return",
+        "reject": "Reject",
+        "edit": "Edit",
+        "extend": "Extend deadline",
+        "waiting": "It's {{name}}'s turn now",
+        "done-closed": "Task completed",
+        "rejected-closed": "Task rejected",
+        "start-success": "Task has been started"
+      },
+      "dialogs": {
+        "submit": {
+          "title": "Submit execution",
+          "summary": "Summary of completed work",
+          "summary-placeholder": "Briefly describe what was done",
+          "err-summary": "A summary of completed work is required",
+          "attachment-kind": "Attachment type",
+          "kind-file": "Upload file",
+          "kind-document": "Attach document",
+          "kind-none": "No attachment",
+          "file-label": "Result file",
+          "file-hint": "PDF, JPG, or PNG · up to 10 MB",
+          "document-label": "Document",
+          "document-placeholder": "Select document",
+          "no-documents": "You have no documents to attach",
+          "no-attachment-confirm": "Submit without an attachment?",
+          "cta": "Submit",
+          "cta-confirm": "Yes, submit",
+          "success": "Execution submitted for acceptance"
+        },
+        "review": {
+          "title": "Review execution",
+          "description": "Select a decision for the task.",
+          "option": {
+            "ACCEPT": "Accept",
+            "ACCEPT_WITH_NOTE": "Accept with note",
+            "RETURN": "Return for rework",
+            "REJECT": "Reject"
+          },
+          "option-hint": {
+            "ACCEPT": "The task will be marked as completed.",
+            "ACCEPT_WITH_NOTE": "It will be accepted, and the note will be sent to the assignee.",
+            "RETURN": "It will be returned to the assignee for rework.",
+            "REJECT": "The task will be finally rejected."
+          },
+          "note-label": "Note (optional)",
+          "note-placeholder": "Leave a note for the assignee",
+          "reason-label": "Reason",
+          "reason-placeholder": "Enter the reason for return or rejection",
+          "reason-required": "The reason must be at least 5 characters",
+          "consequence-RETURN": "The task will be returned for rework.",
+          "consequence-REJECT": "The task will be rejected.",
+          "cta": "Confirm",
+          "success-accept": "Task accepted",
+          "success-return": "Task returned for rework",
+          "success-reject": "Task rejected"
+        },
+        "clarification": {
+          "request-title": "Request clarification",
+          "reply-title": "Reply to clarification",
+          "body-label": "Message",
+          "request-placeholder": "Write your question about the task",
+          "reply-placeholder": "Write your reply",
+          "err-body": "A message is required",
+          "request-cta": "Ask",
+          "reply-cta": "Reply",
+          "request-success": "Clarification request sent",
+          "reply-success": "Reply sent"
+        },
+        "edit": {
+          "title": "Edit task",
+          "cta": "Save",
+          "success": "Task updated"
+        },
+        "extend": {
+          "title": "Extend deadline",
+          "deadline-label": "New deadline",
+          "err-deadline": "A deadline is required",
+          "cta": "Save",
+          "success": "Deadline updated"
+        }
+      },
+      "detail": {
+        "back": "Back to tasks",
+        "not-found": "Task not found",
+        "description-heading": "Description",
+        "deliverable-heading": "Execution result",
+        "deliverable-empty": "The execution result has not been submitted yet",
+        "deliverable-late": "Late",
+        "comments-heading": "Comments",
+        "comments-empty": "No comments yet",
+        "comment-kind": {
+          "CLARIFICATION_REQUEST": "Clarification request",
+          "CLARIFICATION_REPLY": "Reply",
+          "RETURN_FEEDBACK": "Return note",
+          "REJECT_REASON": "Rejection reason",
+          "NOTE": "Note"
+        },
+        "meta": {
+          "heading": "Details",
+          "assigner": "Assigner",
+          "assignee": "Assignee",
+          "unit": "Unit",
+          "deadline": "Deadline",
+          "priority": "Priority",
+          "round": "Round",
+          "late": "Delay",
+          "created": "Created"
+        },
+        "attached-heading": "Attached document",
+        "attached-empty": "No document",
+        "outcome-heading": "Review outcome",
+        "outcome-note": "Note",
+        "outcome-rejected": "Rejection reason"
+      }
+    },
     "profile": {
+      "title": "My profile",
+      "subtitle": "Personal information and security settings",
+      "tabs": {
+        "info": "Basic information",
+        "password": "Change password",
+        "requests": "Edit requests"
+      },
+      "not-found": "Profile data not found. Reset the demo data.",
+      "info": {
+        "heading": "Personal information",
+        "edit": "Edit",
+        "edit-direct-hint": "Your role applies edits immediately — no additional approval is required.",
+        "edit-request-hint": "Your edit request will be reviewed by HR.",
+        "save-success-direct": "Information updated",
+        "save-success-request": "Edit request sent",
+        "fields": {
+          "full-name": "Full name",
+          "position": "Position",
+          "unit": "Unit",
+          "mobile-phone": "Mobile phone",
+          "corporate-email": "Corporate email",
+          "personal-email": "Personal email"
+        },
+        "empty-value": "—"
+      },
+      "edit-form": {
+        "title": "Edit profile",
+        "description": "Mobile phone and personal email are changed immediately.",
+        "mobile-phone": "Mobile phone",
+        "personal-email": "Personal email",
+        "submit": "Save",
+        "cancel": "Cancel"
+      },
       "password": {
         "heading": "Change password",
         "hint": "The new password must be at least 8 characters, with upper and lower case, a digit, and a special character.",
@@ -158,6 +1122,409 @@
           "current-wrong": "Current password is incorrect",
           "same-as-old": "New password must differ from the current one"
         }
+      },
+      "requests": {
+        "heading": "Edit requests",
+        "empty-title": "No edit requests",
+        "empty-body": "As an HR administrator, your changes apply immediately. This log is for regular employees' requests.",
+        "submitted-at": "Submitted: {{when}}",
+        "reviewed-at": "Reviewed: {{when}}",
+        "status": {
+          "PENDING": "Pending",
+          "APPROVED": "Approved",
+          "REJECTED": "Rejected"
+        }
+      }
+    },
+    "pagination": {
+      "range": "{{from}}–{{to}} / {{total}}"
+    },
+    "employees": {
+      "list": {
+        "title": "Employees",
+        "subtitle": "Total: {{total}}",
+        "cta-new": "New employee",
+        "search-placeholder": "Search by full name, email, or PINFL...",
+        "filter-unit": "Unit",
+        "filter-status": "Status",
+        "filter-employment": "Employment type",
+        "all-units": "All units",
+        "empty-title": "No employees found yet",
+        "empty-body": "Adjust the filter criteria or create a new employee.",
+        "open-profile": "Open {{name}}'s profile",
+        "col-fio": "Full name and contact",
+        "col-unit": "Unit",
+        "col-position": "Position",
+        "col-pinfl": "PINFL",
+        "col-status": "Status"
+      },
+      "wizard": {
+        "title": "Add new employee",
+        "subtitle": "Four-step registration",
+        "stepper-label": "Registration steps",
+        "submit-cta": "Create employee",
+        "confirm-close": "Entered data will be lost. Close anyway?",
+        "success": "{{name}} was created successfully",
+        "step-1": {
+          "title": "Personal information"
+        },
+        "step-2": {
+          "title": "Contact"
+        },
+        "step-3": {
+          "title": "Job placement"
+        },
+        "step-4": {
+          "title": "Login credentials"
+        },
+        "review": {
+          "title": "Review",
+          "intro": "Review the details before creating {{name}}."
+        },
+        "fields": {
+          "last-name": "Last name",
+          "first-name": "First name",
+          "middle-name": "Middle name",
+          "gender": "Gender",
+          "birth-date": "Date of birth",
+          "pinfl": "PINFL",
+          "passport": "Passport series and number",
+          "work-phone": "Work phone",
+          "extension": "Extension",
+          "mobile-phone": "Mobile phone",
+          "corporate-email": "Corporate email",
+          "personal-email": "Personal email",
+          "unit": "Organizational unit",
+          "position": "Position",
+          "employment-type": "Employment type",
+          "hire-date": "Hire date",
+          "role": "System role",
+          "order-extract": "Order extract",
+          "position-instruction": "Job description",
+          "login": "Login",
+          "password": "Password",
+          "notify-sms": "Send via SMS",
+          "notify-email": "Send via email"
+        },
+        "placeholders": {
+          "pinfl": "14 digits",
+          "unit": "Select unit",
+          "unit-search": "Search by unit name...",
+          "position": "Select position",
+          "position-disabled": "Select a unit first"
+        },
+        "hints": {
+          "corporate-email": "The email must end with @devon.uz",
+          "derived-login": "The login is automatically derived from the corporate email. Click the button above to change it.",
+          "order-extract": "A certified extract of the hiring order signed by the director (PDF, JPG, or PNG, max. 10 MB)",
+          "position-instruction": "A document describing the employee's job duties (PDF, JPG, or PNG, max. 10 MB)"
+        },
+        "actions": {
+          "show-password": "Show password",
+          "hide-password": "Hide password",
+          "copy-password": "Copy",
+          "regenerate-password": "Generate new password",
+          "use-derived-login": "Restore automatic login",
+          "copied": "Copied"
+        },
+        "password-strength": {
+          "0": "Password is very weak",
+          "1": "Password is weak",
+          "2": "Password is medium",
+          "3": "Password is strong",
+          "4": "Password is very strong"
+        },
+        "notify": {
+          "title": "Send to new employee"
+        },
+        "errors": {
+          "age-18": "The employee must be over 18 years old",
+          "password-weak": "The password must be at least 8 characters, with upper and lower case, a digit, and a special character",
+          "no-units": "No active units found",
+          "no-positions-for-unit": "No positions match this unit type"
+        }
+      },
+      "profile": {
+        "not-found": "Employee not found",
+        "back": "Employee list",
+        "pinfl-label": "PINFL",
+        "transfer": "Transfer to another unit",
+        "tabs": {
+          "info": "Information",
+          "units": "Units",
+          "certs": "E-signature keys",
+          "history": "History"
+        },
+        "info": {
+          "heading": "Personal information",
+          "edit": "Edit",
+          "edit-sheet-title": "Edit information",
+          "edit-sheet-body": "Update the basic and contact information. PINFL cannot be changed after creation.",
+          "save": "Save",
+          "cancel": "Cancel",
+          "save-success": "Information saved",
+          "fields": {
+            "full-name": "Full name",
+            "gender": "Gender",
+            "birth-date": "Date of birth",
+            "pinfl": "PINFL",
+            "passport": "Passport",
+            "work-phone": "Work phone",
+            "extension": "Extension",
+            "mobile-phone": "Mobile phone",
+            "corporate-email": "Corporate email",
+            "personal-email": "Personal email",
+            "hire-date": "Hire date",
+            "termination-date": "Termination date",
+            "employment-type": "Employment type",
+            "order-extract": "Order extract",
+            "position-instruction": "Job description",
+            "termination-order-extract": "Termination order extract",
+            "status": "Status"
+          },
+          "gender": {
+            "M": "Male",
+            "F": "Female"
+          },
+          "employment": {
+            "FULL_TIME": "Full-time",
+            "PART_TIME": "Part-time",
+            "CONTRACT": "Contract",
+            "INTERN": "Intern"
+          },
+          "empty-value": "—"
+        },
+        "terminate": {
+          "cta": "Terminate",
+          "title": "Terminate employee",
+          "body": "Confirm the termination of {{name}}. All active e-signature keys will be automatically revoked, and this action cannot be undone.",
+          "confirm": "Yes, terminate",
+          "cancel": "Cancel",
+          "success": "{{name}} was terminated",
+          "order-extract-label": "Termination order extract",
+          "order-extract-hint": "A certified extract of the termination order signed by the director (PDF, JPG, or PNG, max. 10 MB)"
+        },
+        "units": {
+          "heading": "Assignment history",
+          "add": "New assignment",
+          "empty": "No assignments yet",
+          "current": "to present",
+          "primary": "Primary",
+          "workload": "{{pct}}% workload",
+          "types": {
+            "PRIMARY": "Primary",
+            "COMBINATION": "Combination",
+            "ACTING": "Acting",
+            "TEMPORARY": "Temporary"
+          }
+        },
+        "certs": {
+          "heading": "E-signature keys",
+          "empty": "No e-signature keys yet",
+          "upload-cta": "Upload new",
+          "valid-window": "{{from}} – {{to}}",
+          "serial-label": "Serial number"
+        },
+        "history": {
+          "heading": "Audit log",
+          "empty": "Nothing has been recorded for this employee yet"
+        }
+      },
+      "transfer": {
+        "title": "Transfer to unit",
+        "subtitle": "New assignment for {{name}}",
+        "back": "Back to profile",
+        "current-label": "Current unit: {{name}}",
+        "current-position-label": "Current position: {{name}}",
+        "new-unit": "New unit",
+        "new-unit-placeholder": "Select unit",
+        "new-position": "New position",
+        "new-position-placeholder": "Select position",
+        "new-position-disabled": "Select a unit first",
+        "start-date": "Transfer date",
+        "workload": "Workload",
+        "workload-pct": "{{pct}}%",
+        "workload-hint": "The total of active assignments must not exceed 150%",
+        "workload-current": "Current total: {{used}}% / {{cap}}%",
+        "type": "Assignment type",
+        "reason": "Reason or order number",
+        "reason-placeholder": "E.g., Order No. dated 25.05.2026",
+        "close-old": "Close previous assignment",
+        "close-old-hint": "The primary assignment will be moved to the new unit",
+        "combine-note": "Combination — the previous assignment continues",
+        "primary-demote-note": "The existing primary assignment will automatically become secondary",
+        "submit": "Save transfer",
+        "cancel": "Cancel",
+        "types": {
+          "PRIMARY": "Primary",
+          "COMBINATION": "Combination",
+          "ACTING": "Acting",
+          "TEMPORARY": "Temporary"
+        },
+        "errors": {
+          "workload-exceeded": "Total workload would exceed 150%. Close the previous assignment or reduce the percentage.",
+          "no-unit": "Select a new unit",
+          "no-position": "Select a new position",
+          "same-unit": "The new unit must be different from the current one"
+        },
+        "success": "{{name}} was transferred successfully"
+      }
+    },
+    "certificates": {
+      "title": "E-signature certificates",
+      "subtitle": "{{count}} awaiting approval",
+      "upload-cta": "Upload new e-signature",
+      "empty-column": "None yet",
+      "select-aria": "Select",
+      "columns": {
+        "PENDING_APPROVAL": "Awaiting approval",
+        "ACTIVE": "Active",
+        "EXPIRED": "Expired",
+        "REVOKED": "Revoked"
+      },
+      "card": {
+        "expiring-soon": "Expiring soon"
+      },
+      "bulk": {
+        "selected": "{{count}} certificates selected",
+        "approve-cta": "Approve selected"
+      },
+      "dnd": {
+        "forbidden": "This move is not allowed"
+      },
+      "details": {
+        "title": "E-signature details",
+        "owner": "Owner",
+        "issuer": "Certificate authority",
+        "serial": "Serial number",
+        "thumbprint": "Thumbprint",
+        "key-usage": "Key type",
+        "validity": "Validity period",
+        "uploaded-at": "Upload date",
+        "rejection-reason": "Rejection reason",
+        "revocation-reason": "Revocation reason"
+      },
+      "actions": {
+        "approve": "Approve",
+        "reject": "Reject",
+        "revoke": "Revoke"
+      },
+      "approve": {
+        "title": "Approve certificate",
+        "body": "Approve {{name}}'s certificate? After approval, the certificate will become active.",
+        "confirm": "Yes, approve"
+      },
+      "reject": {
+        "title": "Reject certificate",
+        "body": "Confirm rejection of {{name}}'s certificate.",
+        "reason-label": "Rejection reason",
+        "reason-placeholder": "E.g., PINFL entered incorrectly",
+        "reason-required": "A reason is required (at least 5 characters)",
+        "confirm": "Reject"
+      },
+      "revoke": {
+        "title": "Revoke certificate",
+        "body": "Once revoked, the certificate cannot be restored.",
+        "reason-label": "Revocation reason",
+        "reason-placeholder": "Select a reason",
+        "reasons": {
+          "EXPIRED": "Expired",
+          "COMPROMISED": "Key compromised",
+          "REPLACED": "Replaced",
+          "MANUAL": "Manually revoked"
+        },
+        "confirm": "Yes, revoke"
+      },
+      "toast": {
+        "approved": "Certificate approved",
+        "rejected": "Certificate rejected",
+        "revoked": "Certificate revoked",
+        "uploaded": "E-signature uploaded successfully",
+        "bulk-approved": "{{count}} certificates approved"
+      },
+      "upload": {
+        "title": "Upload e-signature key",
+        "subtitle": "Upload the PFX file and confirm the certificate details",
+        "back": "Cancel",
+        "step-employee": "Select the certificate owner",
+        "step-employee-hint": "The certificate owner's PINFL must match the selected employee's PINFL",
+        "step-file": "Select the PFX file",
+        "step-file-hint": ".pfx or .p12, maximum 100 KB",
+        "step-file-cta": "Choose file",
+        "step-file-selected": "Selected file: {{name}} · {{size}}",
+        "step-password": "Enter the file password",
+        "step-password-hint": "The password is not sent to the server — used only for the file",
+        "extract-cta": "Read file",
+        "extracting": "Reading file...",
+        "step-confirm": "Confirm the details",
+        "challenge-info": "Verifying certificate ownership...",
+        "submit": "Save certificate",
+        "type-label": "Certificate type",
+        "types": {
+          "SIGNING": "Signing",
+          "ENCRYPTION": "Encryption",
+          "BOTH": "Signing + Encryption"
+        },
+        "auto-approve": {
+          "label": "Auto-approve",
+          "hint": "If disabled, the certificate will enter the approval queue"
+        },
+        "success": "{{name}}'s e-signature certificate has been saved",
+        "errors": {
+          "pfx-too-large": "The file cannot exceed 100 KB",
+          "pfx-password-wrong": "Incorrect password",
+          "pinfl-mismatch": "The certificate owner's PINFL does not match the employee's PINFL",
+          "serial-taken": "This certificate already exists in the system",
+          "no-employee": "Select an employee first",
+          "no-file": "Select the PFX file first",
+          "no-password": "Enter the file password"
+        }
+      }
+    },
+    "units": {
+      "page-title": "Organizational structure",
+      "page-subtitle": "Manage the organization's hierarchy",
+      "search-placeholder": "Search by unit name or code...",
+      "empty": {
+        "title": "There are no units yet. Create the first department."
+      },
+      "tree": {
+        "add-root": "New unit",
+        "add-child": "Add child unit",
+        "employees-suffix": "employees"
+      },
+      "form": {
+        "create-title": "Create new unit",
+        "edit-title": "Edit unit",
+        "description": "Enter the unit's basic information.",
+        "name": "Name",
+        "short-name": "Short name",
+        "code": "Internal code",
+        "code-placeholder": "Leave blank to generate automatically",
+        "parent": "Parent unit",
+        "root": "Root (no parent)",
+        "type": "Type",
+        "type-hint": "Available child types are limited by the parent unit's type",
+        "description-label": "Description"
+      },
+      "details": {
+        "employees": "Active employees",
+        "children": "Child units",
+        "head": "Head",
+        "no-head": "Not assigned"
+      },
+      "toast": {
+        "created": "Unit created",
+        "updated": "Unit updated",
+        "archived": "Unit archived"
+      },
+      "errors": {
+        "invalid-code": "The code may contain only letters, digits, and hyphens (2–20 characters)",
+        "duplicate-name": "A unit with this name already exists",
+        "has-employees": "{{count}} employees work in this unit. Move them to another unit first.",
+        "max-depth": "A maximum hierarchy depth of 7 levels is allowed",
+        "cycle": "A unit cannot be a parent of its own descendant",
+        "invalid-parent": "The selected parent unit does not exist"
       }
     }
   }
