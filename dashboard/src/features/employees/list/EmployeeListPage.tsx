@@ -10,7 +10,9 @@ import Pagination from '@/components/common/Pagination';
 import SearchInput from '@/components/common/SearchInput';
 import { Button } from '@/components/ui/button';
 
-import { listEmployees, listPositions, listUnits } from '@/lib/mock-backend';
+import { listEmployees } from '@/lib/data/employees';
+import { listPositions } from '@/lib/data/positions';
+import { listUnits } from '@/lib/data/units';
 import { useMediaQuery } from '@/lib/use-media-query';
 import type { Employee, Position, Unit } from '@/types/domain';
 

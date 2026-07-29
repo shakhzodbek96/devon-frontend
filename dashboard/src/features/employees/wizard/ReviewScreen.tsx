@@ -5,7 +5,8 @@ import { Pencil } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { formatBytes } from '@/lib/format';
-import { listPositions, listUnits } from '@/lib/mock-backend';
+import { listPositions } from '@/lib/data/positions';
+import { listUnits } from '@/lib/data/units';
 import type { Position, Unit } from '@/types/domain';
 
 import { useWizardStore } from './wizard-store';

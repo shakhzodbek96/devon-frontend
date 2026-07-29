@@ -4,7 +4,8 @@ import { useTranslation } from 'react-i18next';
 import LoadingState from '@/components/common/LoadingState';
 import { ACTION_ICON } from '@/lib/audit-icons';
 import { formatRelative } from '@/i18n/uz-locale';
-import { listAudit } from '@/lib/mock-backend';
+import { listAudit } from '@/lib/data/audit';
+import { ApiError } from '@/lib/api/client';
 import type { AuditEntry, Employee } from '@/types/domain';
 
 interface Props {
@@ -18,9 +19,22 @@ export default function ProfileHistoryTab({ employee }: Props) {
   useEffect(() => {
     let active = true;
     (async () => {
-      const r = await listAudit({ resourceUuid: employee.uuid });
-      if (!active) return;
-      setRows(r);
+      try {
+        const r = await listAudit({ resourceUuid: employee.uuid });
+        if (!active) return;
+        setRows(r);
+      } catch (err) {
+        // `audit.view` is gated to SUPER_ADMIN/HR_ADMIN/AUDITOR (unlike
+        // `employees.view`, which every role holds) — a plain employee
+        // browsing a profile page's History tab hits a 403 here. Degrade
+        // to an empty timeline instead of an unhandled error.
+        if (!active) return;
+        if (err instanceof ApiError && err.status === 403) {
+          setRows([]);
+        } else {
+          throw err;
+        }
+      }
     })();
     return () => {
       active = false;

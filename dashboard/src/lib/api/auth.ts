@@ -1,7 +1,13 @@
 import type { Role } from '@/types/domain';
 import { apiFetch } from './client';
 
-/** Server-shaped user — matches `UserResource` on the backend (`AUTH_API.md`). */
+/**
+ * Server-shaped user — matches `UserResource` on the backend (`AUTH_API.md`).
+ * `employeeUuid` / `passwordChangedAt` (PLAN_PHASE_C.md §4) are additive —
+ * consumed by the Employees module's `findUserByEmail` facade
+ * (`src/lib/api/employees.ts`), signature-compatible with the mock's
+ * `User` fields of the same name.
+ */
 export interface ApiSessionUser {
   uuid: string;
   email: string;
@@ -10,6 +16,8 @@ export interface ApiSessionUser {
   mustChangePassword: boolean;
   status: 'ACTIVE' | 'SUSPENDED';
   createdAt: string;
+  employeeUuid?: string;
+  passwordChangedAt?: string;
 }
 
 export interface LoginResponse {

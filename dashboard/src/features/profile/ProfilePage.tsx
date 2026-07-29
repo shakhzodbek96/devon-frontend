@@ -11,21 +11,12 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { formatDateTime } from '@/i18n/uz-locale';
-import {
-  findUserByEmail,
-  listEmployees,
-  listPositions,
-  listProfileRequests,
-  listUnits,
-} from '@/lib/mock-backend';
+import { findUserByEmail, listEmployees, type FoundUser } from '@/lib/data/employees';
+import { listPositions } from '@/lib/data/positions';
+import { listProfileRequests } from '@/lib/data/profileRequests';
+import { listUnits } from '@/lib/data/units';
 import { useAuthStore } from '@/stores/useAuthStore';
-import type {
-  Employee,
-  Position,
-  ProfileChangeRequest,
-  Unit,
-  User as DomainUser,
-} from '@/types/domain';
+import type { Employee, Position, ProfileChangeRequest, Unit } from '@/types/domain';
 
 import PasswordChangeForm from './PasswordChangeForm';
 import ProfileEditRequestForm from './ProfileEditRequestForm';
@@ -49,7 +40,7 @@ function initials(name: string): string {
 
 interface PageData {
   employee: Employee;
-  user: DomainUser;
+  user: FoundUser;
   unit?: Unit;
   position?: Position;
   requests: ProfileChangeRequest[];

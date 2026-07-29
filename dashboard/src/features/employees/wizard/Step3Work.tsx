@@ -15,7 +15,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { listPositions, listUnits } from '@/lib/mock-backend';
+import { listPositions } from '@/lib/data/positions';
+import { listUnits } from '@/lib/data/units';
 import type { EmploymentType, Position, Unit, UnitType } from '@/types/domain';
 import { cn } from '@/lib/utils';
 

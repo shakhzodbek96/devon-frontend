@@ -7,7 +7,7 @@ import { Check, Loader2, X } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { listEmployees } from '@/lib/mock-backend';
+import { listEmployees } from '@/lib/data/employees';
 import { cn } from '@/lib/utils';
 
 import { step1Schema, type Step1Values } from './employee.schema';

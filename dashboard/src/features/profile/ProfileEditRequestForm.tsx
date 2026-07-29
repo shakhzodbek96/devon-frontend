@@ -8,11 +8,8 @@ import ResponsiveDialog from '@/components/common/ResponsiveDialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import {
-  MockNetworkError,
-  submitProfileChangeRequest,
-  updateEmployee,
-} from '@/lib/mock-backend';
+import { MockNetworkError, updateEmployee } from '@/lib/data/employees';
+import { submitProfileChangeRequest } from '@/lib/data/profileRequests';
 import { useAuthStore } from '@/stores/useAuthStore';
 import type { Employee } from '@/types/domain';
 

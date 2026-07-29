@@ -9,7 +9,7 @@ import {
   createEmployeeFull,
   EmployeeValidationError,
   MockNetworkError,
-} from '@/lib/mock-backend';
+} from '@/lib/data/employees';
 import { useAuthStore } from '@/stores/useAuthStore';
 
 import ReviewScreen from './ReviewScreen';

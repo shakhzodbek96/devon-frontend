@@ -9,7 +9,7 @@ import TabLabel from '@/components/common/TabLabel';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { getEmployee } from '@/lib/mock-backend';
+import { getEmployee } from '@/lib/data/employees';
 import type { Employee } from '@/types/domain';
 
 import ProfileCertificatesTab from './ProfileCertificatesTab';

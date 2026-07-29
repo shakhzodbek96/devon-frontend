@@ -5,7 +5,9 @@ import { Plus } from 'lucide-react';
 
 import LoadingState from '@/components/common/LoadingState';
 import { Button } from '@/components/ui/button';
-import { listAssignments, listPositions, listUnits } from '@/lib/mock-backend';
+import { listAssignments } from '@/lib/data/assignments';
+import { listPositions } from '@/lib/data/positions';
+import { listUnits } from '@/lib/data/units';
 import type { Assignment, Employee, Position, Unit } from '@/types/domain';
 
 import AssignmentTimeline from '../assignments/AssignmentTimeline';

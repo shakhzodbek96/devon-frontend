@@ -13,7 +13,7 @@ import {
   EmployeeValidationError,
   MockNetworkError,
   terminateEmployee,
-} from '@/lib/mock-backend';
+} from '@/lib/data/employees';
 import { useAuthStore } from '@/stores/useAuthStore';
 import type { Employee } from '@/types/domain';
 

@@ -21,7 +21,7 @@ import {
   findUserByEmail,
   MockNetworkError,
   updateEmployee,
-} from '@/lib/mock-backend';
+} from '@/lib/data/employees';
 import { useAuthStore } from '@/stores/useAuthStore';
 import type { Employee } from '@/types/domain';
 
