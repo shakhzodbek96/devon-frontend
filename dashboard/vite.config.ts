@@ -5,11 +5,7 @@ import path from 'node:path';
 
 // https://vite.dev/config/
 export default defineConfig({
-  // The GitHub repo is `SardorAllaberganov/devon-landing`, so the live URL
-  // prefix is `/devon-landing/dashboard/`. If the repo gets renamed (e.g.
-  // back to `Devon`), update this AND the favicon href in `index.html` AND
-  // the comment in `public/404.html` together.
-  base: '/devon-landing/dashboard/',
+  base: '/',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
@@ -18,7 +14,7 @@ export default defineConfig({
   },
   server: {
     port: 5173,
-    open: '/devon-landing/dashboard/',
+    open: '/',
   },
   // Force the dev server to pre-bundle all @dnd-kit packages together in
   // one chunk so they share the same React instance. Without this, adding

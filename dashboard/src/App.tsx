@@ -9,7 +9,11 @@ export default function App() {
 
   return (
     <BrowserRouter
-      basename={import.meta.env.BASE_URL.replace(/\/$/, '')}
+      // No `basename` — the app is served from the domain root (`base: '/'`
+      // in vite.config.ts). Passing `''` here (stripping the trailing slash
+      // off `BASE_URL === '/'`) used to make React Router treat every route
+      // as outside its scope, forcing a full page reload on every
+      // client-side `navigate()` instead of an SPA transition.
       // Opt into the React Router v7 behaviors that v6 warns about on every
       // boot — `startTransition` wraps state updates during navigations,
       // and `relativeSplatPath` normalises route resolution inside splat

@@ -3,7 +3,7 @@
 Last full QA: **2026-06-13** (M2 step-22 automated pass; observational sweep TBD by human operator)
 Milestone 1 QA: **2026-06-01** (see the dated section below)
 
-Live: <https://sardorallaberganov.github.io/devon-landing/dashboard/>
+Live: served at the domain root (no `/devon-landing/dashboard/` subpath — removed 2026-07-30, see git history if you need the old GitHub Pages demo URL)
 Demo credentials: `admin@devon.uz` / `Demo2026!`
 
 ---
@@ -90,7 +90,7 @@ These need DevTools / a real browser / a phone. I cannot drive them from an agen
 - [ ] **Status-badge colour-only check** — confirm every `StatusBadge` carries both icon + text, never colour alone.
 - [ ] **Contrast spot-checks** — DevTools' contrast checker on ink-on-cream and ink-on-emerald combinations. Should be ≥ 4.5:1 for body, ≥ 3:1 for large text.
 - [ ] **Mobile real-device check** — iPhone safe-area on `/employees/new` wizard footer + `/employees/:uuid/transfer` footer (`pb-safe`). Hamburger menu opens full-screen. Hardware back button doesn't escape the SPA mid-wizard.
-- [ ] **Hard-refresh on deep routes** on the live deploy — paste `/devon-landing/dashboard/employees/<uuid>` in a fresh tab. The SPA 404 fallback should hand off via `?/employees/<uuid>` and the right profile should load.
+- [ ] **Hard-refresh on deep routes** on the live deploy — paste `/employees/<uuid>` in a fresh tab. The SPA 404 fallback should hand off via `?/employees/<uuid>` and the right profile should load.
 - [ ] **"Reset demo" against the published bundle** — click in the user menu, confirm the localStorage tables clear + reseed, the page reloads, and the HR_ADMIN is back to `admin@devon.uz` with their original FIO and `mustChangePassword = true`.
 - [ ] **Letter detail (`/letters/:uuid`) at 360 px + POV switch (step 21)** — the BP-3 `LetterTimeline` rail stays readable (no clipped station labels, dots aligned), the route/assign/execute/dispatch dialogs render as bottom sheets with the band-padding footer, and the per-role action button is reachable. Switch POV (user menu → persona) and confirm the page re-resolves so the right lane sees its action: Rahbar (Karimov Bekzod) routes/signs, Backend Bo'lim boshlig'i (Akhmedov Akmal) assigns/accepts, XODIM (Sobirova Dilnoza) starts/submits, Devonxona (Yusupova Nilufar) dispatches. Walk **K-2026/0004** (ON_SIGNATURE — Rahbar signs via the ERI dialog) and **K-2026/0007** (overdue ASSIGNED — destructive deadline on the hero) by switching personas; confirm the timeline fills at each hop.
 
