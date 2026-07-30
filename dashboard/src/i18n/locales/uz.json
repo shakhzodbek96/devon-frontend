@@ -126,6 +126,15 @@
       "minutes-ago": "{{count, plural, one {# daqiqa oldin} other {# daqiqa oldin}}}",
       "hours-ago": "{{count, plural, one {# soat oldin} other {# soat oldin}}}",
       "days-ago": "{{count, plural, one {# kun oldin} other {# kun oldin}}}"
+    },
+    "exceptionModal": {
+      "title": "Kutilmagan xatolik",
+      "subtitle": "Server kutilmagan xatolik qaytardi — texnik tafsilotlar quyida.",
+      "message": "Xabar",
+      "exception-class": "Exception sinfi",
+      "raw": "To'liq javob (JSON)",
+      "copy": "Nusxalash",
+      "copied": "Nusxalandi"
     }
   },
   "dashboard": {

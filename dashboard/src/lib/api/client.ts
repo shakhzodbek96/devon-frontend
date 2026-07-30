@@ -6,6 +6,7 @@
 // the one seam where "real backend" meets "everything else is mock").
 
 import { useAuthStore } from '@/stores/useAuthStore';
+import { useExceptionStore } from '@/stores/useExceptionStore';
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000/api/v1';
 
@@ -15,13 +16,16 @@ export class ApiError extends Error {
   errors?: Record<string, string[]>;
   /** Business-rule error code (e.g. unit validation's 'duplicate-name') — see `bootstrap/app.php`. */
   code?: string;
+  /** Full raw JSON body — only populated for unhandled backend exceptions (see `isUnhandledException`). */
+  raw?: unknown;
 
-  constructor(status: number, message: string, errors?: Record<string, string[]>, code?: string) {
+  constructor(status: number, message: string, errors?: Record<string, string[]>, code?: string, raw?: unknown) {
     super(message);
     this.name = 'ApiError';
     this.status = status;
     this.errors = errors;
     this.code = code;
+    this.raw = raw;
   }
 }
 
@@ -36,6 +40,26 @@ interface ErrorBody {
   message?: string;
   errors?: Record<string, string[]>;
   code?: string;
+  /** Present on Laravel's default (undebugged-by-us) exception JSON — the signal we use to tell
+   *  "one of our ~20 intentional business exceptions" (always `{code, message}`, no `exception` key)
+   *  apart from a genuine unhandled PHP exception/500/framework error. */
+  exception?: string;
+  file?: string;
+  line?: number;
+  trace?: unknown;
+}
+
+/**
+ * True for anything the backend didn't deliberately translate into our
+ * `{code, message}` business-error vocabulary (`bootstrap/app.php`'s
+ * `$exceptions->render(...)` list) — i.e. a real unhandled PHP exception.
+ * With `APP_DEBUG=true` (dev) Laravel's default handler includes `exception`
+ * (the thrown class name) in the JSON body; that's the reliable signal,
+ * independent of HTTP status (a bad-uuid route param 404s via
+ * `ModelNotFoundException`, which is just as much "an exception" as a 500).
+ */
+function isUnhandledException(status: number, body: ErrorBody): boolean {
+  return typeof body.exception === 'string' || status >= 500;
 }
 
 export async function apiFetch<T>(path: string, options: RequestOptions = {}): Promise<T> {
@@ -79,11 +103,31 @@ export async function apiFetch<T>(path: string, options: RequestOptions = {}): P
 
   if (!response.ok) {
     const errorBody = (json ?? {}) as ErrorBody;
+    const unhandled = isUnhandledException(response.status, errorBody);
+
+    if (unhandled) {
+      // Reported here (not left to callers) so it surfaces even when a
+      // feature's catch block only checks for its own known error classes
+      // and silently falls through to a generic toast otherwise.
+      useExceptionStore.getState().report({
+        status: response.status,
+        method,
+        path,
+        message: errorBody.message ?? response.statusText,
+        exception: errorBody.exception,
+        file: errorBody.file,
+        line: errorBody.line,
+        trace: errorBody.trace,
+        raw: json,
+      });
+    }
+
     throw new ApiError(
       response.status,
       errorBody.message ?? response.statusText,
       errorBody.errors,
       errorBody.code,
+      unhandled ? json : undefined,
     );
   }
 

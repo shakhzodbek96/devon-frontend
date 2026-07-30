@@ -1,6 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
 import Router from './router';
 import { Toaster } from '@/components/ui/sonner';
+import ExceptionModal from '@/components/common/ExceptionModal';
 import { useMediaQuery } from '@/lib/use-media-query';
 
 export default function App() {
@@ -23,6 +24,7 @@ export default function App() {
         closeButton
         position={isDesktop ? 'bottom-right' : 'top-center'}
       />
+      <ExceptionModal />
     </BrowserRouter>
   );
 }
