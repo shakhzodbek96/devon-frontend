@@ -14,6 +14,9 @@ export const DAY_STATUS_OPTIONS: TabelEntryStatus[] = [
   'HOLIDAY_WORK',
   'AUTO_CLOSED',
   'MANUAL',
+  'VACATION',
+  'SICK_LEAVE',
+  'BUSINESS_TRIP',
   'DAY_OFF',
 ];
 
@@ -59,6 +62,21 @@ const META: Record<AnyDayStatus, StatusMeta> = {
     labelKey: 'dashboard:attendance.status.MANUAL',
     badgeVariant: 'outline',
     cellClass: 'bg-surface-2 text-body',
+  },
+  VACATION: {
+    labelKey: 'dashboard:attendance.status.VACATION',
+    badgeVariant: 'secondary',
+    cellClass: 'bg-brand-soft text-primary',
+  },
+  SICK_LEAVE: {
+    labelKey: 'dashboard:attendance.status.SICK_LEAVE',
+    badgeVariant: 'secondary',
+    cellClass: 'bg-warning-soft text-warning-fg',
+  },
+  BUSINESS_TRIP: {
+    labelKey: 'dashboard:attendance.status.BUSINESS_TRIP',
+    badgeVariant: 'secondary',
+    cellClass: 'bg-brand-soft text-primary',
   },
   DAY_OFF: {
     labelKey: 'dashboard:attendance.status.DAY_OFF',

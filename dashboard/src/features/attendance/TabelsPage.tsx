@@ -114,7 +114,7 @@ export default function TabelsPage() {
       const full = await getTabel(found.uuid);
       setTabel(full);
       const map = new Map<string, { status: TabelEntryStatus; note?: string }>();
-      for (const e of full.entries) map.set(key(e.employeeUuid, e.workDate), { status: e.status, note: e.note });
+      for (const e of full.entries ?? []) map.set(key(e.employeeUuid, e.workDate), { status: e.status, note: e.note });
       setEntries(map);
       const emps = await listEmployees({ unitUuid });
       setEmployees(emps);

@@ -687,6 +687,9 @@ export type TabelEntryStatus =
   | 'HOLIDAY_WORK'
   | 'AUTO_CLOSED'
   | 'MANUAL'
+  | 'VACATION'
+  | 'SICK_LEAVE'
+  | 'BUSINESS_TRIP'
   | 'DAY_OFF';
 
 export interface TabelEntry {
@@ -711,7 +714,9 @@ export interface Tabel {
   headNote?: string;
   hrAcceptedAt?: string;
   hrNote?: string;
-  entries: TabelEntry[];
+  /** Only present when the `entries` relation was eager-loaded — `getTabel`
+   *  includes them; `listTabels` and the decision endpoints do not. */
+  entries?: TabelEntry[];
   createdAt: string;
   updatedAt: string;
 }
