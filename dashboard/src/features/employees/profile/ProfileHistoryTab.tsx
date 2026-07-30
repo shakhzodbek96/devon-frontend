@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import LoadingState from '@/components/common/LoadingState';
-import { ACTION_ICON } from '@/lib/audit-icons';
+import { ACTION_ICON, DEFAULT_ACTION_ICON } from '@/lib/audit-icons';
 import { formatRelative } from '@/i18n/uz-locale';
 import { listAudit } from '@/lib/data/audit';
 import { ApiError } from '@/lib/api/client';
@@ -56,7 +56,7 @@ export default function ProfileHistoryTab({ employee }: Props) {
       ) : (
         <ul className="divide-y divide-line rounded-lg border border-line bg-surface px-4">
           {rows.map((r) => {
-            const Icon = ACTION_ICON[r.action];
+            const Icon = ACTION_ICON[r.action] ?? DEFAULT_ACTION_ICON;
             return (
               <li key={r.uuid} className="flex items-start gap-3 py-3">
                 <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-surface-2 text-primary">

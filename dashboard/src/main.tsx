@@ -7,6 +7,7 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import './i18n';
 import ThemeProvider from '@/components/common/ThemeProvider';
+import RootErrorBoundary from '@/components/common/RootErrorBoundary';
 import { seedIfEmpty } from '@/lib/mock-backend';
 import { useAuthStore } from '@/stores/useAuthStore';
 import App from './App.tsx';
@@ -18,9 +19,11 @@ void seedIfEmpty().then(() => {
   void useAuthStore.getState().refreshSessionUser();
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
-      <ThemeProvider>
-        <App />
-      </ThemeProvider>
+      <RootErrorBoundary>
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
+      </RootErrorBoundary>
     </StrictMode>,
   );
 });

@@ -212,7 +212,32 @@ export type AuditAction =
   | 'TASK_SUBMITTED'
   | 'TASK_ACCEPTED'
   | 'TASK_RETURNED'
-  | 'TASK_REJECTED';
+  | 'TASK_REJECTED'
+  | 'CANCEL'
+  | 'ATTENDANCE_CHECKED_IN'
+  | 'ATTENDANCE_CHECKED_OUT'
+  | 'ATTENDANCE_MANUAL_ENTRY'
+  | 'TABEL_GENERATED'
+  | 'TABEL_ENTRIES_UPDATED'
+  | 'TABEL_SUBMITTED'
+  | 'TABEL_HEAD_SIGNED'
+  | 'TABEL_HEAD_REJECTED'
+  | 'TABEL_HR_ACCEPTED'
+  | 'TABEL_HR_REJECTED'
+  | 'TABEL_REGISTRY_DISPATCHED'
+  | 'COLLEGIAL_MEMBER_ADDED'
+  | 'COLLEGIAL_MEMBER_REMOVED'
+  | 'PROTOCOL_CREATED'
+  | 'PROTOCOL_UPDATED'
+  | 'PROTOCOL_SUBMITTED'
+  | 'PROTOCOL_REVIEWER_APPROVED'
+  | 'PROTOCOL_REVIEWER_REJECTED'
+  | 'PROTOCOL_SENT_TO_MEMBERS'
+  | 'PROTOCOL_MEMBER_SIGNED'
+  | 'PROTOCOL_MEMBER_DECLINED'
+  | 'PROTOCOL_SENT_TO_CHAIRMAN'
+  | 'PROTOCOL_CHAIRMAN_APPROVED'
+  | 'PROTOCOL_CHAIRMAN_REJECTED';
 
 export type AuditResourceType =
   | 'unit'
@@ -223,7 +248,16 @@ export type AuditResourceType =
   | 'profile-request'
   | 'document'
   | 'letter'
-  | 'task';
+  | 'task'
+  | 'conference-room'
+  | 'conference-booking'
+  | 'office-network'
+  | 'work-shift'
+  | 'attendance'
+  | 'tabel'
+  | 'tabel-registry'
+  | 'collegial-body'
+  | 'protocol';
 
 export interface AuditEntry {
   uuid: string;

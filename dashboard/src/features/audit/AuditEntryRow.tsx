@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { ACTION_ICON } from '@/lib/audit-icons';
+import { ACTION_ICON, DEFAULT_ACTION_ICON } from '@/lib/audit-icons';
 import { formatDateTime } from '@/i18n/uz-locale';
 import type { AuditEntry, Unit } from '@/types/domain';
 
@@ -58,7 +58,7 @@ function DiffBlock({
 
 export default function AuditEntryRow({ entry, unitsByUuid, variant }: Props) {
   const { t } = useTranslation(['dashboard']);
-  const Icon = ACTION_ICON[entry.action];
+  const Icon = ACTION_ICON[entry.action] ?? DEFAULT_ACTION_ICON;
 
   if (variant === 'card') {
     return (

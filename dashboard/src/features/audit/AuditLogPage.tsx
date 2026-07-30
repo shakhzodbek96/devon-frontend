@@ -42,6 +42,16 @@ const RESOURCE_TYPES: AuditResourceType[] = [
   'profile-request',
   'document',
   'letter',
+  'task',
+  'conference-room',
+  'conference-booking',
+  'office-network',
+  'work-shift',
+  'attendance',
+  'tabel',
+  'tabel-registry',
+  'collegial-body',
+  'protocol',
 ];
 
 interface Filters {

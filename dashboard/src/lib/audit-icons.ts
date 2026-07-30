@@ -5,12 +5,19 @@
 // employee-profile history tab. Before this module the map lived inline in all
 // three; step 22 extracted it here so adding an `AuditAction` only touches one
 // place. The `Record<AuditAction, LucideIcon>` typing makes the map exhaustive
-// at compile time — a new action without an icon is a build error.
+// against the FRONTEND `AuditAction` union at compile time — but that union
+// can still drift behind whatever action strings the backend actually logs
+// (it did: a whole batch of new-module actions shipped without a frontend
+// update, and every one of those audit rows crashed the ENTIRE app with
+// "Element type is invalid" — no error boundary existed to contain it).
+// `getActionIcon` below is the runtime safety net all three surfaces must
+// call through instead of indexing `ACTION_ICON` directly.
 
 import {
   Archive,
   ArrowRightLeft,
   BadgeCheck,
+  CalendarX,
   CheckCircle,
   CirclePlay,
   ClipboardCheck,
@@ -39,7 +46,9 @@ import {
   ShieldCheck,
   ShieldOff,
   ShieldX,
+  Table as TableIcon,
   Trash2,
+  UserMinus,
   Upload,
   UserCheck,
   UserCog,
@@ -91,4 +100,40 @@ export const ACTION_ICON: Record<AuditAction, LucideIcon> = {
   TASK_ACCEPTED: CheckCircle,
   TASK_RETURNED: RefreshCw,
   TASK_REJECTED: XCircle,
+  CANCEL: CalendarX,
+  ATTENDANCE_CHECKED_IN: LogIn,
+  ATTENDANCE_CHECKED_OUT: LogOut,
+  ATTENDANCE_MANUAL_ENTRY: PenLine,
+  TABEL_GENERATED: TableIcon,
+  TABEL_ENTRIES_UPDATED: Pencil,
+  TABEL_SUBMITTED: Send,
+  TABEL_HEAD_SIGNED: FilePenLine,
+  TABEL_HEAD_REJECTED: FileX,
+  TABEL_HR_ACCEPTED: FileCheck,
+  TABEL_HR_REJECTED: FileX,
+  TABEL_REGISTRY_DISPATCHED: SendHorizontal,
+  COLLEGIAL_MEMBER_ADDED: UserPlus,
+  COLLEGIAL_MEMBER_REMOVED: UserMinus,
+  PROTOCOL_CREATED: FilePlus,
+  PROTOCOL_UPDATED: Pencil,
+  PROTOCOL_SUBMITTED: Send,
+  PROTOCOL_REVIEWER_APPROVED: FileCheck,
+  PROTOCOL_REVIEWER_REJECTED: FileX,
+  PROTOCOL_SENT_TO_MEMBERS: Forward,
+  PROTOCOL_MEMBER_SIGNED: FilePenLine,
+  PROTOCOL_MEMBER_DECLINED: XCircle,
+  PROTOCOL_SENT_TO_CHAIRMAN: Forward,
+  PROTOCOL_CHAIRMAN_APPROVED: BadgeCheck,
+  PROTOCOL_CHAIRMAN_REJECTED: FileX,
 };
+
+/**
+ * Fallback for any action string the backend logs that isn't (yet) in
+ * `ACTION_ICON`, instead of handing `undefined` to React and crashing the
+ * whole app (see module doc above). Callers must look up as
+ * `ACTION_ICON[action as AuditAction] ?? DEFAULT_ACTION_ICON` — NOT a
+ * wrapper function call, which trips the "components created during
+ * render" lint rule (it can't see through the call that the result is
+ * still just a static map value).
+ */
+export const DEFAULT_ACTION_ICON: LucideIcon = HelpCircle;

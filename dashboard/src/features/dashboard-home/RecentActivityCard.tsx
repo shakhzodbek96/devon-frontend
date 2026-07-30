@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import LoadingState from '@/components/common/LoadingState';
-import { ACTION_ICON } from '@/lib/audit-icons';
+import { ACTION_ICON, DEFAULT_ACTION_ICON } from '@/lib/audit-icons';
 import { listAudit } from '@/lib/data/audit';
 import { formatRelative } from '@/i18n/uz-locale';
 import type { AuditEntry } from '@/types/domain';
@@ -45,7 +45,7 @@ export default function RecentActivityCard() {
         {rows && rows.length > 0 && (
           <ul className="divide-y divide-line">
             {rows.map((r) => {
-              const Icon = ACTION_ICON[r.action];
+              const Icon = ACTION_ICON[r.action] ?? DEFAULT_ACTION_ICON;
               return (
                 <li key={r.uuid} className="flex items-start gap-3 py-3">
                   <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-surface-2 text-primary">
