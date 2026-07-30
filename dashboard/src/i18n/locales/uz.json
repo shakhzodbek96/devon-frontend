@@ -147,7 +147,8 @@
       "section-management": "BOSHQARUV",
       "section-documents": "HUJJAT AYLANMASI",
       "section-personal": "SHAXSIY",
-      "footer-slogan": "Rivolanish intizom bilan!"
+      "footer-slogan": "Rivolanish intizom bilan!",
+      "nav-conference-rooms": "Conference zallar"
     },
     "topbar": {
       "search-placeholder": "Xodim, bo'linma yoki sertifikat bo'yicha qidirish...",
@@ -1525,6 +1526,80 @@
         "max-depth": "Maksimal 7 daraja iyerarxiya joiz",
         "cycle": "Bo'linma o'z avlodiga ota bo'la olmaydi",
         "invalid-parent": "Tanlangan ota-bo'linma mavjud emas"
+      }
+    },
+    "conferenceRooms": {
+      "page-title": "Conference zallar",
+      "page-subtitle": "Zallarni band qiling yoki boshqaring",
+      "rooms": {
+        "add": "Yangi zal",
+        "book": "Band qilish",
+        "empty": "Hali conference zallar yo'q.",
+        "capacity-suffix": "{{count}} kishilik",
+        "form": {
+          "create-title": "Yangi zal yaratish",
+          "edit-title": "Zalni tahrirlash",
+          "description": "Zalning asosiy ma'lumotlarini kiriting.",
+          "name": "Nomi",
+          "capacity": "Sig'imi (kishi soni)",
+          "location": "Joylashuvi"
+        },
+        "toast": {
+          "created": "Zal yaratildi",
+          "updated": "Zal yangilandi",
+          "archived": "Zal arxivlandi"
+        },
+        "errors": {
+          "invalid-capacity": "Sig'im 1 dan 1000 gacha bo'lishi kerak"
+        }
+      },
+      "booking": {
+        "title": "\"{{room}}\" zalini band qilish",
+        "description": "Sana va vaqtni tanlang, band bo'lgan vaqtlar pastda ko'rsatiladi.",
+        "submit": "Band qilish",
+        "busy-title": "Shu kun uchun band vaqtlar",
+        "no-bookings": "Bu kun uchun hali bandlovlar yo'q",
+        "form": {
+          "date": "Sana",
+          "start-time": "Boshlanish vaqti",
+          "end-time": "Tugash vaqti",
+          "purpose": "Maqsad"
+        },
+        "errors": {
+          "invalid-time": "Vaqt noto'g'ri formatda",
+          "invalid-range": "Tugash vaqti boshlanish vaqtidan keyin bo'lishi kerak"
+        },
+        "toast": {
+          "booked": "Zal band qilindi"
+        }
+      },
+      "myBookings": {
+        "title": "Mening bandlovlarim",
+        "empty": "Sizda hali bandlovlar yo'q.",
+        "col-room": "Zal",
+        "col-date": "Sana",
+        "col-time": "Vaqt",
+        "col-purpose": "Maqsad",
+        "col-status": "Holati",
+        "status": {
+          "booked": "Band qilingan",
+          "cancelled": "Bekor qilingan"
+        },
+        "cancel-confirm": {
+          "title": "Bandlovni bekor qilasizmi?",
+          "description": "Bu amalni ortga qaytarib bo'lmaydi. Zal shu vaqt uchun yana bo'sh bo'ladi."
+        },
+        "toast": {
+          "cancelled": "Bandlov bekor qilindi"
+        }
+      },
+      "errors": {
+        "invalid-room": "Zal topilmadi",
+        "room-archived": "Bu zal arxivlangan, band qilib bo'lmaydi",
+        "invalid-range": "Tugash vaqti boshlanish vaqtidan keyin bo'lishi kerak",
+        "time-conflict": "Bu vaqt band qilingan, boshqa vaqt tanlang",
+        "not-authorized": "Bu amal uchun ruxsatingiz yo'q",
+        "wrong-status": "Bandlov holati bu amalga mos kelmaydi"
       }
     }
   }

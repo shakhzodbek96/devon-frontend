@@ -35,6 +35,9 @@
 // assignment authorization uses the real units' materialized path/level —
 // see `src/lib/api/tasks.ts`. Every domain is now 'real'; this migration
 // is complete.
+// `conferenceRooms` / `conferenceBookings` (PLAN_conference-room.md) are a
+// brand-new Tier 2 module with no mock counterpart at all — they're 'real'
+// from day one, kept here only for consistency with every other domain.
 export type DataSourceMode = 'real' | 'mock';
 
 export const dataSourceConfig = {
@@ -50,4 +53,6 @@ export const dataSourceConfig = {
   notifications: 'real',
   letters: 'real',
   tasks: 'real',
+  conferenceRooms: 'real',
+  conferenceBookings: 'real',
 } as const satisfies Record<string, DataSourceMode>;

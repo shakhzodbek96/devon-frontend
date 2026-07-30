@@ -33,6 +33,7 @@ const TasksPage = lazy(() => import('@/features/tasks/TasksPage'));
 const CreateTaskPage = lazy(() => import('@/features/tasks/CreateTaskPage'));
 const TaskDetailPage = lazy(() => import('@/features/tasks/detail/TaskDetailPage'));
 const UnitsPage = lazy(() => import('@/features/units/UnitsPage'));
+const ConferenceRoomsPage = lazy(() => import('@/features/conference-rooms/ConferenceRoomsPage'));
 
 // In-shell route: sidebar + topbar render immediately; only the lazy page
 // content suspends, showing a skeleton in the content area.
@@ -261,6 +262,14 @@ export default function Router() {
         element={
           <Protected>
             <TaskDetailPage />
+          </Protected>
+        }
+      />
+      <Route
+        path="/conference-rooms"
+        element={
+          <Protected>
+            <ConferenceRoomsPage />
           </Protected>
         }
       />

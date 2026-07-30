@@ -2,6 +2,7 @@ import { useEffect, type ComponentType } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
+  CalendarClock,
   FileText,
   KeySquare,
   LayoutDashboard,
@@ -34,6 +35,11 @@ const baseManagementNav: NavItem[] = [
   { to: '/employees', labelKey: 'dashboard:sidebar.nav-employees', icon: Users },
   { to: '/certificates', labelKey: 'dashboard:sidebar.nav-certificates', icon: KeySquare },
   { to: '/tasks', labelKey: 'dashboard:sidebar.nav-tasks', icon: ListTodo },
+  {
+    to: '/conference-rooms',
+    labelKey: 'dashboard:sidebar.nav-conference-rooms',
+    icon: CalendarClock,
+  },
   { to: '/audit', labelKey: 'dashboard:sidebar.nav-audit', icon: ScrollText },
 ];
 

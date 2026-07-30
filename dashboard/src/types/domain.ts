@@ -576,3 +576,40 @@ export interface TaskEntity {
   createdAt: string;
   updatedAt: string;
 }
+
+// === Conference rooms (Tier 2, PLAN_conference-room.md) ===
+// New module — no mock counterpart, so these mirror the real backend
+// contract (`ConferenceRoomResource` / `ConferenceBookingResource`) directly.
+
+export type ConferenceRoomStatus = 'ACTIVE' | 'ARCHIVED';
+
+export interface ConferenceRoom {
+  uuid: string;
+  name: string;
+  capacity: number;
+  location?: string;
+  status: ConferenceRoomStatus;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export type ConferenceBookingStatus = 'BOOKED' | 'CANCELLED';
+
+export interface ConferenceBooking {
+  uuid: string;
+  roomUuid: string;
+  /** Acting employee uuid who made the booking. */
+  bookedBy: string;
+  purpose: string;
+  /** `YYYY-MM-DD`. */
+  date: string;
+  /** `HH:mm`. */
+  startTime: string;
+  /** `HH:mm`. */
+  endTime: string;
+  status: ConferenceBookingStatus;
+  cancelledBy?: string;
+  cancelledAt?: string;
+  createdAt: string;
+  updatedAt: string;
+}
