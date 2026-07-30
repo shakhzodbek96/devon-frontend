@@ -5,7 +5,9 @@ import {
   CalendarClock,
   ClipboardList,
   Clock,
+  FileSignature,
   FileText,
+  Gavel,
   KeySquare,
   LayoutDashboard,
   ListChecks,
@@ -44,8 +46,16 @@ const baseManagementNav: NavItem[] = [
     icon: CalendarClock,
   },
   { to: '/attendance', labelKey: 'dashboard:sidebar.nav-attendance', icon: Clock },
+  { to: '/protocols', labelKey: 'dashboard:sidebar.nav-protocols', icon: FileSignature },
   { to: '/audit', labelKey: 'dashboard:sidebar.nav-audit', icon: ScrollText },
 ];
+
+/** Admin-only — mirrors the `/collegial-bodies` route guard (RequireRole in router.tsx). */
+const collegialBodiesNavItem: NavItem = {
+  to: '/collegial-bodies',
+  labelKey: 'dashboard:sidebar.nav-collegial-bodies',
+  icon: Gavel,
+};
 
 /** Unit-head/HR only — visible when the acting persona heads at least one
  *  unit or holds an admin/HR role (mirrors `TabelsPage`'s own visibility
@@ -97,7 +107,7 @@ export default function Sidebar({ onNavigate }: Props) {
   const isUnitHead = (acting?.headedUnitUuids.length ?? 0) > 0;
   let managementNav = baseManagementNav;
   if (isUnitHead || isAdmin) managementNav = [...managementNav, tabelsNavItem];
-  if (isAdmin) managementNav = [...managementNav, tabelRegistryNavItem, usersNavItem];
+  if (isAdmin) managementNav = [...managementNav, tabelRegistryNavItem, collegialBodiesNavItem, usersNavItem];
 
   // Pending-queue badge for the acting persona — refreshed on mount, POV
   // switch, and whenever a mutation bumps the queue store's version.

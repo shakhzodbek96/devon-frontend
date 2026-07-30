@@ -61,4 +61,6 @@ export const dataSourceConfig = {
   tabels: 'real',
   officeNetworks: 'real',
   workShifts: 'real',
+  collegialBodies: 'real',
+  protocols: 'real',
 } as const satisfies Record<string, DataSourceMode>;

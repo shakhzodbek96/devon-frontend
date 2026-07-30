@@ -729,3 +729,82 @@ export interface TabelRegistry {
   dispatchedAt: string | null;
   units: TabelRegistryUnitRow[];
 }
+
+// === Kollegial organ / Bayonnoma (PLAN_kollegial-organ.md) ===
+// New module — no mock counterpart, these mirror the real backend contract
+// (`CollegialBodyResource`/`ProtocolResource`/`ProtocolReviewerResource`/
+// `ProtocolParticipantResource`) field-for-field.
+
+export type CollegialBodyStatus = 'ACTIVE' | 'ARCHIVED';
+
+export interface CollegialBody {
+  uuid: string;
+  name: string;
+  chairmanEmployeeUuid: string;
+  secretaryEmployeeUuid: string;
+  quorumMin: number;
+  status: CollegialBodyStatus;
+  /** Only present when the `members` relation was eager-loaded — always
+   *  true for `listCollegialBodies`/create/update/addMember/removeMember. */
+  memberEmployeeUuids?: string[];
+  createdBy: string;
+  updatedBy: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export type ProtocolStatus =
+  | 'DRAFT'
+  | 'SENT_FOR_REVIEW'
+  | 'REVIEW_REJECTED'
+  | 'SENT_TO_MEMBERS'
+  | 'MEMBERS_REJECTED'
+  | 'SENT_TO_CHAIRMAN'
+  | 'CHAIRMAN_REJECTED'
+  | 'APPROVED';
+
+export type ProtocolReviewerDecision = 'PENDING' | 'APPROVED' | 'REJECTED';
+
+export interface ProtocolReviewer {
+  uuid: string;
+  protocolUuid: string;
+  employeeUuid: string;
+  decision: ProtocolReviewerDecision;
+  note?: string;
+  decidedAt?: string;
+}
+
+export type ProtocolParticipantDecision = 'PENDING' | 'SIGNED' | 'DECLINED';
+
+export interface ProtocolParticipant {
+  uuid: string;
+  protocolUuid: string;
+  employeeUuid: string;
+  decision: ProtocolParticipantDecision;
+  note?: string;
+  decidedAt?: string;
+}
+
+export interface Protocol {
+  uuid: string;
+  number: string;
+  collegialBodyUuid: string;
+  /** `YYYY-MM-DD`. */
+  protocolDate: string;
+  templateKey: string;
+  agenda: string;
+  status: ProtocolStatus;
+  reviewNote?: string;
+  chairmanNote?: string;
+  createdBy: string;
+  submittedAt?: string;
+  membersCompletedAt?: string;
+  chairmanSignedAt?: string;
+  finalizedAt?: string;
+  /** Only present when the relations were eager-loaded — `getProtocol` and
+   *  every mutation response include them; `listProtocols` does not. */
+  reviewers?: ProtocolReviewer[];
+  participants?: ProtocolParticipant[];
+  createdAt: string;
+  updatedAt: string;
+}

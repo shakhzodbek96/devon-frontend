@@ -37,6 +37,10 @@ const ConferenceRoomsPage = lazy(() => import('@/features/conference-rooms/Confe
 const AttendancePage = lazy(() => import('@/features/attendance/AttendancePage'));
 const TabelsPage = lazy(() => import('@/features/attendance/TabelsPage'));
 const TabelRegistryPage = lazy(() => import('@/features/attendance/TabelRegistryPage'));
+const CollegialBodiesPage = lazy(() => import('@/features/collegial/CollegialBodiesPage'));
+const ProtocolsPage = lazy(() => import('@/features/collegial/ProtocolsPage'));
+const ProtocolWizardPage = lazy(() => import('@/features/collegial/ProtocolWizardPage'));
+const ProtocolDetailPage = lazy(() => import('@/features/collegial/ProtocolDetailPage'));
 
 // In-shell route: sidebar + topbar render immediately; only the lazy page
 // content suspends, showing a skeleton in the content area.
@@ -298,6 +302,38 @@ export default function Router() {
           <ProtectedAdmin>
             <TabelRegistryPage />
           </ProtectedAdmin>
+        }
+      />
+      <Route
+        path="/collegial-bodies"
+        element={
+          <ProtectedAdmin>
+            <CollegialBodiesPage />
+          </ProtectedAdmin>
+        }
+      />
+      <Route
+        path="/protocols"
+        element={
+          <Protected>
+            <ProtocolsPage />
+          </Protected>
+        }
+      />
+      <Route
+        path="/protocols/new"
+        element={
+          <ProtectedNoShell>
+            <ProtocolWizardPage />
+          </ProtectedNoShell>
+        }
+      />
+      <Route
+        path="/protocols/:uuid"
+        element={
+          <Protected>
+            <ProtocolDetailPage />
+          </Protected>
         }
       />
       <Route path="*" element={<Navigate to="/" replace />} />

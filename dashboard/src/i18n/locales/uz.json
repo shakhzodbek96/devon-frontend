@@ -27,7 +27,8 @@
       "open-profile": "Profilni ochish",
       "choose-file": "Fayl tanlash",
       "replace-file": "Almashtirish",
-      "remove-file": "Faylni olib tashlash"
+      "remove-file": "Faylni olib tashlash",
+      "remove": "Olib tashlash"
     },
     "labels": {
       "loading": "Yuklanmoqda...",
@@ -151,7 +152,9 @@
       "nav-conference-rooms": "Conference zallar",
       "nav-attendance": "Davomat",
       "nav-tabels": "Tabellar",
-      "nav-tabel-registry": "Tabel reestri"
+      "nav-tabel-registry": "Tabel reestri",
+      "nav-protocols": "Bayonnomalar",
+      "nav-collegial-bodies": "Kollegial organlar"
     },
     "topbar": {
       "search-placeholder": "Xodim, bo'linma yoki sertifikat bo'yicha qidirish...",
@@ -1723,6 +1726,139 @@
       "ready-count": "{{ready}} / {{total}} boʼlinma tayyor",
       "not-dispatched": "Buxgalteriyaga hali jo'natilmagan",
       "dispatched-at": "Buxgalteriyaga jo'natildi: {{time}}"
+    },
+    "collegial": {
+      "bodies": {
+        "page-title": "Kollegial organlar",
+        "page-subtitle": "Doimiy tarkib, rais/kotibi va kvorumni boshqaring",
+        "add": "Yangi organ",
+        "empty": "Hali kollegial organlar yo'q.",
+        "field-chairman": "Raisi",
+        "field-secretary": "Kotibi",
+        "members-suffix": "{{count}} a'zo",
+        "quorum-suffix": "kvorum {{count}}",
+        "form": {
+          "create-title": "Yangi kollegial organ",
+          "edit-title": "Organni tahrirlash",
+          "description": "Organning asosiy ma'lumotlari va doimiy tarkibini kiriting.",
+          "name": "Nomi",
+          "chairman": "Raisi",
+          "secretary": "Kotibi",
+          "quorum": "Kvorum (minimal a'zolar soni)",
+          "members": "A'zolar (doimiy tarkib)",
+          "add-member": "A'zo qo'shish",
+          "errors": {
+            "required": "Nomi, raisi va kotibi majburiy"
+          }
+        },
+        "toast": {
+          "created": "Organ yaratildi",
+          "updated": "Organ yangilandi",
+          "archived": "Organ arxivlandi"
+        },
+        "archive-confirm": {
+          "title": "Organni arxivlaysizmi?",
+          "description": "Arxivlangan organ uchun yangi bayonnoma yaratib bo'lmaydi."
+        }
+      },
+      "protocols": {
+        "page-title": "Bayonnomalar",
+        "page-subtitle": "Kollegial organ qarorlarini yozish va tasdiqlatish",
+        "add": "Yangi bayonnoma",
+        "empty": "Bayonnomalar topilmadi.",
+        "filters": {
+          "body": "Organ",
+          "status": "Holati",
+          "mine": "Mening ishlarim"
+        },
+        "col-number": "Raqami",
+        "col-body": "Organ",
+        "col-date": "Sanasi",
+        "col-status": "Holati",
+        "status": {
+          "DRAFT": "Qoralama",
+          "SENT_FOR_REVIEW": "Tekshiruvga yuborilgan",
+          "REVIEW_REJECTED": "Tekshiruvchi rad etgan",
+          "SENT_TO_MEMBERS": "A'zolarga yuborilgan",
+          "MEMBERS_REJECTED": "A'zo e'tiroz bildirgan",
+          "SENT_TO_CHAIRMAN": "Raisga yuborilgan",
+          "CHAIRMAN_REJECTED": "Rais rad etgan",
+          "APPROVED": "Tasdiqlangan"
+        },
+        "decision": {
+          "PENDING": "Kutilmoqda",
+          "APPROVED": "Tasdiqlangan",
+          "REJECTED": "Rad etilgan"
+        },
+        "participantDecision": {
+          "PENDING": "Kutilmoqda",
+          "SIGNED": "Imzolangan",
+          "DECLINED": "E'tiroz bildirgan"
+        },
+        "template": {
+          "STANDARD": "Standart",
+          "BUDGET_DECISION": "Byudjet qarori"
+        },
+        "wizard": {
+          "title": "Yangi bayonnoma",
+          "description": "Organni tanlang, tarkibni va tekshiruvchilarni belgilang.",
+          "submit": "Qoralama sifatida saqlash",
+          "field-body": "Kollegial organ",
+          "field-participants": "Tarkib (kvorum uchun a'zolar)",
+          "field-reviewers": "Tekshiruvchi xodimlar",
+          "field-date": "Bayonnoma sanasi",
+          "field-template": "Shablon",
+          "field-agenda": "Kun tartibi",
+          "agenda-placeholder": "Kun tartibi va qaror matnini kiriting...",
+          "add-reviewer": "Tekshiruvchi qo'shish",
+          "quorum-hint": "Tanlandi: {{selected}} / kamida {{min}} kerak",
+          "no-roster": "Bu organda hali a'zolar yo'q.",
+          "toast": {
+            "created": "Bayonnoma qoralama sifatida yaratildi"
+          }
+        },
+        "detail": {
+          "agenda-title": "Kun tartibi",
+          "reviewers-title": "Tekshiruvchilar",
+          "participants-title": "A'zolar",
+          "review-note": "Tekshiruvchi izohi",
+          "chairman-note": "Rais izohi",
+          "note-placeholder": "Rad etish sababini kiriting...",
+          "submit": "Yuborish",
+          "reviewer-approve": "Tasdiqlash",
+          "member-sign": "ERI bilan imzolash",
+          "member-decline": "Rad etish (e'tiroz)",
+          "chairman-approve": "ERI bilan yakuniy tasdiqlash",
+          "toast": {
+            "saved": "Saqlandi",
+            "submitted": "Bayonnoma yuborildi",
+            "reviewer-approved": "Tasdiqlandi"
+          },
+          "reject": {
+            "description": "Rad etish sababini kiriting.",
+            "reviewer-title": "Bayonnomani rad etish",
+            "member-title": "E'tiroz bildirish",
+            "chairman-title": "Bayonnomani rad etish"
+          },
+          "sign": {
+            "success-member": "Bayonnoma ERI bilan imzolandi",
+            "success-chairman": "Bayonnoma yakuniy tasdiqlandi"
+          }
+        }
+      },
+      "errors": {
+        "not-editable": "Bu bayonnoma hozir tahrirlanmaydi",
+        "wrong-status": "Bayonnoma holati bu amalga mos kelmaydi",
+        "not-authorized": "Bu amal uchun ruxsatingiz yo'q",
+        "not-reviewer": "Siz bu bayonnomaning tekshiruvchisi emassiz",
+        "not-participant": "Siz bu bayonnomaning a'zosi emassiz",
+        "not-chairman": "Siz bu organning raisi emassiz",
+        "already-decided": "Siz allaqachon qaror qabul qilgansiz",
+        "already-signed": "Siz allaqachon imzolagansiz",
+        "quorum-not-met": "Tanlangan a'zolar soni kvorumdan kam",
+        "not-body-member": "Xodim organ tarkibiga kiritilmagan",
+        "cert-invalid": "Sertifikat yaroqsiz"
+      }
     }
   }
 }
