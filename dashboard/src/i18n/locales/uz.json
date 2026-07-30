@@ -148,7 +148,10 @@
       "section-documents": "HUJJAT AYLANMASI",
       "section-personal": "SHAXSIY",
       "footer-slogan": "Rivolanish intizom bilan!",
-      "nav-conference-rooms": "Conference zallar"
+      "nav-conference-rooms": "Conference zallar",
+      "nav-attendance": "Davomat",
+      "nav-tabels": "Tabellar",
+      "nav-tabel-registry": "Tabel reestri"
     },
     "topbar": {
       "search-placeholder": "Xodim, bo'linma yoki sertifikat bo'yicha qidirish...",
@@ -1601,6 +1604,125 @@
         "not-authorized": "Bu amal uchun ruxsatingiz yo'q",
         "wrong-status": "Bandlov holati bu amalga mos kelmaydi"
       }
+    },
+    "attendance": {
+      "page-title": "Davomat",
+      "page-subtitle": "Kunlik ish vaqtingizni belgilang",
+      "today": {
+        "title": "Bugungi holat",
+        "not-started": "Kirish qilinmagan",
+        "checked-in": "Ishda",
+        "closed": "Kun yopildi",
+        "check-in": "Kirish",
+        "check-out": "Chiqish",
+        "check-in-at": "Kirish: {{time}}",
+        "check-out-at": "Chiqish: {{time}}",
+        "toast": {
+          "checked-in": "Kirish qayd etildi",
+          "checked-out": "Chiqish qayd etildi"
+        }
+      },
+      "history": {
+        "title": "Oylik tarix"
+      },
+      "weekday": {
+        "mon": "Du",
+        "tue": "Se",
+        "wed": "Cho",
+        "thu": "Pa",
+        "fri": "Ju",
+        "sat": "Sha",
+        "sun": "Ya"
+      },
+      "faceCheck": {
+        "title-in": "Kirishni tasdiqlash",
+        "title-out": "Chiqishni tasdiqlash",
+        "description": "Yuzingizni skanerlash orqali tasdiqlang (demo rejimi).",
+        "cta": "Tasdiqlash",
+        "hint": "Tugmani bosing — qurilma kamerasi orqali \"skanerlash\" simulyatsiya qilinadi.",
+        "scanning": "Tekshirilmoqda...",
+        "scanning-hint": "Iltimos, kuting",
+        "success-in": "Kirish muvaffaqiyatli qayd etildi",
+        "success-out": "Chiqish muvaffaqiyatli qayd etildi"
+      },
+      "status": {
+        "OK": "Meʻyorda",
+        "LATE": "Kechikish",
+        "EARLY_EXIT": "Erta chiqish",
+        "ABSENT": "Kelmagan",
+        "HOLIDAY_WORK": "Bayramda ishlagan",
+        "AUTO_CLOSED": "Avto-yopilgan",
+        "MANUAL": "Qo'lda kiritilgan",
+        "DAY_OFF": "Dam olish kuni"
+      },
+      "errors": {
+        "network-blocked": "Siz ofis Wi-Fi tarmog'ida emassiz",
+        "already-checked-in": "Bugun allaqachon kirish qilingan",
+        "already-closed": "Bugungi kun allaqachon yopilgan"
+      }
+    },
+    "tabels": {
+      "page-title": "Tabellar",
+      "page-subtitle": "Bo'linma bo'yicha oylik tabelni shakllantiring va tasdiqlang",
+      "filters": {
+        "unit": "Bo'linma",
+        "period": "Davr"
+      },
+      "no-units": "Sizga tegishli bo'linmalar topilmadi.",
+      "empty": "Bu davr uchun tabel hali yaratilmagan.",
+      "generate": "Tabel yaratish",
+      "submit": "Yuborish",
+      "head-approve": "ERI bilan tasdiqlash",
+      "hr-accept": "Qabul qilish",
+      "head-note": "Rahbar izohi",
+      "hr-note": "HR izohi",
+      "col-employee": "Xodim",
+      "status": {
+        "DRAFT": "Qoralama",
+        "SENT_TO_HEAD": "Rahbarga yuborilgan",
+        "HEAD_REJECTED": "Rahbar rad etgan",
+        "SENT_TO_HR": "HR'ga yuborilgan",
+        "HR_REJECTED": "HR rad etgan",
+        "HR_ACCEPTED": "HR qabul qilgan"
+      },
+      "reject": {
+        "description": "Rad etish sababini kiriting.",
+        "note-placeholder": "Izoh...",
+        "cta": "Rad etish",
+        "head-title": "\"{{unit}}\" tabelini rad etish",
+        "hr-title": "\"{{unit}}\" tabelini rad etish"
+      },
+      "sign": {
+        "success": "Tabel ERI bilan tasdiqlandi"
+      },
+      "toast": {
+        "generated": "Tabel yaratildi",
+        "saved": "Saqlandi",
+        "submitted": "Tabel yuborildi",
+        "hr-accepted": "Tabel qabul qilindi"
+      },
+      "errors": {
+        "not-editable": "Bu tabel hozir tahrirlanmaydi",
+        "wrong-status": "Tabel holati bu amalga mos kelmaydi",
+        "not-authorized": "Bu amal uchun ruxsatingiz yoʼq",
+        "entries-incomplete": "Barcha kunlar uchun holat kiritilishi kerak",
+        "not-all-units-ready": "Hali barcha bo'linmalar tayyor emas",
+        "not-rahbar": "Siz bu bo'linma rahbari emassiz",
+        "cert-invalid": "Sertifikat yaroqsiz"
+      }
+    },
+    "tabelRegistry": {
+      "page-title": "Tabel reestri",
+      "page-subtitle": "Barcha bo'linmalar tabellari holati (Buxgalteriya ko'rinishi)",
+      "period": "Davr",
+      "export": "Excelga eksport",
+      "col-unit": "Bo'linma",
+      "col-status": "Tabel holati",
+      "col-hr-accepted-at": "HR qabul qilgan vaqt",
+      "no-tabel": "Tabel yaratilmagan",
+      "ready-count": "{{ready}} / {{total}} boʼlinma tayyor",
+      "not-dispatched": "Buxgalteriyaga hali jo'natilmagan",
+      "dispatched-at": "Buxgalteriyaga jo'natildi: {{time}}"
     }
   }
 }

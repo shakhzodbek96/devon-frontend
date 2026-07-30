@@ -48,6 +48,14 @@ interface Props {
   errorNamespace?: 'documents' | 'letters';
   /** Success-state copy key — the only domain-specific string in this dialog. */
   successKey?: string;
+  /**
+   * Escape hatch for callers whose `onSign` mutation throws an error class
+   * other than `DocumentValidationError`/`LetterValidationError` (e.g. the
+   * tabel head-decide flow's `TabelValidationError`). Return the
+   * `dashboard:...` translation key to show + close the dialog, or
+   * `undefined` to fall through to the built-in handling below.
+   */
+  resolveErrorKey?: (err: unknown) => string | undefined;
 }
 
 /**
@@ -67,6 +75,7 @@ export default function SignDialog({
   onSign,
   errorNamespace = 'documents',
   successKey = 'dashboard:documents.detail.sign.success',
+  resolveErrorKey,
 }: Props) {
   const { t } = useTranslation(['dashboard', 'common']);
   const navigate = useNavigate();
@@ -118,9 +127,14 @@ export default function SignDialog({
       setPhase('done');
     } catch (err) {
       setPhase('pick');
+      const customKey = resolveErrorKey?.(err);
       // Both domain errors carry a `.code`; a policy failure (e.g. cert-invalid,
       // wrong-status) won't clear on retry, so close + refetch to show truth.
-      if (err instanceof DocumentValidationError || err instanceof LetterValidationError) {
+      if (customKey) {
+        toast.error(t(customKey));
+        onOpenChange(false);
+        onDone();
+      } else if (err instanceof DocumentValidationError || err instanceof LetterValidationError) {
         toast.error(t(`dashboard:${errorNamespace}.errors.${err.code}`));
         onOpenChange(false);
         onDone();

@@ -613,3 +613,119 @@ export interface ConferenceBooking {
   createdAt: string;
   updatedAt: string;
 }
+
+// === Attendance / Tabel (PLAN_tabel-davomat.md) ===
+// New module — no mock counterpart, so these mirror the real backend
+// contract directly.
+
+export type OfficeNetworkStatus = 'ACTIVE' | 'ARCHIVED';
+
+export interface OfficeNetwork {
+  uuid: string;
+  name: string;
+  cidr: string;
+  unitUuid?: string;
+  status: OfficeNetworkStatus;
+}
+
+export interface WorkShift {
+  uuid: string;
+  unitUuid?: string;
+  /** `HH:mm`. */
+  startTime: string;
+  /** `HH:mm`. */
+  endTime: string;
+  lateGraceMin: number;
+  earlyExitGraceMin: number;
+}
+
+export type AttendanceStatus =
+  | 'OK'
+  | 'LATE'
+  | 'EARLY_EXIT'
+  | 'ABSENT'
+  | 'HOLIDAY_WORK'
+  | 'AUTO_CLOSED'
+  | 'MANUAL';
+
+export type FaceStatus = 'SELF_CONFIRMED' | 'SKIPPED';
+
+export type AttendanceSource = 'SELF_CHECKIN' | 'HR_MANUAL' | 'AUTO_CLOSE';
+
+export interface AttendanceRecord {
+  uuid: string;
+  employeeUuid: string;
+  /** `YYYY-MM-DD`. */
+  workDate: string;
+  checkInAt?: string;
+  checkOutAt?: string;
+  status: AttendanceStatus;
+  lateMinutes?: number;
+  earlyExitMinutes?: number;
+  networkOk: boolean;
+  /** BLOCKED(face-recognition) — self-reported only, never real biometrics. */
+  faceStatus?: FaceStatus;
+  source: AttendanceSource;
+  note?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export type TabelStatus =
+  | 'DRAFT'
+  | 'SENT_TO_HEAD'
+  | 'HEAD_REJECTED'
+  | 'SENT_TO_HR'
+  | 'HR_REJECTED'
+  | 'HR_ACCEPTED';
+
+export type TabelEntryStatus =
+  | 'OK'
+  | 'LATE'
+  | 'EARLY_EXIT'
+  | 'ABSENT'
+  | 'HOLIDAY_WORK'
+  | 'AUTO_CLOSED'
+  | 'MANUAL'
+  | 'DAY_OFF';
+
+export interface TabelEntry {
+  uuid: string;
+  tabelUuid: string;
+  employeeUuid: string;
+  /** `YYYY-MM-DD`. */
+  workDate: string;
+  status: TabelEntryStatus;
+  note?: string;
+}
+
+export interface Tabel {
+  uuid: string;
+  unitUuid: string;
+  /** `YYYY-MM`. */
+  period: string;
+  status: TabelStatus;
+  createdBy: string;
+  submittedAt?: string;
+  headSignedAt?: string;
+  headNote?: string;
+  hrAcceptedAt?: string;
+  hrNote?: string;
+  entries: TabelEntry[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface TabelRegistryUnitRow {
+  unitUuid: string;
+  unitNameUz: string;
+  tabelUuid: string | null;
+  status: TabelStatus | null;
+}
+
+export interface TabelRegistry {
+  period: string;
+  dispatched: boolean;
+  dispatchedAt: string | null;
+  units: TabelRegistryUnitRow[];
+}

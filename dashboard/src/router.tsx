@@ -34,6 +34,9 @@ const CreateTaskPage = lazy(() => import('@/features/tasks/CreateTaskPage'));
 const TaskDetailPage = lazy(() => import('@/features/tasks/detail/TaskDetailPage'));
 const UnitsPage = lazy(() => import('@/features/units/UnitsPage'));
 const ConferenceRoomsPage = lazy(() => import('@/features/conference-rooms/ConferenceRoomsPage'));
+const AttendancePage = lazy(() => import('@/features/attendance/AttendancePage'));
+const TabelsPage = lazy(() => import('@/features/attendance/TabelsPage'));
+const TabelRegistryPage = lazy(() => import('@/features/attendance/TabelRegistryPage'));
 
 // In-shell route: sidebar + topbar render immediately; only the lazy page
 // content suspends, showing a skeleton in the content area.
@@ -271,6 +274,30 @@ export default function Router() {
           <Protected>
             <ConferenceRoomsPage />
           </Protected>
+        }
+      />
+      <Route
+        path="/attendance"
+        element={
+          <Protected>
+            <AttendancePage />
+          </Protected>
+        }
+      />
+      <Route
+        path="/tabels"
+        element={
+          <Protected>
+            <TabelsPage />
+          </Protected>
+        }
+      />
+      <Route
+        path="/tabel-registry"
+        element={
+          <ProtectedAdmin>
+            <TabelRegistryPage />
+          </ProtectedAdmin>
         }
       />
       <Route path="*" element={<Navigate to="/" replace />} />

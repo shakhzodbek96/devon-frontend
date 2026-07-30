@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   CalendarClock,
+  ClipboardList,
+  Clock,
   FileText,
   KeySquare,
   LayoutDashboard,
@@ -11,6 +13,7 @@ import {
   Mail,
   Network,
   ScrollText,
+  Table as TableIcon,
   UserCircle2,
   UserCog,
   Users,
@@ -40,14 +43,31 @@ const baseManagementNav: NavItem[] = [
     labelKey: 'dashboard:sidebar.nav-conference-rooms',
     icon: CalendarClock,
   },
+  { to: '/attendance', labelKey: 'dashboard:sidebar.nav-attendance', icon: Clock },
   { to: '/audit', labelKey: 'dashboard:sidebar.nav-audit', icon: ScrollText },
 ];
+
+/** Unit-head/HR only — visible when the acting persona heads at least one
+ *  unit or holds an admin/HR role (mirrors `TabelsPage`'s own visibility
+ *  logic; the route itself stays unguarded, the page shows an empty state). */
+const tabelsNavItem: NavItem = {
+  to: '/tabels',
+  labelKey: 'dashboard:sidebar.nav-tabels',
+  icon: TableIcon,
+};
 
 /** Admin-only — mirrors the `/users` route guard (RequireRole in router.tsx). */
 const usersNavItem: NavItem = {
   to: '/users',
   labelKey: 'dashboard:sidebar.nav-users',
   icon: UserCog,
+};
+
+/** Admin/HR-only — mirrors the `/tabel-registry` route guard (RequireRole in router.tsx). */
+const tabelRegistryNavItem: NavItem = {
+  to: '/tabel-registry',
+  labelKey: 'dashboard:sidebar.nav-tabel-registry',
+  icon: ClipboardList,
 };
 
 // Milestone 2 — letters (/letters) stays a step-16 placeholder until step 20.
@@ -74,7 +94,10 @@ export default function Sidebar({ onNavigate }: Props) {
   const setCount = useQueueStore((s) => s.setCount);
   const roles = useAuthStore((s) => s.user?.roles) ?? [];
   const isAdmin = roles.some((r) => r === 'ROLE_SUPER_ADMIN' || r === 'ROLE_HR_ADMIN');
-  const managementNav = isAdmin ? [...baseManagementNav, usersNavItem] : baseManagementNav;
+  const isUnitHead = (acting?.headedUnitUuids.length ?? 0) > 0;
+  let managementNav = baseManagementNav;
+  if (isUnitHead || isAdmin) managementNav = [...managementNav, tabelsNavItem];
+  if (isAdmin) managementNav = [...managementNav, tabelRegistryNavItem, usersNavItem];
 
   // Pending-queue badge for the acting persona — refreshed on mount, POV
   // switch, and whenever a mutation bumps the queue store's version.

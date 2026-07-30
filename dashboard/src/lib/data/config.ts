@@ -38,6 +38,8 @@
 // `conferenceRooms` / `conferenceBookings` (PLAN_conference-room.md) are a
 // brand-new Tier 2 module with no mock counterpart at all — they're 'real'
 // from day one, kept here only for consistency with every other domain.
+// `attendance` / `tabels` / `officeNetworks` / `workShifts` (PLAN_tabel-
+// davomat.md) are the same: a brand-new Tier 2 module, 'real' from day one.
 export type DataSourceMode = 'real' | 'mock';
 
 export const dataSourceConfig = {
@@ -55,4 +57,8 @@ export const dataSourceConfig = {
   tasks: 'real',
   conferenceRooms: 'real',
   conferenceBookings: 'real',
+  attendance: 'real',
+  tabels: 'real',
+  officeNetworks: 'real',
+  workShifts: 'real',
 } as const satisfies Record<string, DataSourceMode>;
