@@ -2,6 +2,7 @@ import { useEffect, type ComponentType } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
+  BriefcaseBusiness,
   CalendarClock,
   ClipboardList,
   Clock,
@@ -49,6 +50,13 @@ const baseManagementNav: NavItem[] = [
   { to: '/protocols', labelKey: 'dashboard:sidebar.nav-protocols', icon: FileSignature },
   { to: '/audit', labelKey: 'dashboard:sidebar.nav-audit', icon: ScrollText },
 ];
+
+/** Admin/HR-only — mirrors the `/positions` route guard (RequireRole in router.tsx). */
+const positionsNavItem: NavItem = {
+  to: '/positions',
+  labelKey: 'dashboard:sidebar.nav-positions',
+  icon: BriefcaseBusiness,
+};
 
 /** Admin-only — mirrors the `/collegial-bodies` route guard (RequireRole in router.tsx). */
 const collegialBodiesNavItem: NavItem = {
@@ -106,6 +114,16 @@ export default function Sidebar({ onNavigate }: Props) {
   const isAdmin = roles.some((r) => r === 'ROLE_SUPER_ADMIN' || r === 'ROLE_HR_ADMIN');
   const isUnitHead = (acting?.headedUnitUuids.length ?? 0) > 0;
   let managementNav = baseManagementNav;
+  if (isAdmin) {
+    // Slot "Lavozimlar" right after "Xodimlar" — it's part of the same
+    // org/people management group, admin/HR-gated like the /positions route.
+    const afterEmployees = managementNav.findIndex((i) => i.to === '/employees') + 1;
+    managementNav = [
+      ...managementNav.slice(0, afterEmployees),
+      positionsNavItem,
+      ...managementNav.slice(afterEmployees),
+    ];
+  }
   if (isUnitHead || isAdmin) managementNav = [...managementNav, tabelsNavItem];
   if (isAdmin) managementNav = [...managementNav, tabelRegistryNavItem, collegialBodiesNavItem, usersNavItem];
 

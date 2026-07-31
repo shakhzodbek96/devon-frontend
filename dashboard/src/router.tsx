@@ -33,6 +33,7 @@ const TasksPage = lazy(() => import('@/features/tasks/TasksPage'));
 const CreateTaskPage = lazy(() => import('@/features/tasks/CreateTaskPage'));
 const TaskDetailPage = lazy(() => import('@/features/tasks/detail/TaskDetailPage'));
 const UnitsPage = lazy(() => import('@/features/units/UnitsPage'));
+const PositionsPage = lazy(() => import('@/features/positions/PositionsPage'));
 const ConferenceRoomsPage = lazy(() => import('@/features/conference-rooms/ConferenceRoomsPage'));
 const AttendancePage = lazy(() => import('@/features/attendance/AttendancePage'));
 const TabelsPage = lazy(() => import('@/features/attendance/TabelsPage'));
@@ -126,6 +127,14 @@ export default function Router() {
           <Protected>
             <UnitsPage />
           </Protected>
+        }
+      />
+      <Route
+        path="/positions"
+        element={
+          <ProtectedAdmin>
+            <PositionsPage />
+          </ProtectedAdmin>
         }
       />
       <Route

@@ -146,6 +146,7 @@
       "nav-home": "Bosh sahifa",
       "nav-units": "Tarkibiy tuzilma",
       "nav-employees": "Xodimlar",
+      "nav-positions": "Lavozimlar",
       "nav-certificates": "ERI kalitlari",
       "nav-audit": "Audit jurnali",
       "nav-users": "Foydalanuvchilar",
@@ -1530,6 +1531,37 @@
           "no-file": "Avval PFX faylni tanlang",
           "no-password": "Faylning parolini kiriting"
         }
+      }
+    },
+    "positions": {
+      "title": "Lavozimlar",
+      "subtitle": "Lavozimlar ma'lumotnomasini boshqaring — xodim qo'shishda shu ro'yxatdan tanlanadi",
+      "add": "Lavozim qo'shish",
+      "col-name": "Lavozim nomi",
+      "col-unit-types": "Qaysi bo'linma turlarida",
+      "col-actions": "Amallar",
+      "empty-title": "Hali lavozim yo'q",
+      "empty-body": "Birinchi lavozimni qo'shing — keyin xodim qo'shishda tanlash mumkin bo'ladi.",
+      "create-title": "Yangi lavozim",
+      "edit-title": "Lavozimni tahrirlash",
+      "create-submit": "Qo'shish",
+      "form-hint": "Lavozim nomini kiriting va u qaysi bo'linma turlarida ishlatilishini belgilang.",
+      "field-name": "Lavozim nomi",
+      "field-name-placeholder": "Masalan: Bosh mutaxassis",
+      "field-unit-types": "Ruxsat etilgan bo'linma turlari",
+      "field-unit-types-hint": "Bu lavozim faqat belgilangan turdagi bo'linmalarda tanlanadi.",
+      "delete-title": "Lavozimni o'chirish",
+      "delete-body": "\"{{name}}\" lavozimini o'chirmoqchimisiz? Bu amalni qaytarib bo'lmaydi.",
+      "toast": {
+        "created": "Lavozim qo'shildi",
+        "updated": "Lavozim yangilandi",
+        "deleted": "Lavozim o'chirildi"
+      },
+      "errors": {
+        "name-required": "Lavozim nomi kamida 2 ta belgidan iborat bo'lishi kerak",
+        "types-required": "Kamida bitta bo'linma turini belgilang",
+        "duplicate-name": "Bunday nomli lavozim allaqachon mavjud",
+        "in-use": "Bu lavozim xodim(lar)ga biriktirilgan — avval ularni boshqa lavozimga o'tkazing, so'ng o'chiring"
       }
     },
     "units": {
