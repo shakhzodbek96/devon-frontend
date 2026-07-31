@@ -27,7 +27,8 @@
       "open-profile": "Open profile",
       "choose-file": "Choose file",
       "replace-file": "Replace",
-      "remove-file": "Remove file"
+      "remove-file": "Remove file",
+      "remove": "Remove"
     },
     "labels": {
       "loading": "Loading...",
@@ -125,6 +126,15 @@
       "minutes-ago": "{{count, plural, one {# minute ago} other {# minutes ago}}}",
       "hours-ago": "{{count, plural, one {# hour ago} other {# hours ago}}}",
       "days-ago": "{{count, plural, one {# day ago} other {# days ago}}}"
+    },
+    "exceptionModal": {
+      "title": "Unexpected error",
+      "subtitle": "The server returned an unexpected error — technical details below.",
+      "message": "Message",
+      "exception-class": "Exception class",
+      "raw": "Full response (JSON)",
+      "copy": "Copy",
+      "copied": "Copied"
     }
   },
   "dashboard": {
@@ -136,6 +146,7 @@
       "nav-home": "Home",
       "nav-units": "Org structure",
       "nav-employees": "Employees",
+      "nav-positions": "Positions",
       "nav-certificates": "E-signature keys",
       "nav-audit": "Audit log",
       "nav-users": "Users",
@@ -147,7 +158,13 @@
       "section-management": "MANAGEMENT",
       "section-documents": "DOCUMENT WORKFLOW",
       "section-personal": "PERSONAL",
-      "footer-slogan": "Progress through discipline!"
+      "footer-slogan": "Progress through discipline!",
+      "nav-conference-rooms": "Conference rooms",
+      "nav-attendance": "Attendance",
+      "nav-tabels": "Timesheets",
+      "nav-tabel-registry": "Timesheet registry",
+      "nav-protocols": "Protocols",
+      "nav-collegial-bodies": "Collegial bodies"
     },
     "topbar": {
       "search-placeholder": "Search employee, unit, or certificate...",
@@ -360,7 +377,17 @@
         "user": "User",
         "profile-request": "Profile request",
         "document": "Document",
-        "letter": "Letter"
+        "letter": "Letter",
+        "task": "Task",
+        "conference-room": "Conference room",
+        "conference-booking": "Room booking",
+        "office-network": "Office network",
+        "work-shift": "Work shift",
+        "attendance": "Attendance",
+        "tabel": "Timesheet",
+        "tabel-registry": "Timesheet registry",
+        "collegial-body": "Collegial body",
+        "protocol": "Protocol"
       },
       "col": {
         "time": "Time",
@@ -422,7 +449,32 @@
         "TASK_SUBMITTED": "submitted task",
         "TASK_ACCEPTED": "accepted task",
         "TASK_RETURNED": "returned task",
-        "TASK_REJECTED": "rejected task"
+        "TASK_REJECTED": "rejected task",
+        "CANCEL": "cancelled",
+        "ATTENDANCE_CHECKED_IN": "checked in (attendance)",
+        "ATTENDANCE_CHECKED_OUT": "checked out (attendance)",
+        "ATTENDANCE_MANUAL_ENTRY": "entered attendance manually",
+        "TABEL_GENERATED": "generated timesheet",
+        "TABEL_ENTRIES_UPDATED": "edited timesheet entries",
+        "TABEL_SUBMITTED": "submitted timesheet",
+        "TABEL_HEAD_SIGNED": "approved timesheet with e-signature",
+        "TABEL_HEAD_REJECTED": "rejected timesheet",
+        "TABEL_HR_ACCEPTED": "accepted timesheet",
+        "TABEL_HR_REJECTED": "rejected timesheet as HR",
+        "TABEL_REGISTRY_DISPATCHED": "dispatched timesheet registry",
+        "COLLEGIAL_MEMBER_ADDED": "added a member",
+        "COLLEGIAL_MEMBER_REMOVED": "removed a member",
+        "PROTOCOL_CREATED": "created protocol",
+        "PROTOCOL_UPDATED": "edited protocol",
+        "PROTOCOL_SUBMITTED": "sent protocol for review",
+        "PROTOCOL_REVIEWER_APPROVED": "approved protocol (reviewer)",
+        "PROTOCOL_REVIEWER_REJECTED": "rejected protocol (reviewer)",
+        "PROTOCOL_SENT_TO_MEMBERS": "sent protocol to members",
+        "PROTOCOL_MEMBER_SIGNED": "signed protocol with e-signature",
+        "PROTOCOL_MEMBER_DECLINED": "declined protocol",
+        "PROTOCOL_SENT_TO_CHAIRMAN": "sent protocol to chairman",
+        "PROTOCOL_CHAIRMAN_APPROVED": "gave final approval to protocol",
+        "PROTOCOL_CHAIRMAN_REJECTED": "rejected protocol as chairman"
       }
     },
     "documents": {
@@ -1481,6 +1533,37 @@
         }
       }
     },
+    "positions": {
+      "title": "Positions",
+      "subtitle": "Manage the positions directory — used when adding an employee",
+      "add": "Add position",
+      "col-name": "Position name",
+      "col-unit-types": "Applicable unit types",
+      "col-actions": "Actions",
+      "empty-title": "No positions yet",
+      "empty-body": "Add the first position — it can then be selected when adding an employee.",
+      "create-title": "New position",
+      "edit-title": "Edit position",
+      "create-submit": "Add",
+      "form-hint": "Enter the position name and specify which unit types it applies to.",
+      "field-name": "Position name",
+      "field-name-placeholder": "e.g. Chief specialist",
+      "field-unit-types": "Allowed unit types",
+      "field-unit-types-hint": "This position will only be selectable in units of the specified types.",
+      "delete-title": "Delete position",
+      "delete-body": "Delete the position \"{{name}}\"? This action cannot be undone.",
+      "toast": {
+        "created": "Position added",
+        "updated": "Position updated",
+        "deleted": "Position deleted"
+      },
+      "errors": {
+        "name-required": "Position name must be at least 2 characters",
+        "types-required": "Specify at least one unit type",
+        "duplicate-name": "A position with this name already exists",
+        "in-use": "This position is assigned to employee(s) — reassign them to another position first, then delete"
+      }
+    },
     "units": {
       "page-title": "Organizational structure",
       "page-subtitle": "Manage the organization's hierarchy",
@@ -1525,6 +1608,335 @@
         "max-depth": "A maximum hierarchy depth of 7 levels is allowed",
         "cycle": "A unit cannot be a parent of its own descendant",
         "invalid-parent": "The selected parent unit does not exist"
+      }
+    },
+    "conferenceRooms": {
+      "page-title": "Conference rooms",
+      "page-subtitle": "Book or manage conference rooms",
+      "rooms": {
+        "add": "New room",
+        "book": "Book",
+        "empty": "No conference rooms yet.",
+        "capacity-suffix": "seats {{count}}",
+        "form": {
+          "create-title": "Create new room",
+          "edit-title": "Edit room",
+          "description": "Enter the room's basic information.",
+          "name": "Name",
+          "capacity": "Capacity (number of seats)",
+          "location": "Location"
+        },
+        "toast": {
+          "created": "Room created",
+          "updated": "Room updated",
+          "archived": "Room archived"
+        },
+        "errors": {
+          "invalid-capacity": "Capacity must be between 1 and 1000"
+        }
+      },
+      "booking": {
+        "title": "Book room \"{{room}}\"",
+        "description": "Choose a date and time; busy slots are shown below.",
+        "submit": "Book",
+        "busy-title": "Busy times on this day",
+        "no-bookings": "No bookings yet for this day",
+        "form": {
+          "date": "Date",
+          "start-time": "Start time",
+          "end-time": "End time",
+          "purpose": "Purpose"
+        },
+        "errors": {
+          "invalid-time": "Invalid time format",
+          "invalid-range": "End time must be after start time"
+        },
+        "toast": {
+          "booked": "Room booked"
+        }
+      },
+      "myBookings": {
+        "title": "My bookings",
+        "empty": "You have no bookings yet.",
+        "col-room": "Room",
+        "col-date": "Date",
+        "col-time": "Time",
+        "col-purpose": "Purpose",
+        "col-status": "Status",
+        "status": {
+          "booked": "Booked",
+          "cancelled": "Cancelled"
+        },
+        "cancel-confirm": {
+          "title": "Cancel this booking?",
+          "description": "This action cannot be undone. The room will become available again for this time."
+        },
+        "toast": {
+          "cancelled": "Booking cancelled"
+        }
+      },
+      "errors": {
+        "invalid-room": "Room not found",
+        "room-archived": "This room is archived and cannot be booked",
+        "invalid-range": "End time must be after start time",
+        "time-conflict": "This time is already booked, choose another",
+        "not-authorized": "You do not have permission for this action",
+        "wrong-status": "Booking status does not match this action"
+      }
+    },
+    "attendance": {
+      "page-title": "Attendance",
+      "page-subtitle": "Record your daily working hours",
+      "today": {
+        "title": "Today's status",
+        "not-started": "Not checked in",
+        "checked-in": "At work",
+        "closed": "Day closed",
+        "check-in": "Check in",
+        "check-out": "Check out",
+        "check-in-at": "Checked in: {{time}}",
+        "check-out-at": "Checked out: {{time}}",
+        "toast": {
+          "checked-in": "Check-in recorded",
+          "checked-out": "Check-out recorded"
+        }
+      },
+      "history": {
+        "title": "Monthly history"
+      },
+      "weekday": {
+        "mon": "Mon",
+        "tue": "Tue",
+        "wed": "Wed",
+        "thu": "Thu",
+        "fri": "Fri",
+        "sat": "Sat",
+        "sun": "Sun"
+      },
+      "faceCheck": {
+        "title-in": "Confirm check-in",
+        "title-out": "Confirm check-out",
+        "description": "Confirm using a face scan (demo mode).",
+        "cta": "Confirm",
+        "hint": "Press the button — the device camera will simulate \"scanning\".",
+        "scanning": "Verifying...",
+        "scanning-hint": "Please wait",
+        "success-in": "Check-in successfully recorded",
+        "success-out": "Check-out successfully recorded"
+      },
+      "status": {
+        "OK": "Normal",
+        "LATE": "Late",
+        "EARLY_EXIT": "Early exit",
+        "ABSENT": "Absent",
+        "HOLIDAY_WORK": "Worked on holiday",
+        "AUTO_CLOSED": "Auto-closed",
+        "MANUAL": "Entered manually",
+        "VACATION": "Vacation",
+        "SICK_LEAVE": "Sick leave",
+        "BUSINESS_TRIP": "Business trip",
+        "DAY_OFF": "Day off"
+      },
+      "errors": {
+        "network-blocked": "You are not connected to the office Wi-Fi network",
+        "already-checked-in": "Already checked in today",
+        "already-closed": "Today's day is already closed"
+      }
+    },
+    "tabels": {
+      "page-title": "Timesheets",
+      "page-subtitle": "Generate and approve the monthly timesheet by unit",
+      "filters": {
+        "unit": "Unit",
+        "period": "Period"
+      },
+      "no-units": "No units belonging to you were found.",
+      "empty": "No timesheet has been generated for this period yet.",
+      "generate": "Generate timesheet",
+      "submit": "Submit",
+      "head-approve": "Approve with e-signature",
+      "hr-accept": "Accept",
+      "head-note": "Head's comment",
+      "hr-note": "HR comment",
+      "col-employee": "Employee",
+      "status": {
+        "DRAFT": "Draft",
+        "SENT_TO_HEAD": "Sent to head",
+        "HEAD_REJECTED": "Rejected by head",
+        "SENT_TO_HR": "Sent to HR",
+        "HR_REJECTED": "Rejected by HR",
+        "HR_ACCEPTED": "Accepted by HR"
+      },
+      "reject": {
+        "description": "Enter the reason for rejection.",
+        "note-placeholder": "Comment...",
+        "cta": "Reject",
+        "head-title": "Reject timesheet \"{{unit}}\"",
+        "hr-title": "Reject timesheet \"{{unit}}\""
+      },
+      "sign": {
+        "success": "Timesheet approved with e-signature"
+      },
+      "toast": {
+        "generated": "Timesheet generated",
+        "saved": "Saved",
+        "submitted": "Timesheet submitted",
+        "hr-accepted": "Timesheet accepted"
+      },
+      "errors": {
+        "not-editable": "This timesheet cannot be edited right now",
+        "wrong-status": "Timesheet status does not match this action",
+        "not-authorized": "You do not have permission for this action",
+        "entries-incomplete": "A status must be entered for all days",
+        "not-all-units-ready": "Not all units are ready yet",
+        "not-rahbar": "You are not the head of this unit",
+        "cert-invalid": "Certificate is invalid"
+      }
+    },
+    "tabelRegistry": {
+      "page-title": "Timesheet registry",
+      "page-subtitle": "Timesheet status across all units (accounting view)",
+      "period": "Period",
+      "export": "Export to Excel",
+      "col-unit": "Unit",
+      "col-status": "Timesheet status",
+      "col-hr-accepted-at": "HR accepted at",
+      "no-tabel": "Timesheet not generated",
+      "ready-count": "{{ready}} / {{total}} units ready",
+      "not-dispatched": "Not yet dispatched to accounting",
+      "dispatched-at": "Dispatched to accounting: {{time}}"
+    },
+    "collegial": {
+      "bodies": {
+        "page-title": "Collegial bodies",
+        "page-subtitle": "Manage the permanent membership, chairman/secretary, and quorum",
+        "add": "New body",
+        "empty": "No collegial bodies yet.",
+        "field-chairman": "Chairman",
+        "field-secretary": "Secretary",
+        "members-suffix": "{{count}} members",
+        "quorum-suffix": "quorum {{count}}",
+        "form": {
+          "create-title": "New collegial body",
+          "edit-title": "Edit body",
+          "description": "Enter the body's basic information and its permanent membership.",
+          "name": "Name",
+          "chairman": "Chairman",
+          "secretary": "Secretary",
+          "quorum": "Quorum (minimum number of members)",
+          "members": "Members (permanent composition)",
+          "add-member": "Add member",
+          "errors": {
+            "required": "Name, chairman, and secretary are required"
+          }
+        },
+        "toast": {
+          "created": "Body created",
+          "updated": "Body updated",
+          "archived": "Body archived"
+        },
+        "archive-confirm": {
+          "title": "Archive this body?",
+          "description": "A new protocol cannot be created for an archived body."
+        }
+      },
+      "protocols": {
+        "page-title": "Protocols",
+        "page-subtitle": "Record and approve decisions of a collegial body",
+        "add": "New protocol",
+        "empty": "No protocols found.",
+        "filters": {
+          "body": "Body",
+          "status": "Status",
+          "mine": "My tasks"
+        },
+        "col-number": "Number",
+        "col-body": "Body",
+        "col-date": "Date",
+        "col-status": "Status",
+        "status": {
+          "DRAFT": "Draft",
+          "SENT_FOR_REVIEW": "Sent for review",
+          "REVIEW_REJECTED": "Rejected by reviewer",
+          "SENT_TO_MEMBERS": "Sent to members",
+          "MEMBERS_REJECTED": "Declined by a member",
+          "SENT_TO_CHAIRMAN": "Sent to chairman",
+          "CHAIRMAN_REJECTED": "Rejected by chairman",
+          "APPROVED": "Approved"
+        },
+        "decision": {
+          "PENDING": "Pending",
+          "APPROVED": "Approved",
+          "REJECTED": "Rejected"
+        },
+        "participantDecision": {
+          "PENDING": "Pending",
+          "SIGNED": "Signed",
+          "DECLINED": "Declined"
+        },
+        "template": {
+          "STANDARD": "Standard",
+          "BUDGET_DECISION": "Budget decision"
+        },
+        "wizard": {
+          "title": "New protocol",
+          "description": "Select the body, and specify the membership and reviewers.",
+          "submit": "Save as draft",
+          "field-body": "Collegial body",
+          "field-participants": "Membership (members for quorum)",
+          "field-reviewers": "Reviewing employees",
+          "field-date": "Protocol date",
+          "field-template": "Template",
+          "field-agenda": "Agenda",
+          "agenda-placeholder": "Enter the agenda and decision text...",
+          "add-reviewer": "Add reviewer",
+          "quorum-hint": "Selected: {{selected}} / at least {{min}} required",
+          "no-roster": "This body has no members yet.",
+          "toast": {
+            "created": "Protocol created as draft"
+          }
+        },
+        "detail": {
+          "agenda-title": "Agenda",
+          "reviewers-title": "Reviewers",
+          "participants-title": "Members",
+          "review-note": "Reviewer's comment",
+          "chairman-note": "Chairman's comment",
+          "note-placeholder": "Enter the reason for rejection...",
+          "submit": "Submit",
+          "reviewer-approve": "Approve",
+          "member-sign": "Sign with e-signature",
+          "member-decline": "Decline",
+          "chairman-approve": "Give final approval with e-signature",
+          "toast": {
+            "saved": "Saved",
+            "submitted": "Protocol submitted",
+            "reviewer-approved": "Approved"
+          },
+          "reject": {
+            "description": "Enter the reason for rejection.",
+            "reviewer-title": "Reject protocol",
+            "member-title": "Decline",
+            "chairman-title": "Reject protocol"
+          },
+          "sign": {
+            "success-member": "Protocol signed with e-signature",
+            "success-chairman": "Protocol given final approval"
+          }
+        }
+      },
+      "errors": {
+        "not-editable": "This protocol cannot be edited right now",
+        "wrong-status": "Protocol status does not match this action",
+        "not-authorized": "You do not have permission for this action",
+        "not-reviewer": "You are not a reviewer of this protocol",
+        "not-participant": "You are not a member of this protocol",
+        "not-chairman": "You are not the chairman of this body",
+        "already-decided": "You have already made a decision",
+        "already-signed": "You have already signed",
+        "quorum-not-met": "The number of selected members is below quorum",
+        "not-body-member": "The employee is not a member of the body",
+        "cert-invalid": "Certificate is invalid"
       }
     }
   }
