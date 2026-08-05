@@ -1,0 +1,4 @@
+# Cloudflare Pages SPA fallback — serve index.html for every client-side
+# route so React Router can handle deep links (/login, /documents/:id, ...)
+# instead of Pages returning its default 404 page.
+/*    /index.html   200
