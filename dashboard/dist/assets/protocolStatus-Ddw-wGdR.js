@@ -1,0 +1,1 @@
+var e={DRAFT:`outline`,SENT_FOR_REVIEW:`secondary`,REVIEW_REJECTED:`destructive`,SENT_TO_MEMBERS:`secondary`,MEMBERS_REJECTED:`destructive`,SENT_TO_CHAIRMAN:`secondary`,CHAIRMAN_REJECTED:`destructive`,APPROVED:`default`};function t(t){return e[t]}var n=[`DRAFT`,`REVIEW_REJECTED`,`MEMBERS_REJECTED`,`CHAIRMAN_REJECTED`];export{t as n,n as t};

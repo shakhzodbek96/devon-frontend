@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#011528" />
+    <title>Devon — Boshqaruv paneli</title>
+    <script type="module" crossorigin src="/assets/index-DC3ccJUQ.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-1lcPXO-H.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      // Single Page Apps for GitHub Pages — redirect handoff.
+      // MIT License — https://github.com/rafgraph/spa-github-pages
+      // Decodes the `/?/path?query` shape written by `public/404.html` back
+      // into a clean URL the React Router can route. Must run BEFORE the main
+      // module bundle below so the first render sees the rewritten location.
+      (function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search.slice(1).split('&').map(function (s) {
+            return s.replace(/~and~/g, '&');
+          }).join('?');
+          window.history.replaceState(
+            null,
+            null,
+            l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location));
+    </script>
+  </body>
+</html>

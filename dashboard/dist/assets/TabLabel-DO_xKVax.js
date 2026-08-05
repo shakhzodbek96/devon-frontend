@@ -1,0 +1,1 @@
+import{Nr as e}from"./index-DC3ccJUQ.js";var t=e();function n({children:e}){return(0,t.jsxs)(`span`,{className:`grid`,children:[(0,t.jsx)(`span`,{"aria-hidden":`true`,className:`col-start-1 row-start-1 invisible font-semibold`,children:e}),(0,t.jsx)(`span`,{className:`col-start-1 row-start-1`,children:e})]})}export{n as t};

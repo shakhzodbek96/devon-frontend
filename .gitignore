@@ -23,9 +23,14 @@ build/
 # Dashboard build artefacts (explicit — top-level rules above also catch these,
 # but spelling them out documents intent and makes future repo splits trivial)
 dashboard/node_modules/
-dashboard/dist/
 dashboard/.vite/
 dashboard/.eslintcache
+
+# ...except dashboard/dist/, which is tracked on purpose: Cloudflare Pages
+# serves the dashboard straight from the repo without running a build, so the
+# compiled output has to be committed. This negation must stay after the
+# generic `dist/` rule above for git to re-include the directory.
+!dashboard/dist/
 
 # OS / temp
 Thumbs.db
