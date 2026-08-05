@@ -176,6 +176,9 @@
       "dark": "Tungi",
       "system": "Tizim bo'yicha"
     },
+    "language": {
+      "menu-label": "Tilni almashtirish"
+    },
     "user-menu": {
       "profile": "Profilim",
       "settings": "Sozlamalar",

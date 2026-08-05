@@ -176,6 +176,9 @@
       "dark": "Dark",
       "system": "System"
     },
+    "language": {
+      "menu-label": "Change language"
+    },
     "user-menu": {
       "profile": "Profile",
       "settings": "Settings",

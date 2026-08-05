@@ -176,6 +176,9 @@
       "dark": "Тёмная",
       "system": "Как в системе"
     },
+    "language": {
+      "menu-label": "Сменить язык"
+    },
     "user-menu": {
       "profile": "Профиль",
       "settings": "Настройки",

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { BrandMark } from '@/components/common/BrandMark';
 import MobileNavTrigger from './MobileNavTrigger';
+import LanguageSwitcher from './LanguageSwitcher';
 import ThemeToggle from './ThemeToggle';
 import UserMenu from './UserMenu';
 import NotificationsBell from '@/features/notifications/NotificationsBell';
@@ -71,6 +72,7 @@ export default function TopBar() {
             </span>
           )}
 
+          <LanguageSwitcher />
           <ThemeToggle />
           <NotificationsBell />
           <UserMenu />
